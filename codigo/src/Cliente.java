@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
@@ -5,6 +6,13 @@ public class Cliente {
     String senha;
     List<Serie> listaParaVer; 
     List<Serie> listaJaVistas; 
+
+    public Cliente(String nomeDeUsuario, String senha) {
+        this.nomeDeUsuario = nomeDeUsuario;
+        this.senha = senha;
+        this.listaParaVer = new ArrayList<>();
+        this.listaJaVistas = new ArrayList<>();
+    }
 
     /**
      * Adiciona Serie na lista de filmes para ver
@@ -22,19 +30,37 @@ public class Cliente {
         this.listaParaVer.remove(serie);
     }
 
+    /**
+     * Filtra Series para ver pelo genero
+     * @param genero
+     * @return
+     */
     public List<Serie> filtrarPorGenero(String genero) {
-        // TODO metodo
-        return listaJaVistas;
+        return this.listaParaVer.stream()
+        .filter(s -> s.getGenero().equals(genero))
+        .toList();
     }
 
+    /**
+     * Filtra Series para ver pelo idioma
+     * @param idioma
+     * @return
+     */
     public List<Serie> filtrarPorIdioma(String idioma) {
-        // TODO metodo
-        return listaJaVistas;
+        return this.listaParaVer.stream()
+        .filter(s -> s.getIdioma().equals(idioma))
+        .toList();
     }
     
+    /**
+     * Filtra Series para ver pela quantidade de epsódios
+     * @param qtdEpisodios
+     * @return
+     */
     public List<Serie> filtrarPorQtdEpisodios(int qtdEpisodios) {
-        // TODO metodo
-        return listaJaVistas;
+        return this.listaParaVer.stream()
+        .filter(s -> s.getQuantidadeEpisodios() == qtdEpisodios)
+        .toList();
     }
 
     /**
@@ -42,7 +68,9 @@ public class Cliente {
      * @param serie
      */
     public void registrarAudiencia(Serie serie) {
-        // Chamar método de audiencia na serie
-        this.listaJaVistas.add(serie);
+        if (!this.listaJaVistas.contains(serie)) {
+            this.listaJaVistas.add(serie);
+            serie.registrarAudiencia();
+        }
     }
 }
