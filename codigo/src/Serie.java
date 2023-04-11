@@ -1,7 +1,17 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Serie {
-    private static final List<String> GENEROS;
+    private static final List<String> GENEROS = new ArrayList<>(Arrays.asList(
+        "ação",
+        "comédia",
+        "suspense",
+        "terror",
+        "romance",
+        "drama",
+        "ficção cinetífica"
+    )); 
     private String nome;
     private String genero;
     private String idioma;
