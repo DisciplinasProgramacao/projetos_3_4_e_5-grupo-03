@@ -4,10 +4,10 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
 ## Alunos integrantes da equipe
 
-Vitor Lany Freitas Ferreira
-Augusto Baldiotti Mendonça Alvares
-Daniel de Rezende Leão
-Caio Elias Rodrigues Araujo
+*Vitor Lany Freitas Ferreira
+*Augusto Baldiotti Mendonça Alvares
+*Daniel de Rezende Leão
+*Caio Elias Rodrigues Araujo
 
 
 ## Professores responsáveis
