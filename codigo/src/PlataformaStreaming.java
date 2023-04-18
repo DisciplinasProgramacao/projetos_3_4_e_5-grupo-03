@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PlataformaStreaming {
     private String nome;
@@ -34,15 +35,31 @@ public class PlataformaStreaming {
     }
 
     public List<Serie> filtrarPorGenero(String genero) {
-        return null;
+        return this.series.values().stream()
+            .filter(s -> s.getGenero().equalsIgnoreCase(genero))
+            .collect(Collectors.toList());
     }
 
+/*     Explicando o código:
+        return this.series.values().stream()
+        .filter(s -> s.getGenero().equalsIgnoreCase(genero))
+        .collect(Collectors.toList());
+
+    O método stream() cria um fluxo (stream) das séries 
+    e aplicamos o método filter() para filtrar as séries de acordo com o 
+    critério fornecido. No final, usamos o método collect() com o coletor 
+    Collectors.toList() para converter o fluxo filtrado de volta em uma lista. */
+    
     public List<Serie> filtrarPorIdioma(String idioma) {
-        return null;
+        return this.series.values().stream()
+            .filter(s -> s.getIdioma().equalsIgnoreCase(idioma))
+            .collect(Collectors.toList());
     }
-
+    
     public List<Serie> filtrarPorQtdEpisodios(int quantEpisodios) {
-        return null;
+        return this.series.values().stream()
+            .filter(s -> s.getQuantidadeEpisodios() == quantEpisodios)
+            .collect(Collectors.toList());
     }
 
     public void registrarAudiencia(Serie serie) {
