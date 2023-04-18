@@ -1,8 +1,9 @@
 import org.junit.jupiter.api.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,11 +18,14 @@ public class PlataformaStreamingTest {
 
     @BeforeEach
     public void setUp() {
+        LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
+        LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
+        LocalDate dataDeLancamento3 = LocalDate.of(2019, 1, 1);
         plataforma = new PlataformaStreaming("TesteStreaming");
-        serie1 = new Serie("Serie1", "ação", "português", 10, 0);
-        serie2 = new Serie("Serie2", "drama", "inglês", 8, 0);
-        serie3 = new Serie("Serie3", "ação", "português", 10, 0);
-        cliente1 = new Cliente("usuario1", "senha1");
+        serie1 = new Serie(1, "Serie1", "ação", "português", 10, 0, dataDeLancamento1);
+        serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
+        serie3 = new Serie(3, "Serie3", "ação", "português", 10, 0, dataDeLancamento3);
+        cliente1 = new Cliente("nome", "usuario1", "senha1");
 
     }
 

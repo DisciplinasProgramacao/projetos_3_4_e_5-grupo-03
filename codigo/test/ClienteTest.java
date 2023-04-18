@@ -3,32 +3,36 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 class ClienteTest {
     Cliente cliente;
-    Serie serie, serie2;
+    Serie serie;
+    Serie serie2;
+
 
     @BeforeEach
     public void setUp() {
-        cliente = new Cliente("Nome", "123");
-        serie = new Serie("Teste", "Terror", "Portugues", 12, 100);
-        serie2 = new Serie("Teste2", "Humor", "Ingles", 15, 200);
-        
+        LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
+        LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
+        cliente = new Cliente("nome", "usuario1", "senha1");
+        serie = new Serie(1, "Serie1", "Humor", "Portugues", 15, 0, dataDeLancamento1);
+        serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
         cliente.adicionarNaLista(serie);
         cliente.adicionarNaLista(serie2);
     }
 
     @Test
     void testAdicionarNaLista() {
-        assertEquals(cliente.listaParaVer.size(), 1);
+        assertEquals(2, cliente.listaParaVer.size());
     }
 
     @Test
     void testRetirarDaLista() {
-        assertEquals(cliente.listaParaVer.size(), 1);
+        assertEquals(2, cliente.listaParaVer.size());
         cliente.retirarDaLista(serie);
-        assertEquals(cliente.listaParaVer.size(), 0);
+        assertEquals(1, cliente.listaParaVer.size());
     }
 
     @Test

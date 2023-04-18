@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,18 +13,30 @@ public class Serie {
         "drama",
         "ficção cinetífica"
     )); 
+    private int id;
     private String nome;
     private String genero;
     private String idioma;
     private int quantidadeEpisodios;
+    private int audiencia;
+    private LocalDate dataDeLancamento;
 
     public Serie() {
     }
-    private int audiencia;
 
     public void registrarAudiencia(){
         audiencia++;
     }
+
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int idSerie) {
+        this.id = idSerie;
+    }
+
 
     public String getNome() {
         return this.nome;
@@ -65,12 +78,24 @@ public class Serie {
         this.audiencia = audiencia;
     }
 
-    public Serie(String nome, String genero, String idioma, int quantidadeEpisodios, int audiencia) {
+
+    public LocalDate getDataDeLancamento() {
+        return this.dataDeLancamento;
+    }
+
+    public void setDataDeLancamento(LocalDate dataDeLancamento) {
+        this.dataDeLancamento = dataDeLancamento;
+    }
+
+
+    public Serie(int id, String nome, String genero, String idioma, int quantidadeEpisodios, int audiencia, LocalDate dataDeLancamento) {
+        this.id = id;
         this.nome = nome;
         this.genero = genero;
         this.idioma = idioma;
         this.quantidadeEpisodios = quantidadeEpisodios;
         this.audiencia = audiencia;
+        this.dataDeLancamento = dataDeLancamento;
     }
 
 

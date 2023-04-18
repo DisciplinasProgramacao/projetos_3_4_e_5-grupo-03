@@ -2,12 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
+    String nome;
     String nomeDeUsuario;
     String senha;
     List<Serie> listaParaVer; 
     List<Serie> listaJaVistas; 
 
-    public Cliente(String nomeDeUsuario, String senha) {
+    public Cliente(String nome, String nomeDeUsuario, String senha) {
+        this.nome = nome;
         this.nomeDeUsuario = nomeDeUsuario;
         this.senha = senha;
         this.listaParaVer = new ArrayList<>();
@@ -81,4 +83,42 @@ public class Cliente {
     public String getSenha() {
         return this.senha;
     }
+
+
+    public String getNome() {
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNomeDeUsuario() {
+        return this.nomeDeUsuario;
+    }
+
+    public void setNomeDeUsuario(String nomeDeUsuario) {
+        this.nomeDeUsuario = nomeDeUsuario;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Serie> getListaParaVer() {
+        return this.listaParaVer;
+    }
+
+    public void setListaParaVer(List<Serie> listaParaVer) {
+        this.listaParaVer = listaParaVer;
+    }
+
+    public List<Serie> getListaJaVistas() {
+        return this.listaJaVistas;
+    }
+
+    public void setListaJaVistas(List<Serie> listaJaVistas) {
+        this.listaJaVistas = listaJaVistas;
+    }
+
+
 }

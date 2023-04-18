@@ -2,6 +2,8 @@
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,8 @@ class SeriesTest {
     Serie serie;
     @BeforeEach
     public void setUp() {
-        serie = new Serie("Halt and Catch Fire", "ação", "Inglês", 10, 0);
+        LocalDate dataDeLancamento = LocalDate.of(2021, 1, 1);
+        serie = new Serie(1,"Halt and Catch Fire", "ação", "Inglês", 10, 0, dataDeLancamento);
 
     }
 
