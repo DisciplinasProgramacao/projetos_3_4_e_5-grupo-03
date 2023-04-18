@@ -78,9 +78,7 @@ public class PlataformaStreaming {
     }
 
 
-    public List<Cliente> lerClientes(String arquivo) throws IOException {
-        List<Cliente> listaClientes = new ArrayList<>();
-
+    public void lerClientes(String arquivo) throws IOException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
             while (scanner.hasNextLine()) {
@@ -91,10 +89,9 @@ public class PlataformaStreaming {
                 String senha = campos[2];
 
                 Cliente cliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
-                listaClientes.add(cliente);
+                this.clientes.put(cliente.nomeDeUsuario, cliente);
             }
         }
-        return listaClientes;
     }
 
     public List<Serie> lerSeries(String arquivo) throws IOException {
