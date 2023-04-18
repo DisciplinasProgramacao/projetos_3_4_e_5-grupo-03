@@ -14,11 +14,15 @@ public class PlataformaStreaming {
     private Cliente clienteAtual;
 
 
-    public PlataformaStreaming(String nome) {
+    public PlataformaStreaming(String nome) throws IOException {
         this.nome = nome;
         this.series = new HashMap<String, Serie>();
         this.clientes = new HashMap<String, Cliente>();
         this.clienteAtual = null;
+
+        this.lerClientes("POO_Espectadores.csv");
+        this.lerSeries("POO_Series.csv");
+        this.lerAudiencia("POO_Audiencia.csv");
     }
 
     public Cliente login(String nomeUsuario, String senha) {
@@ -78,7 +82,7 @@ public class PlataformaStreaming {
     }
 
 
-    public void lerClientes(String arquivo) throws IOException {
+    private void lerClientes(String arquivo) throws IOException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
             while (scanner.hasNextLine()) {
@@ -89,14 +93,12 @@ public class PlataformaStreaming {
                 String senha = campos[2];
 
                 Cliente cliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
-                this.clientes.put(cliente.nomeDeUsuario, cliente);
+                this.adicionarCliente(cliente);
             }
         }
     }
 
-    public List<Serie> lerSeries(String arquivo) throws IOException {
-        List<Serie> listaSeries = new ArrayList<>();
-
+    private void lerSeries(String arquivo) throws IOException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
             while (scanner.hasNextLine()) {
@@ -108,14 +110,12 @@ public class PlataformaStreaming {
 
                 // Os campos adicionais podem ser adicionados conforme necessário
                 Serie serie = new Serie(idSerie, nomeSerie, "", "", 0, 0, dataDeLancamento);
-                listaSeries.add(serie);
+                this.adicionarSerie(serie);
             }
         }
-
-        return listaSeries;
     }
 
-    public void lerAudiencia(String arquivo, PlataformaStreaming plataforma) throws IOException {
+    private void lerAudiencia(String arquivo) throws IOException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
             while (scanner.hasNextLine()) {
@@ -125,8 +125,8 @@ public class PlataformaStreaming {
                 String tipo = campos[1];
                 String idSerie = campos[2];
 
-                Cliente cliente = plataforma.getClientes().get(login);
-                Serie serie = plataforma.getSeries().get(idSerie);
+                Cliente cliente = this.getClientes().get(login);
+                Serie serie = this.getSeries().get(idSerie);
 
                 if (cliente != null && serie != null) {
                     if ("F".equalsIgnoreCase(tipo)) {
