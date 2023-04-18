@@ -1,6 +1,10 @@
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class PlataformaStreaming {
@@ -72,4 +76,70 @@ public class PlataformaStreaming {
     public HashMap<String, Serie> getSeries() {
         return this.series;
     }
+
+
+    public List<Cliente> lerClientes(String arquivo) throws IOException {
+        List<Cliente> listaClientes = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(new File(arquivo))) {
+            String linha;
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                String[] campos = linha.split(";");
+                String nomeCompleto = campos[0];
+                String nomeDeUsuario = campos[1];
+                String senha = campos[2];
+
+                Cliente cliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
+                listaClientes.add(cliente);
+            }
+        }
+        return listaClientes;
+    }
+
+    public List<Serie> lerSeries(String arquivo) throws IOException {
+        List<Serie> listaSeries = new ArrayList<>();
+
+        try (Scanner scanner = new Scanner(new File(arquivo))) {
+            String linha;
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                String[] campos = linha.split(";");
+                int idSerie = Integer.parseInt(campos[0]);
+                String nomeSerie = campos[1];
+                LocalDate dataDeLancamento = LocalDate.parse(campos[2]);
+
+                // Os campos adicionais podem ser adicionados conforme necessário
+                Serie serie = new Serie(idSerie, nomeSerie, "", "", 0, 0, dataDeLancamento);
+                listaSeries.add(serie);
+            }
+        }
+
+        return listaSeries;
+    }
+
+    public void lerAudiencia(String arquivo, PlataformaStreaming plataforma) throws IOException {
+        try (Scanner scanner = new Scanner(new File(arquivo))) {
+            String linha;
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                String[] campos = linha.split(";");
+                String login = campos[0];
+                String tipo = campos[1];
+                String idSerie = campos[2];
+
+                Cliente cliente = plataforma.getClientes().get(login);
+                Serie serie = plataforma.getSeries().get(idSerie);
+
+                if (cliente != null && serie != null) {
+                    if ("F".equalsIgnoreCase(tipo)) {
+                        cliente.adicionarNaLista(serie);
+                    } else if ("A".equalsIgnoreCase(tipo)) {
+                        cliente.registrarAudiencia(serie);
+                    }
+                }
+            }
+        }
+    }
+
 }
