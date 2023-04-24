@@ -3,63 +3,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Serie {
-    private static final List<String> GENEROS = new ArrayList<>(Arrays.asList(
-        "ação",
-        "comédia",
-        "suspense",
-        "terror",
-        "romance",
-        "drama",
-        "ficção cinetífica"
-    )); 
-    private int id;
-    private String nome;
-    private String genero;
-    private String idioma;
+public class Serie extends Midia{
+   
     private int quantidadeEpisodios;
-    private int audiencia;
-    private LocalDate dataDeLancamento;
-
+   
     public Serie() {
+        super();
+    }
+
+    public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) {
+        super(id, nome, dataLancamento);
+        this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
     public void registrarAudiencia(){
         audiencia++;
-    }
-
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int idSerie) {
-        this.id = idSerie;
-    }
-
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getGenero() {
-        return this.genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getIdioma() {
-        return this.idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
     }
 
     public int getQuantidadeEpisodios() {
@@ -69,34 +27,5 @@ public class Serie {
     public void setQuantidadeEpisodios(int quantidadeEpisodios) {
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
-
-    public int getAudiencia() {
-        return this.audiencia;
-    }
-
-    public void setAudiencia(int audiencia) {
-        this.audiencia = audiencia;
-    }
-
-
-    public LocalDate getDataDeLancamento() {
-        return this.dataDeLancamento;
-    }
-
-    public void setDataDeLancamento(LocalDate dataDeLancamento) {
-        this.dataDeLancamento = dataDeLancamento;
-    }
-
-
-    public Serie(int id, String nome, String genero, String idioma, int quantidadeEpisodios, int audiencia, LocalDate dataDeLancamento) {
-        this.id = id;
-        this.nome = nome;
-        this.genero = genero;
-        this.idioma = idioma;
-        this.quantidadeEpisodios = quantidadeEpisodios;
-        this.audiencia = audiencia;
-        this.dataDeLancamento = dataDeLancamento;
-    }
-
 
 }
