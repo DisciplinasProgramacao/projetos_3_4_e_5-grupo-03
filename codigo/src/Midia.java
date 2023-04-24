@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Midia {
+public abstract class Midia {
 
     private int id;
     private String nome;
@@ -21,7 +21,7 @@ public class Midia {
         "ficção cinetífica"
     )); 
     private static final List<String> IDIOMAS = new ArrayList<>(Arrays.asList(
-        "inglês", "português", "espanhol";
+        "inglês", "português", "espanhol"
     ));
 
     public Midia(){
@@ -30,10 +30,16 @@ public class Midia {
     public Midia(int id, String nome, LocalDate dataLancamento, int genero, int idioma){
         this.id = id;
         this.nome=nome;
-        this.dataDeLancamento = dataLancamento;
+        this.dataLancamento = dataLancamento;
         this.genero = GENEROS.get(genero);
         this.idioma = IDIOMAS.get(idioma);
         
+    }
+
+    public Midia(int id, String nome, LocalDate dataLancamento) {
+        this.id = id;
+        this.nome=nome;
+        this.dataLancamento = dataLancamento;
     }
 
     public void registrarAudiencia(){

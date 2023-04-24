@@ -3,6 +3,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,16 +18,16 @@ public class PlataformaStreamingTest {
     private Cliente cliente1;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws IOException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         LocalDate dataDeLancamento3 = LocalDate.of(2019, 1, 1);
         plataforma = new PlataformaStreaming("TesteStreaming");
-        serie1 = new Serie(1, "Serie1", "ação", "português", 10, 0, dataDeLancamento1);
-        serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
-        serie3 = new Serie(3, "Serie3", "ação", "português", 10, 0, dataDeLancamento3);
+        serie1 = new Serie(1, "Serie1", dataDeLancamento1,8);
+        serie2 = new Serie(2, "Serie2", dataDeLancamento2, 10);
+        serie3 = new Serie(3, "Serie3", dataDeLancamento3, 12);
         cliente1 = new Cliente("nome", "usuario1", "senha1");
-
+        
     }
 
     @Test

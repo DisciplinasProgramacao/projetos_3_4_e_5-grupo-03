@@ -16,8 +16,8 @@ public class Serie extends Midia{
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
-    public void registrarAudiencia(){
-        audiencia++;
+    public Serie(int idSerie, String nomeSerie, String string, String string2, int i, int j,
+            LocalDate dataDeLancamento) {
     }
 
     public int getQuantidadeEpisodios() {

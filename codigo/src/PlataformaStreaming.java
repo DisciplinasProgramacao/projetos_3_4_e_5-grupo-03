@@ -11,6 +11,7 @@ public class PlataformaStreaming {
     private String nome;
     private HashMap<String, Serie> series;
     private HashMap<String, Cliente> clientes;
+    private HashMap<String, Filme> filmes;
     private Cliente clienteAtual;
 
 
@@ -18,11 +19,13 @@ public class PlataformaStreaming {
         this.nome = nome;
         this.series = new HashMap<String, Serie>();
         this.clientes = new HashMap<String, Cliente>();
+        this.filmes = new HashMap<String, Filme>();
         this.clienteAtual = null;
 
         this.lerClientes("POO_Espectadores.csv");
         this.lerSeries("POO_Series.csv");
         this.lerAudiencia("POO_Audiencia.csv");
+        this.lerFilmes("POO_Filmes.csv");
     }
 
     public Cliente login(String nomeUsuario, String senha) {
@@ -42,11 +45,19 @@ public class PlataformaStreaming {
         this.clientes.put(cliente.getNomeUsuario(), cliente);
     }
 
+    public void adicionarFilme(Filme filme) {
+        this.filmes.put(filme.getNome(), filme);
+    }
+
+
     public List<Serie> filtrarPorGenero(String genero) {
         return this.series.values().stream()
             .filter(s -> s.getGenero().equalsIgnoreCase(genero))
             .collect(Collectors.toList());
     }
+
+
+
 
 /*     Explicando o código:
         return this.series.values().stream()
@@ -135,6 +146,25 @@ public class PlataformaStreaming {
                         cliente.registrarAudiencia(serie);
                     }
                 }
+            }
+        }
+    }
+
+    private void lerFilmes(String arquivo) throws IOException {
+        try (Scanner scanner = new Scanner(new File(arquivo))) {
+            String linha;
+            scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                String[] campos = linha.split(";");
+                int idSerie = Integer.parseInt(campos[0]);
+                String nome = campos[1];
+                LocalDate dataDeLancamento = LocalDate.parse(campos[2]);
+                int duracao = Integer.parseInt(campos[3]);
+
+                // Os campos adicionais podem ser adicionados conforme necessário
+                Filme filme = new Filme(idSerie, nome, dataDeLancamento, duracao);
+                this.adicionarFilme(filme);
             }
         }
     }
