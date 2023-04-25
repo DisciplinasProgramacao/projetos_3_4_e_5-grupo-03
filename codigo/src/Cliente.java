@@ -39,7 +39,7 @@ public class Cliente {
      */
     public List<Serie> filtrarPorGenero(String genero) {
         return this.listaParaVer.stream()
-        .filter(s -> s.getGenero().equals(genero))
+        .filter(s -> s.getGenero().toLowerCase().equals(genero))
         .toList();
     }
 

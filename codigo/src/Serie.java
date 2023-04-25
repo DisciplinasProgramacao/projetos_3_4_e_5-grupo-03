@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class Serie extends Midia{
@@ -16,8 +17,9 @@ public class Serie extends Midia{
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
-    public Serie(int idSerie, String nomeSerie, String string, String string2, int i, int j,
+    public Serie(int id, String nome, String genero, Date data, int quantidadeEpisodios,
             LocalDate dataDeLancamento) {
+                super(id, nome, genero, data, )
     }
 
     public int getQuantidadeEpisodios() {

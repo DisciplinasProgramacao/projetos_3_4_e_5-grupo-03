@@ -20,12 +20,15 @@ public class PlataformaStreaming {
         this.series = new HashMap<String, Serie>();
         this.clientes = new HashMap<String, Cliente>();
         this.filmes = new HashMap<String, Filme>();
+
+        //criar um hash de midia e não de series e filmes, usando como identificador o ID
         this.clienteAtual = null;
 
         this.lerClientes("POO_Espectadores.csv");
         this.lerSeries("POO_Series.csv");
+        this.lerFilmes("./POO_Filmes.csv");
         this.lerAudiencia("POO_Audiencia.csv");
-        this.lerFilmes("POO_Filmes.csv");
+
     }
 
     public Cliente login(String nomeUsuario, String senha) {
@@ -55,9 +58,6 @@ public class PlataformaStreaming {
             .filter(s -> s.getGenero().equalsIgnoreCase(genero))
             .collect(Collectors.toList());
     }
-
-
-
 
 /*     Explicando o código:
         return this.series.values().stream()
@@ -157,16 +157,16 @@ public class PlataformaStreaming {
             while (scanner.hasNextLine()) {
                 linha = scanner.nextLine();
                 String[] campos = linha.split(";");
-                int idSerie = Integer.parseInt(campos[0]);
+                int idFilme = Integer.parseInt(campos[0]);
                 String nome = campos[1];
                 LocalDate dataDeLancamento = LocalDate.parse(campos[2]);
                 int duracao = Integer.parseInt(campos[3]);
 
                 // Os campos adicionais podem ser adicionados conforme necessário
-                Filme filme = new Filme(idSerie, nome, dataDeLancamento, duracao);
+                Filme filme = new Filme(idFilme, nome, dataDeLancamento, duracao);
                 this.adicionarFilme(filme);
             }
-        }
+        } 
     }
 
 }

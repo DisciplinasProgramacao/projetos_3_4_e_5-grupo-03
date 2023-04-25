@@ -17,7 +17,7 @@ class ClienteTest {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         cliente = new Cliente("nome", "usuario1", "senha1");
-        serie = new Serie(1, "Serie1", "Humor", "Portugues", 15, 0, dataDeLancamento1);
+        serie = new Serie(1, "Serie1", "comédia", "Portugues", 15, 0, dataDeLancamento1);
         serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
         cliente.adicionarNaLista(serie);
         cliente.adicionarNaLista(serie2);
