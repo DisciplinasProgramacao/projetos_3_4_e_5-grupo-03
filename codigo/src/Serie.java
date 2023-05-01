@@ -32,6 +32,9 @@ public class Serie extends Midia{
     
 
     public void setQuantidadeEpisodios(int quantidadeEpisodios) {
+        if(quantidadeEpisodios){
+            throw new Error("O número mínimo de episódios deve ser 2")
+        }
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
