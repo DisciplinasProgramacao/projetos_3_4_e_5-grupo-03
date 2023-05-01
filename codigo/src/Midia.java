@@ -50,6 +50,10 @@ public abstract class Midia {
         return this.id;
     }
 
+    public void setId() {
+        this.id = id;
+    }
+
     public String getNome() {
         return this.nome;
     }
@@ -88,6 +92,10 @@ public abstract class Midia {
 
     public void setIdioma(String idioma) {
         this.idioma = idioma;
+    }
+
+    public int getQuantidadeEpisodios() {
+        return -1;
     }
 
 

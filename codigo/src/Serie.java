@@ -17,14 +17,19 @@ public class Serie extends Midia{
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
-    public Serie(int id, String nome, String genero, Date data, int quantidadeEpisodios,
-            LocalDate dataDeLancamento) {
-                super(id, nome, genero, data, )
+
+    public Serie(int id, String nome, String string, String string2, int i, int j,
+            LocalDate dataLancamento) {
+                super(id, nome, dataLancamento);
+                this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
+    @Override
     public int getQuantidadeEpisodios() {
         return this.quantidadeEpisodios;
     }
+    
+    
 
     public void setQuantidadeEpisodios(int quantidadeEpisodios) {
         this.quantidadeEpisodios = quantidadeEpisodios;

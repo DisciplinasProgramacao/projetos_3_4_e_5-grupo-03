@@ -6,27 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.time.format.DateTimeFormatter;
 
 public class PlataformaStreaming {
     private String nome;
-    private HashMap<String, Serie> series;
+    private HashMap<Integer, Midia> midias;
     private HashMap<String, Cliente> clientes;
-    private HashMap<String, Filme> filmes;
     private Cliente clienteAtual;
 
 
     public PlataformaStreaming(String nome) throws IOException {
         this.nome = nome;
-        this.series = new HashMap<String, Serie>();
+        this.midias = new HashMap<Integer, Midia>();
         this.clientes = new HashMap<String, Cliente>();
-        this.filmes = new HashMap<String, Filme>();
 
         //criar um hash de midia e não de series e filmes, usando como identificador o ID
         this.clienteAtual = null;
 
+        this.lerMidias("POO_Series.csv", "POO_Filmes.csv");
         this.lerClientes("POO_Espectadores.csv");
-        this.lerSeries("POO_Series.csv");
-        this.lerFilmes("./POO_Filmes.csv");
         this.lerAudiencia("POO_Audiencia.csv");
 
     }
@@ -40,21 +38,21 @@ public class PlataformaStreaming {
         return null;
     }
 
-    public void adicionarSerie(Serie serie) {
-        this.series.put(serie.getNome(), serie);
+    public void adicionarSerie(Midia serie) {
+        this.midias.put(serie.getId(), serie);
     }
 
     public void adicionarCliente(Cliente cliente) {
         this.clientes.put(cliente.getNomeUsuario(), cliente);
     }
 
-    public void adicionarFilme(Filme filme) {
-        this.filmes.put(filme.getNome(), filme);
+    public void adicionarFilme(Midia filme) {
+        this.midias.put(filme.getId(), filme);
     }
 
 
-    public List<Serie> filtrarPorGenero(String genero) {
-        return this.series.values().stream()
+    public List<Midia> filtrarPorGenero(String genero) {
+        return this.midias.values().stream()
             .filter(s -> s.getGenero().equalsIgnoreCase(genero))
             .collect(Collectors.toList());
     }
@@ -69,17 +67,18 @@ public class PlataformaStreaming {
     critério fornecido. No final, usamos o método collect() com o coletor 
     Collectors.toList() para converter o fluxo filtrado de volta em uma lista. */
     
-    public List<Serie> filtrarPorIdioma(String idioma) {
-        return this.series.values().stream()
+    public List<Midia> filtrarPorIdioma(String idioma) {
+        return this.midias.values().stream()
             .filter(s -> s.getIdioma().equalsIgnoreCase(idioma))
             .collect(Collectors.toList());
     }
     
-    public List<Serie> filtrarPorQtdEpisodios(int quantEpisodios) {
-        return this.series.values().stream()
+    public List<Midia> filtrarPorQtdEpisodios(int quantEpisodios) {
+        return this.midias.values().stream()
             .filter(s -> s.getQuantidadeEpisodios() == quantEpisodios)
             .collect(Collectors.toList());
     }
+
 
     public void registrarAudiencia(Serie serie) {
     }
@@ -88,9 +87,6 @@ public class PlataformaStreaming {
         return this.clientes;
     }
 
-    public HashMap<String, Serie> getSeries() {
-        return this.series;
-    }
 
 
     private void lerClientes(String arquivo) throws IOException {
@@ -109,23 +105,6 @@ public class PlataformaStreaming {
         }
     }
 
-    private void lerSeries(String arquivo) throws IOException {
-        try (Scanner scanner = new Scanner(new File(arquivo))) {
-            String linha;
-            while (scanner.hasNextLine()) {
-                linha = scanner.nextLine();
-                String[] campos = linha.split(";");
-                int idSerie = Integer.parseInt(campos[0]);
-                String nomeSerie = campos[1];
-                LocalDate dataDeLancamento = LocalDate.parse(campos[2]);
-
-                // Os campos adicionais podem ser adicionados conforme necessário
-                Serie serie = new Serie(idSerie, nomeSerie, "", "", 0, 0, dataDeLancamento);
-                this.adicionarSerie(serie);
-            }
-        }
-    }
-
     private void lerAudiencia(String arquivo) throws IOException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
@@ -134,39 +113,77 @@ public class PlataformaStreaming {
                 String[] campos = linha.split(";");
                 String login = campos[0];
                 String tipo = campos[1];
-                String idSerie = campos[2];
+                String id = campos[2];
 
                 Cliente cliente = this.getClientes().get(login);
-                Serie serie = this.getSeries().get(idSerie);
-
-                if (cliente != null && serie != null) {
+                if (cliente != null) {
+                    Midia midia = this.midias.get(Integer.parseInt(id));
+                
                     if ("F".equalsIgnoreCase(tipo)) {
-                        cliente.adicionarNaLista(serie);
+                        if (midia instanceof Serie) {
+                            cliente.adicionarNaLista((Serie) midia);
+                        }
                     } else if ("A".equalsIgnoreCase(tipo)) {
-                        cliente.registrarAudiencia(serie);
+                        if (midia instanceof Serie) {
+                            cliente.registrarAudiencia((Serie) midia);
+                        }
                     }
                 }
+                
             }
         }
     }
 
-    private void lerFilmes(String arquivo) throws IOException {
-        try (Scanner scanner = new Scanner(new File(arquivo))) {
+    private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
+        // Lendo séries
+        try (Scanner scanner = new Scanner(new File(arquivoSeries))) {
             String linha;
-            scanner.nextLine();
             while (scanner.hasNextLine()) {
                 linha = scanner.nextLine();
                 String[] campos = linha.split(";");
-                int idFilme = Integer.parseInt(campos[0]);
+                String idStr = campos[0].replaceAll("[^\\d]", ""); // Remove caracteres não numéricos
+                int id = Integer.parseInt(idStr);
+                String nomeSerie = campos[1];
+                LocalDate dataDeLancamento = LocalDate.parse(campos[2], dateFormatter);
+    
+                // Os campos adicionais podem ser adicionados conforme necessário
+                Serie serie = new Serie(id, nomeSerie, "", "", 0, 0, dataDeLancamento);
+                this.adicionarSerie(serie);
+            }
+        }
+    
+        // Lendo filmes
+        try (Scanner scanner = new Scanner(new File(arquivoFilmes))) {
+            String linha;
+            linha = scanner.nextLine();
+            while (scanner.hasNextLine()) {
+                linha = scanner.nextLine();
+                String[] campos = linha.split(";");
+                String idFilmeStr = campos[0].replaceAll("[^\\d]", ""); // Remove caracteres não numéricos
+                int idFilme = Integer.parseInt(idFilmeStr);
                 String nome = campos[1];
-                LocalDate dataDeLancamento = LocalDate.parse(campos[2]);
+                LocalDate dataDeLancamento = LocalDate.parse(campos[2], dateFormatter);
                 int duracao = Integer.parseInt(campos[3]);
-
+    
                 // Os campos adicionais podem ser adicionados conforme necessário
                 Filme filme = new Filme(idFilme, nome, dataDeLancamento, duracao);
                 this.adicionarFilme(filme);
             }
-        } 
+        }
     }
+    
+    public boolean adicionarCliente(String nomeCompleto, String nomeDeUsuario, String senha) {
+        // Verificar se o nome de usuário já existe
+        if (clientes.containsKey(nomeDeUsuario)) {
+            return false; // Nome de usuário já existe, não é possível adicionar o cliente
+        }
 
+        // Criar uma nova instância do cliente e adicioná-la ao HashMap
+        Cliente novoCliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
+        clientes.put(nomeDeUsuario, novoCliente);
+        return true; // Cliente adicionado com sucesso
+    }
+    
 }
