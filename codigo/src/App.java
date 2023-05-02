@@ -8,7 +8,7 @@ public class App {
     
     public static void main(String[] args) throws IOException {
         
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        
 
         PlataformaStreaming plataforma = new PlataformaStreaming("teste"); 
         Scanner scanner = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class App {
         while (true) {
             System.out.println("Menu:");
             System.out.println("1. Adicionar cliente");
-            System.out.println("2. Adicionar série");
+            System.out.println("2. Adicionar mídia");
             System.out.println("0. Sair");
 
             System.out.print("Escolha uma opção: ");
@@ -39,23 +39,7 @@ public class App {
                     System.out.println("Cliente adicionado com sucesso!");
                     break;
                 case 2:
-                    System.out.println("Digite o ID da série:");
-                    int id = scanner.nextInt();
-                    scanner.nextLine(); // Limpar o buffer do scanner
-
-                    System.out.println("Digite o nome da série:");
-                    String nome = scanner.nextLine();
-
-                    System.out.println("Digite a data de lançamento no formato dd/MM/yyyy:");
-                    LocalDate dataLancamento = LocalDate.parse(scanner.nextLine(), dateFormatter);
-
-                    System.out.println("Digite o número de episodios:");
-                    int qtdEpisodios = scanner.nextInt();
-                    scanner.nextLine(); // Limpar o buffer do scanner
-
-                    Serie serie = new Serie(id, nome, dataLancamento, qtdEpisodios);
-                    plataforma.adicionarSerie(serie);
-                    System.out.println("Série adicionada com sucesso!");
+                    cadastrarMidia(plataforma, scanner);
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -64,6 +48,46 @@ public class App {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
             }
+        }
+    }
+
+    private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) {
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Escolha o tipo de mídia:");
+        System.out.println("1. Série");
+        System.out.println("2. Filme");
+
+        System.out.print("Digite a opção: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer do scanner
+
+        switch (opcao) {
+            case 1:
+                System.out.println("Digite o ID da série:");
+                int id = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do scanner
+
+                System.out.println("Digite o nome da série:");
+                String nome = scanner.nextLine();
+
+                System.out.println("Digite a data de lançamento no formato dd/MM/yyyy:");
+                LocalDate dataLancamento = LocalDate.parse(scanner.nextLine(), dateFormatter);
+
+                System.out.println("Digite o número de episodios:");
+                int qtdEpisodios = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do scanner
+
+                Serie serie = new Serie(id, nome, dataLancamento, qtdEpisodios);
+                plataforma.adicionarSerie(serie);
+                System.out.println("Série adicionada com sucesso!");
+                break;
+
+            case 2:
+                // Código para adicionar filme
+                break;
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
         }
     }
 }

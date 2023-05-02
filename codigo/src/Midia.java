@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Classe abstrata Midia que representa uma mídia genérica.
+ */
 public abstract class Midia {
 
     private int id;
@@ -24,9 +27,20 @@ public abstract class Midia {
         "inglês", "português", "espanhol"
     ));
 
+    /**
+     * Construtor padrão da classe Midia.
+     */
     public Midia(){
     }
 
+    /**
+     * Construtor da classe Midia.
+     * @param id Identificador único da mídia.
+     * @param nome Nome da mídia.
+     * @param dataLancamento Data de lançamento da mídia.
+     * @param genero Índice do gênero da mídia na lista de gêneros disponíveis.
+     * @param idioma Índice do idioma da mídia na lista de idiomas disponíveis.
+     */
     public Midia(int id, String nome, LocalDate dataLancamento, int genero, int idioma){
         this.id = id;
         this.nome=nome;
@@ -36,12 +50,21 @@ public abstract class Midia {
         
     }
 
+    /**
+     * Construtor da classe Midia.
+     * @param id Identificador único da mídia.
+     * @param nome Nome da mídia.
+     * @param dataLancamento Data de lançamento da mídia.
+     */
     public Midia(int id, String nome, LocalDate dataLancamento) {
         this.id = id;
         this.nome=nome;
         this.dataLancamento = dataLancamento;
     }
 
+    /**
+     * Registra a audiência da mídia.
+     */
     public void registrarAudiencia(){
         this.audiencia++;
     }
@@ -94,6 +117,10 @@ public abstract class Midia {
         this.idioma = idioma;
     }
 
+    /**
+     * Retorna a quantidade de episódios da mídia.
+     * @return -1, já que a classe Midia é abstrata e não possui episódios.
+    */
     public int getQuantidadeEpisodios() {
         return -1;
     }
