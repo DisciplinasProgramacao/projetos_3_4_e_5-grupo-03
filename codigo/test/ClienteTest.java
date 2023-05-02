@@ -3,6 +3,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -21,6 +22,11 @@ class ClienteTest {
         serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
         cliente.adicionarNaLista(serie);
         cliente.adicionarNaLista(serie2);
+    }
+
+    @Test
+    void testSave() throws IOException {
+        serie.save();
     }
 
     @Test

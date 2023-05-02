@@ -1,10 +1,11 @@
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
-public class Serie extends Midia{
+public class Serie extends Midia implements Serializable {
    
     private int quantidadeEpisodios;
    
@@ -32,10 +33,23 @@ public class Serie extends Midia{
     
 
     public void setQuantidadeEpisodios(int quantidadeEpisodios) {
-        if(quantidadeEpisodios){
-            throw new Error("O número mínimo de episódios deve ser 2")
+        if(quantidadeEpisodios < 2){
+            throw new Error("O número mínimo de episódios deve ser 2");
         }
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
+    public void save() throws IOException {
+		File file = new File("serie.txt");
+		if (file.exists())
+			file.delete();
+        FileOutputStream arquivoGrav = new FileOutputStream(file, false); 
+        ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
+
+        objGravar.writeObject(this);
+        objGravar.flush();
+        objGravar.close();
+        arquivoGrav.flush();
+        arquivoGrav.close();
+    }
 }

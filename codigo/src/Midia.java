@@ -36,11 +36,11 @@ public abstract class Midia {
         
     }
 
-    //public Midia(int id, String nome, LocalDate dataLancamento) {
-    //    this.id = id;
-    //    this.nome=nome;
-    //    this.dataLancamento = dataLancamento;
-    //}
+    public Midia(int id, String nome, LocalDate dataLancamento) {
+        this.id = id;
+        this.nome=nome;
+        this.dataLancamento = dataLancamento;
+    }
 
     public void registrarAudiencia(){
         this.audiencia++;
