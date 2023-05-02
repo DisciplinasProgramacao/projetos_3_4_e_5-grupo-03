@@ -264,5 +264,41 @@ public class PlataformaStreaming {
         clientes.put(nomeDeUsuario, novoCliente);
         return true; // Cliente adicionado com sucesso
     }
+
+    private avaliarStreaming(int id, String nomeDeUsuario, int nota){
+        if (avaliacoes.containsKey(nomeDeUsuario) && avaliacoes.get(nomeDeUsuario).getIdFilme() == id) {
+            throw new IllegalStateException("Usuário já avaliou o filme.");
+        }
+        Midia midia = null;
+        for (Filme m : midia) {
+            if (f.getId() == id) {
+                midia = m;
+                break;
+            }
+        }
+        if (filme == null) {
+            throw new IllegalArgumentException("ID do filme inválido.");
+        }
+        filme.avaliacao(nota);
+        Avaliacao avaliacao = new Avaliacao(nomeDeUsuario, id, nota);
+        avaliacoes.put(nomeDeUsuario, avaliacao);
+    }
+
+    public double calcularMediaNotas(int id) {
+        Midia midias = encontrarMidiaPorId(id);
+        if (midia == null) {
+            throw new IllegalArgumentException("Streaming não encontrado.");
+        }
+        return midia.getMediaAvaliacao();
+    }
     
-}
+    private Midia encontrarMidiaPorId(int id) {
+        for (Midia midias : midias) {
+            if (midias.getId() == id) {
+                return midias;
+            }
+        }
+        return null;
+    }
+  }
+    

@@ -62,6 +62,25 @@ public abstract class Midia {
         this.dataLancamento = dataLancamento;
     }
 
+
+    public void avaliacao(int nota) {
+        if (nota < 1 || nota > 5) {
+            throw new IllegalArgumentException("A nota deve estar entre 1 e 5.");
+        }
+        notas.add(nota);
+    }
+
+    public double getMediaAvaliacao() {
+        if (avaliacoes.isEmpty()) {
+            return 0;
+        }
+        double soma = 0;
+        for (int avaliacoes : notas) {
+            soma += nota;
+        }
+        return soma / avaliacoes.size();
+    }
+    
     /**
      * Registra a audiência da mídia.
      */
