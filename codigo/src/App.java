@@ -25,18 +25,7 @@ public class App {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Digite o nome completo do cliente:");
-                    String nomeCompleto = scanner.nextLine();
-
-                    System.out.println("Digite o nome de usuário do cliente:");
-                    String nomeUsuario = scanner.nextLine();
-
-                    System.out.println("Digite a senha do cliente:");
-                    String senha = scanner.nextLine();
-
-                    Cliente cliente = new Cliente(nomeCompleto, nomeUsuario, senha);
-                    plataforma.adicionarCliente(cliente);
-                    System.out.println("Cliente adicionado com sucesso!");
+                    cadastrarCliente(plataforma, scanner);
                     break;
                 case 2:
                     cadastrarMidia(plataforma, scanner);
@@ -49,6 +38,22 @@ public class App {
                     System.out.println("Opção inválida. Tente novamente.");
             }
         }
+    }
+
+    private static void cadastrarCliente(PlataformaStreaming plataforma, Scanner scanner) {
+        System.out.println("Digite o nome completo do cliente:");
+        String nomeCompleto = scanner.nextLine();
+
+        System.out.println("Digite o nome de usuário do cliente:");
+        String nomeUsuario = scanner.nextLine();
+
+        System.out.println("Digite a senha do cliente:");
+        String senha = scanner.nextLine();
+
+        Cliente cliente = new Cliente(nomeCompleto, nomeUsuario, senha);
+        plataforma.adicionarCliente(cliente);
+        System.out.println("Cliente adicionado com sucesso!");
+
     }
 
     private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) {
@@ -84,7 +89,24 @@ public class App {
                 break;
 
             case 2:
-                // Código para adicionar filme
+                System.out.println("Digite o ID do filme:");
+                int idFilme = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do scanner
+
+                System.out.println("Digite o nome do filme:");
+                String nomeFilme = scanner.nextLine();
+
+                System.out.println("Digite a data de lançamento no formato dd/MM/yyyy:");
+                LocalDate dataLancamentoFilme = LocalDate.parse(scanner.nextLine(), dateFormatter);
+
+                System.out.println("Digite a duração do filme:");
+                int duracao = scanner.nextInt();
+                scanner.nextLine(); // Limpar o buffer do scanner
+
+                Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao);
+                plataforma.adicionarFilme(filme);
+                System.out.println("Filme adicionado com sucesso!");
+
                 break;
             default:
                 System.out.println("Opção inválida. Tente novamente.");
