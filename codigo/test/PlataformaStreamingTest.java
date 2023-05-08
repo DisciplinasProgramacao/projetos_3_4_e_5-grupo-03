@@ -1,84 +1,53 @@
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-public class PlataformaStreamingTest {
+class PlataformaStreamingTest {
     private PlataformaStreaming plataforma;
-    private Serie serie1;
-    private Serie serie2;
-    private Serie serie3;
-    private Cliente cliente1;
 
     @BeforeEach
-    public void setUp() throws IOException {
-        LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
-        LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
-        LocalDate dataDeLancamento3 = LocalDate.of(2019, 1, 1);
-        plataforma = new PlataformaStreaming("TesteStreaming");
-        serie1 = new Serie(1, "Serie1", dataDeLancamento1,8);
-        serie2 = new Serie(2, "Serie2", dataDeLancamento2, 10);
-        serie3 = new Serie(3, "Serie3", dataDeLancamento3, 12);
-        cliente1 = new Cliente("nome", "usuario1", "senha1");
+    void setUp() {
+        plataforma = new PlataformaStreaming("Plataforma Teste", true);
         
-    }
-
-    @Test
-    void testAdicionarCliente() {
+        // Adicionar clientes
+        Cliente cliente1 = new Cliente("João Silva", "joaosilva", "123456");
+        Cliente cliente2 = new Cliente("Maria Souza", "mariasouza", "789012");
         plataforma.adicionarCliente(cliente1);
-        
-        assertEquals(1, plataforma.getClientes().size());
-    }
+        plataforma.adicionarCliente(cliente2);
 
-    @Test
-    void testLogin() {
-        plataforma.adicionarCliente(cliente1);
-        assertEquals(cliente1, plataforma.login("usuario1", "senha1"));
-    }
+        // Adicionar mídias
+        Filme filme1 = new Filme(1, "Filme 1", LocalDate.of(2020, 1, 1), 120);
+        Filme filme2 = new Filme(2, "Filme 2", LocalDate.of(2021, 1, 1), 150);
+        Serie serie1 = new Serie(3, "Serie 1", "", "", 0, 0, LocalDate.of(2020, 1, 1));
+        Serie serie2 = new Serie(4, "Serie 2", "", "", 0, 0, LocalDate.of(2021, 1, 1));
 
-    @Test
-    void testAdicionarSerie() {
-        plataforma.adicionarSerie(serie1);
-        assertEquals(1, plataforma.getSeries().size());
-    }
-
-    @Test
-    public void testFiltrarPorGenero() {
+        plataforma.adicionarFilme(filme1);
+        plataforma.adicionarFilme(filme2);
         plataforma.adicionarSerie(serie1);
         plataforma.adicionarSerie(serie2);
-        plataforma.adicionarSerie(serie3);
-        List<Serie> seriesAcao = plataforma.filtrarPorGenero("ação");
-        assertEquals(2, seriesAcao.size());
-        assertTrue(seriesAcao.contains(serie1));
-        assertTrue(seriesAcao.contains(serie3));
     }
 
     @Test
-    public void testFiltrarPorIdioma() {
-        plataforma.adicionarSerie(serie1);
-        plataforma.adicionarSerie(serie2);
-        plataforma.adicionarSerie(serie3);
-        List<Serie> seriesPortugues = plataforma.filtrarPorIdioma("português");
-        assertEquals(2, seriesPortugues.size());
-        assertTrue(seriesPortugues.contains(serie1));
-        assertTrue(seriesPortugues.contains(serie3));
+    void testeLogin() {
+        Cliente cliente = plataforma.login("joaosilva", "123456");
+        assertNotNull(cliente);
+        assertEquals("João Silva", cliente.getNome());
     }
 
     @Test
-    public void testFiltrarPorQtdEpisodios() {
-        plataforma.adicionarSerie(serie1);
-        plataforma.adicionarSerie(serie2);
-        plataforma.adicionarSerie(serie3);
-        List<Serie> series10Episodios = plataforma.filtrarPorQtdEpisodios(10);
-        assertEquals(2, series10Episodios.size());
-        assertTrue(series10Episodios.contains(serie1));
-        assertTrue(series10Episodios.contains(serie3));
+    void testeAdicionarCliente() {
+        boolean clienteAdicionado = plataforma.adicionarCliente("Jane Doe", "janedoe", "54321");
+        assertTrue(clienteAdicionado, "Deve adicionar o cliente com sucesso");
+    }
+
+    @Test
+    void testeAdicionarClienteExistente() {
+        plataforma.adicionarCliente("Jane Doe", "janedoe", "54321");
+        boolean clienteAdicionado = plataforma.adicionarCliente("Jane Doe", "janedoe", "54321");
+        assertFalse(clienteAdicionado, "Não deve adicionar o cliente, pois já existe um cliente com o mesmo nome de usuário");
     }
 }

@@ -9,8 +9,9 @@ public class Cliente {
     String nome;
     String nomeDeUsuario;
     String senha;
-    List<Serie> listaParaVer; 
-    List<Serie> listaJaVistas; 
+    List<Midia> listaParaVer; 
+    List<Midia> listaJaVistas; 
+    List<Avaliacao> listaNotas;
 
     /**
     Construtor da classe Cliente.
@@ -24,22 +25,23 @@ public class Cliente {
         this.senha = senha;
         this.listaParaVer = new ArrayList<>();
         this.listaJaVistas = new ArrayList<>();
+        this.listaNotas = new ArrayList<>();
     }
 
     /**
-    Adiciona uma série à lista de séries para assistir do cliente.
-    @param serie A série a ser adicionada à lista.
+    Adiciona uma media à lista de midias para assistir do cliente.
+    @param midia A midia a ser adicionada à lista.
     */
-    public void adicionarNaLista(Serie serie) {
-        this.listaParaVer.add(serie);
+    public void adicionarNaLista(Midia midia) {
+        this.listaParaVer.add(midia);
     }
 
     /**
     Remove uma série da lista de séries para assistir do cliente.
-    @param serie A série a ser removida da lista.
+    @param midia A série a ser removida da lista.
     */
-    public void retirarDaLista(Serie serie) {
-        this.listaParaVer.remove(serie);
+    public void retirarDaLista(Midia midia) {
+        this.listaParaVer.remove(midia);
     }
 
     /**
@@ -47,7 +49,7 @@ public class Cliente {
     @param genero O gênero pelo qual filtrar as séries.
     @return Uma lista das séries filtradas por gênero.
     */
-    public List<Serie> filtrarPorGenero(String genero) {
+    public List<Midia> filtrarPorGenero(String genero) {
         return this.listaParaVer.stream()
         .filter(s -> s.getGenero().toLowerCase().equals(genero))
         .toList();
@@ -58,7 +60,7 @@ public class Cliente {
     @param idioma O idioma pelo qual filtrar as séries.
     @return Uma lista das séries filtradas por idioma.
     */
-    public List<Serie> filtrarPorIdioma(String idioma) {
+    public List<Midia> filtrarPorIdioma(String idioma) {
         return this.listaParaVer.stream()
         .filter(s -> s.getIdioma().equals(idioma))
         .toList();
@@ -69,7 +71,7 @@ public class Cliente {
     @param qtdEpisodios A quantidade de episódios pelo qual filtrar as séries.
     @return Uma lista das séries filtradas pela quantidade de episódios.
     */
-    public List<Serie> filtrarPorQtdEpisodios(int qtdEpisodios) {
+    public List<Midia> filtrarPorQtdEpisodios(int qtdEpisodios) {
         return this.listaParaVer.stream()
         .filter(s -> s.getQuantidadeEpisodios() == qtdEpisodios)
         .toList();
@@ -77,13 +79,25 @@ public class Cliente {
 
     /**
     Registra a audiência de uma série na lista de séries já vistas do cliente.
-    @param serie A série cuja audiência será registrada.
+    @param midia A série cuja audiência será registrada.
     */
-    public void registrarAudiencia(Serie serie) {
-        if (!this.listaJaVistas.contains(serie)) {
-            this.listaJaVistas.add(serie);
-            serie.registrarAudiencia();
+    public void registrarAudiencia(Midia midia) {
+        if (!this.listaJaVistas.contains(midia)) {
+            this.listaJaVistas.add(midia);
+            midia.registrarAudiencia();
         }
+    }
+
+    /**
+    Adiciona uma midia à lista de avaliacoes do cliente.
+    @param avaliacao A midia a ser adicionada à lista.
+    */
+    public void adicionarAvaliacao(Avaliacao avaliacao) {
+        this.listaNotas.add(avaliacao);
+    }
+
+    public List<Avaliacao> getAvaliacoes() {
+        return this.listaNotas;
     }
 
     // Getters e setters para os atributos da classe Cliente
@@ -115,19 +129,19 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public List<Serie> getListaParaVer() {
+    public List<Midia> getListaParaVer() {
         return this.listaParaVer;
     }
 
-    public void setListaParaVer(List<Serie> listaParaVer) {
+    public void setListaParaVer(List<Midia> listaParaVer) {
         this.listaParaVer = listaParaVer;
     }
 
-    public List<Serie> getListaJaVistas() {
+    public List<Midia> getListaJaVistas() {
         return this.listaJaVistas;
     }
 
-    public void setListaJaVistas(List<Serie> listaJaVistas) {
+    public void setListaJaVistas(List<Midia> listaJaVistas) {
         this.listaJaVistas = listaJaVistas;
     }
 

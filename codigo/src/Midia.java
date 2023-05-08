@@ -14,7 +14,8 @@ public abstract class Midia {
     private LocalDate dataLancamento;
     private String genero;
     private String idioma;
-    private List<Integer> notas;
+    private List<Avaliacao> avaliacoes;
+
     private static final List<String> GENEROS = new ArrayList<>(Arrays.asList(
         "ação",
         "comédia",
@@ -48,7 +49,7 @@ public abstract class Midia {
         this.dataLancamento = dataLancamento;
         this.genero = GENEROS.get(genero);
         this.idioma = IDIOMAS.get(idioma);
-        this.notas = new ArrayList<Integer>();
+        this.avaliacoes = new ArrayList<>();
     }
 
     /**
@@ -61,25 +62,45 @@ public abstract class Midia {
         this.id = id;
         this.nome=nome;
         this.dataLancamento = dataLancamento;
+        this.avaliacoes = new ArrayList<>();
     }
 
-
-    public void avaliacao(int nota) {
-        if (nota < 1 || nota > 5) {
-            throw new IllegalArgumentException("A nota deve estar entre 1 e 5.");
-        }
-        notas.add(nota);
+    /**
+     * Adiciona uma avaliação à lista de avaliações da mídia.
+     *
+     * @param avaliacao A avaliação a ser adicionada.
+     */
+    public void adicionarAvaliacao(Avaliacao avaliacao) {
+        this.avaliacoes.add(avaliacao);
     }
 
-    public double getMediaAvaliacao() {
+    /**
+     * Retorna a lista de avaliações da mídia.
+     *
+     * @return A lista de avaliações da mídia.
+     */
+    public List<Avaliacao> getAvaliacoes() {
+        return this.avaliacoes;
+    }
+
+    /**
+     * Calcula a média das notas atribuídas por todos os clientes para esta mídia.
+     *
+     * @return A média das notas atribuídas pelos clientes para esta mídia.
+     */
+    public double calcularMediaDeNotas() {
         if (avaliacoes.isEmpty()) {
-            return 0.0;
+            return 0;
         }
-        double soma = 0.0;
-        for (int nota : avaliacoes) {
-            soma += nota;
+
+        double somaNotas = 0;
+        int quantidadeDeAvaliacoes = avaliacoes.size();
+        
+        for (Avaliacao avaliacao : avaliacoes) {
+            somaNotas += avaliacao.getNota();
         }
-        return soma / avaliacoes.size();
+        
+        return somaNotas / quantidadeDeAvaliacoes;
     }
     
     /**

@@ -37,6 +37,17 @@ public class PlataformaStreaming {
 
     }
 
+    public PlataformaStreaming(String nome, boolean dummy) {
+        this.nome = nome;
+        this.midias = new HashMap<Integer, Midia>();
+        this.clientes = new HashMap<String, Cliente>();
+        this.avaliacoes = new HashMap<Integer, Avaliacao>();
+    
+        this.clienteAtual = null;
+    }
+    
+
+
     /**
      * Método para realizar o login de um cliente na plataforma.
      * 
@@ -128,11 +139,11 @@ public class PlataformaStreaming {
     }
 
     /**
-     * Registra a audiência de uma série na plataforma.
+     * Registra a audiência de uma midia na plataforma.
      * 
-     * @param serie Objeto da classe Serie representando a série cuja audiência será registrada.
+     * @param midia Objeto da classe Mdiia representando a midia cuja audiência será registrada.
      */
-    public void registrarAudiencia(Serie serie) {
+    public void registrarAudiencia(Midia midia) {
     }
 
     /**
@@ -266,38 +277,11 @@ public class PlataformaStreaming {
         clientes.put(nomeDeUsuario, novoCliente);
         return true; // Cliente adicionado com sucesso
     }
-
-    private avaliarStreaming(int id, String nomeDeUsuario, int nota){
-        if (avaliacoes.containsKey(nomeDeUsuario) && avaliacoes.get(nomeDeUsuario).getIdFilme() == id) {
-            throw new IllegalStateException("Usuário já avaliou o filme.");
-        }
-        Midia midia = null;
-        for (Midia m : midia) {
-            if (m.getId() == id) {
-                midia = m;
-                break;
-            }
-        }
-        if (midia == null) {
-            throw new IllegalArgumentException("ID do filme inválido.");
-        }
-        midia.avaliacao(nota);
-        Avaliacao avaliacao = new Avaliacao(nomeDeUsuario, id, nota);
-        avaliacoes.put(nomeDeUsuario, avaliacao);
-    }
-
-    public double calcularMediaNotas(int id) {
-        Midia midias = encontrarMidiaPorId(id);
-        if (midia == null) {
-            throw new IllegalArgumentException("Streaming não encontrado.");
-        }
-        return midia.getMediaAvaliacao();
-    }
     
-    private Midia encontrarMidiaPorId(int id) {
-        for (Midia midias : midias) {
-            if (midias.getId() == id) {
-                return midias;
+    private Midia encontrarMidiaPorId(int id, List<Midia> midias) {
+        for (Midia midia : midias) {
+            if (midia.getId() == id) {
+                return midia;
             }
         }
         return null;

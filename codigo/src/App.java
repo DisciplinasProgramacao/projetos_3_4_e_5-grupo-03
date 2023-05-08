@@ -7,8 +7,6 @@ import org.junit.experimental.theories.suppliers.TestedOn;
 public class App {
     
     public static void main(String[] args) throws IOException {
-        
-        
 
         PlataformaStreaming plataforma = new PlataformaStreaming("teste"); 
         Scanner scanner = new Scanner(System.in);

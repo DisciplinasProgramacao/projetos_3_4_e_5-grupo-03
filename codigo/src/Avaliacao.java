@@ -1,25 +1,40 @@
 
 
 public class Avaliacao {
-    private String nomeDeUsuario;
-    private int id;
-    private int nota;
+    private Cliente cliente;
+    private Midia midia;
+    private double nota;
 
-    public Avaliacao(String nomeDeUsuario, int id, int nota) {
-        this.nomeDeUsuario = nomeDeUsuario;
-        this.id = getid(id);
+
+    public Avaliacao(Cliente cliente, Midia midia, double nota) {
+        this.cliente = cliente;
+        this.midia = midia;
         this.nota = nota;
     }
 
-    public int getNomeDeUsuario() {
-        return nomeDeUsuario;
+
+    public Cliente getCliente() {
+        return this.cliente;
     }
 
-    public int getid() {
-        return id;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public int getNota() {
-        return nota;
+    public Midia getMidia() {
+        return this.midia;
     }
+
+    public void setMidia(Midia midia) {
+        this.midia = midia;
+    }
+
+    public double getNota() {
+        return this.nota;
+    }
+
+    public void setNota(double nota) {
+        this.nota = nota;
+    }
+
 }
