@@ -14,6 +14,7 @@ public abstract class Midia {
     private LocalDate dataLancamento;
     private String genero;
     private String idioma;
+    private List<Integer> notas;
     private static final List<String> GENEROS = new ArrayList<>(Arrays.asList(
         "ação",
         "comédia",
@@ -47,7 +48,7 @@ public abstract class Midia {
         this.dataLancamento = dataLancamento;
         this.genero = GENEROS.get(genero);
         this.idioma = IDIOMAS.get(idioma);
-        
+        this.notas = new ArrayList<Integer>();
     }
 
     /**
@@ -72,10 +73,10 @@ public abstract class Midia {
 
     public double getMediaAvaliacao() {
         if (avaliacoes.isEmpty()) {
-            return 0;
+            return 0.0;
         }
-        double soma = 0;
-        for (int avaliacoes : notas) {
+        double soma = 0.0;
+        for (int nota : avaliacoes) {
             soma += nota;
         }
         return soma / avaliacoes.size();

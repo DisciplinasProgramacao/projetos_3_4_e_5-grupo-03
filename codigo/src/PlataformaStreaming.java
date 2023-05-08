@@ -14,6 +14,7 @@ public class PlataformaStreaming {
     private String nome;
     private HashMap<Integer, Midia> midias;
     private HashMap<String, Cliente> clientes;
+    private HashMap<Integer, Avaliacao> avaliacoes;
     private Cliente clienteAtual;
 
     /**
@@ -26,6 +27,7 @@ public class PlataformaStreaming {
         this.nome = nome;
         this.midias = new HashMap<Integer, Midia>();
         this.clientes = new HashMap<String, Cliente>();
+        this.avaliacoes = new HashMap<Integer, Avaliacao>();
 
         this.clienteAtual = null;
 
@@ -270,16 +272,16 @@ public class PlataformaStreaming {
             throw new IllegalStateException("Usuário já avaliou o filme.");
         }
         Midia midia = null;
-        for (Filme m : midia) {
-            if (f.getId() == id) {
+        for (Midia m : midia) {
+            if (m.getId() == id) {
                 midia = m;
                 break;
             }
         }
-        if (filme == null) {
+        if (midia == null) {
             throw new IllegalArgumentException("ID do filme inválido.");
         }
-        filme.avaliacao(nota);
+        midia.avaliacao(nota);
         Avaliacao avaliacao = new Avaliacao(nomeDeUsuario, id, nota);
         avaliacoes.put(nomeDeUsuario, avaliacao);
     }
