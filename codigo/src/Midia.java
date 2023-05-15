@@ -12,6 +12,7 @@ public abstract class Midia {
     private String nome;
     private int audiencia = 0;
     private LocalDate dataLancamento;
+    private LocalDate dataAssistida;
     private String genero;
     private String idioma;
     private List<Avaliacao> avaliacoes;
@@ -84,6 +85,22 @@ public abstract class Midia {
         } catch(RuntimeException addAvaliacaoMException) {
             System.out.println(addAvaliacaoMException.getMessage());
         }
+    }
+
+    /**
+     * Registra a data em que a mídia está sendo assistida.
+     * @param dataAssistida A data em que a mídia está sendo assistida.
+     */
+    public void registrarDataAssistida(LocalDate dataAssistida) {
+        this.dataAssistida = dataAssistida;
+    }
+
+    /**
+     * Retorna a data em que a mídia foi assistida.
+     * @return A data em que a mídia foi assistida.
+     */
+    public LocalDate getDataAssistida() {
+        return dataAssistida;
     }
 
     /**
