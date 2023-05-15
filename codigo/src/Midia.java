@@ -59,6 +59,14 @@ public abstract class Midia {
      * @param dataLancamento Data de lançamento da mídia.
      */
     public Midia(int id, String nome, LocalDate dataLancamento) {
+        if(id < 0) {
+            throw new RuntimeException("O id da Midia deve ser maior que 0!");
+        } else if(nome.length() < 3) {
+            throw new RuntimeException("O nome da Midia deve possuir mais de 3 caracteres!");
+        } else if(dataLancamento.isAfter(LocalDate.now())) {
+            throw new RuntimeException("O lançamento da Midia não pode ser uma data futura!");
+        }
+
         this.id = id;
         this.nome=nome;
         this.dataLancamento = dataLancamento;

@@ -11,17 +11,19 @@ class ClienteTest {
     Cliente cliente;
     Serie serie;
     Serie serie2;
+    Avaliacao avaliacao;
 
 
     @BeforeEach
     public void setUp() {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
-        cliente = new Cliente("nome", "usuario1", "senha1");
+        cliente = new Cliente("nome", "usuario1", "senha12345");
         serie = new Serie(1, "Serie1", "comédia", "Portugues", 15, 0, dataDeLancamento1);
         serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
         cliente.adicionarNaLista(serie);
         cliente.adicionarNaLista(serie2);
+        avaliacao = new Avaliacao(cliente, serie, 4.3);
     }
 
     @Test
@@ -60,5 +62,13 @@ class ClienteTest {
     void registrarAudiencia() {
         cliente.registrarAudiencia(serie);
         assertEquals(1, cliente.listaJaVistas.size());
+    }
+
+    @Test
+    void registrarAvaliacao() {
+        cliente.adicionarAvaliacao(avaliacao);
+        assertEquals(1, cliente.getAvaliacoes().size());
+        cliente.adicionarAvaliacao(avaliacao);
+        assertEquals(1, cliente.getAvaliacoes().size());
     }
 }

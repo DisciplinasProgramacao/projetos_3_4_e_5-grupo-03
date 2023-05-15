@@ -22,11 +22,11 @@ public class Cliente {
     public Cliente(String nome, String nomeDeUsuario, String senha) {
 
         if(nome.length() < 2) {
-            throw new RuntimeException("O nome do Cliente deve possuir mais de 2 caracteres!")
+            throw new RuntimeException("O nome do Cliente deve possuir mais de 2 caracteres!");
         } else if(nomeDeUsuario.length() < 5) {
-            throw new RuntimeException("O nome do Cliente deve possuir mais de 5 caracteres!")
+            throw new RuntimeException("O nome do Cliente deve possuir mais de 5 caracteres!");
         } else if(senha.length() < 10) {
-            throw new RuntimeException("A senha deve possuir no minimo 10 caracteres!")
+            throw new RuntimeException("A senha deve possuir no minimo 10 caracteres!");
         }
 
         this.nome = nome;
@@ -102,10 +102,14 @@ public class Cliente {
     @param avaliacao A midia a ser adicionada à lista.
     */
     public void adicionarAvaliacao(Avaliacao avaliacao) {
-        try {
-            this.listaNotas.add(avaliacao);
-        } catch(RuntimeException addAvaliacaoCException) {
-            System.out.println(addAvaliacaoCException.getMessage());
+        if(getAvaliacoes().contains(avaliacao)) {
+            System.out.println("Não foi possivel realizar a avaliação: Cliente já avaliou esta midia");
+        } else {
+            try {
+                this.listaNotas.add(avaliacao);
+            } catch(RuntimeException addAvaliacaoCException) {
+                System.out.println("Não foi possivel realizar a avaliação: " + addAvaliacaoCException.getMessage());
+            }
         }
     }
 

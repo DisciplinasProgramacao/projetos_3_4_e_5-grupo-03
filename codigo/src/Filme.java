@@ -23,14 +23,10 @@ public class Filme extends Midia{
      */
     public Filme(int id,String nome, LocalDate dataLancamento, int duracao){
 
-        if(nome.length() < 3) {
-            throw new RuntimeException("O nome do filme deve possuir mais de 3 caracteres!")
-        } else if(dataLancamento > LocalDate.now().format("dd/MM/yyyy")) {
-            throw new RuntimeException("O lançamento do filme não pode ser uma data futura!")
-        } else if(duracao < 10) {
-            throw new RuntimeException("A duração do filme não pode ser menor que 10 minutos!")
-        }
         super(id,nome, dataLancamento);
+        if(duracao < 10) {
+            throw new RuntimeException("A duração do Filme não pode ser menor que 10 minutos!");
+        }
         this.duracao = duracao;
     }
 

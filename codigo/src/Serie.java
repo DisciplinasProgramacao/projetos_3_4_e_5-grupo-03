@@ -29,15 +29,10 @@ public class Serie extends Midia implements Serializable {
     */
     public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) {
 
-        if(nome.length() < 3) {
-            throw new RuntimeException("O nome da Serie deve possuir mais de 3 caracteres!");
-        } else if(dataLancamento > LocalDate.now().format("dd/MM/yyyy")) {
-            throw new RuntimeException("O lançamento da Serie não pode ser uma data futura!");
-        } else if(quantidadeEpisodios < 1) {
+        super(id, nome, dataLancamento);
+        if(quantidadeEpisodios < 1) {
             throw new RuntimeException("A quantidade de episódios não pode ser 0!");
         }
-
-        super(id, nome, dataLancamento);
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
 
