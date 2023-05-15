@@ -71,7 +71,11 @@ public abstract class Midia {
      * @param avaliacao A avaliação a ser adicionada.
      */
     public void adicionarAvaliacao(Avaliacao avaliacao) {
-        this.avaliacoes.add(avaliacao);
+        try {
+            this.avaliacoes.add(avaliacao);
+        } catch(RuntimeException addAvaliacaoMException) {
+            System.out.println(addAvaliacaoMException.getMessage());
+        }
     }
 
     /**

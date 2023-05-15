@@ -48,9 +48,13 @@ public class App {
         System.out.println("Digite a senha do cliente:");
         String senha = scanner.nextLine();
 
-        Cliente cliente = new Cliente(nomeCompleto, nomeUsuario, senha);
-        plataforma.adicionarCliente(cliente);
-        System.out.println("Cliente adicionado com sucesso!");
+        try {
+            Cliente cliente = new Cliente(nomeCompleto, nomeUsuario, senha);
+            plataforma.adicionarCliente(cliente);
+            System.out.println("Cliente adicionado com sucesso!");
+        } catch(RuntimeException novoClientException) {
+            System.out.println(novoClientException.getMessage());
+        }
 
     }
 
@@ -81,9 +85,13 @@ public class App {
                 int qtdEpisodios = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do scanner
 
-                Serie serie = new Serie(id, nome, dataLancamento, qtdEpisodios);
-                plataforma.adicionarSerie(serie);
-                System.out.println("Série adicionada com sucesso!");
+                try {
+                    Serie serie = new Serie(id, nome, dataLancamento, qtdEpisodios);
+                    plataforma.adicionarSerie(serie);
+                    System.out.println("Série adicionada com sucesso!");
+                } catch(RuntimeException novaSerieException) {
+                    System.out.println(novaSerieException.getMessage());
+                }
                 break;
 
             case 2:
@@ -101,10 +109,13 @@ public class App {
                 int duracao = scanner.nextInt();
                 scanner.nextLine(); // Limpar o buffer do scanner
 
-                Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao);
-                plataforma.adicionarFilme(filme);
-                System.out.println("Filme adicionado com sucesso!");
-
+                try {
+                    Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao);
+                    plataforma.adicionarFilme(filme);
+                    System.out.println("Filme adicionado com sucesso!");
+                } catch(RuntimeException novoFilmeException) {
+                    System.out.println(novoFilmeException.getMessage());
+                }
                 break;
             default:
                 System.out.println("Opção inválida. Tente novamente.");
