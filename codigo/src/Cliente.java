@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,12 +7,13 @@ import java.util.List;
 Classe Cliente que representa um cliente na plataforma de streaming.
 */
 public class Cliente {
-    String nome;
-    String nomeDeUsuario;
-    String senha;
-    List<Midia> listaParaVer; 
-    List<Midia> listaJaVistas; 
-    List<Avaliacao> listaNotas;
+    private String nome;
+    private String nomeDeUsuario;
+    private String senha;
+    private List<Midia> listaParaVer; 
+    private List<Midia> listaJaVistas; 
+    private List<Avaliacao> listaNotas;
+    private List<LocalDate> datasSeriesAssistidas;
 
     /**
     Construtor da classe Cliente.
@@ -35,6 +37,7 @@ public class Cliente {
         this.listaParaVer = new ArrayList<>();
         this.listaJaVistas = new ArrayList<>();
         this.listaNotas = new ArrayList<>();
+        this.datasSeriesAssistidas = new ArrayList<>();
     }
 
     /**
@@ -94,6 +97,7 @@ public class Cliente {
         if (!this.listaJaVistas.contains(midia)) {
             this.listaJaVistas.add(midia);
             midia.registrarAudiencia();
+            this.datasSeriesAssistidas.add(LocalDate.now());
         }
     }
 
@@ -102,19 +106,19 @@ public class Cliente {
     @param avaliacao A midia a ser adicionada à lista.
     */
     public void adicionarAvaliacao(Avaliacao avaliacao) {
-        if(getAvaliacoes().contains(avaliacao)) {
-            System.out.println("Não foi possivel realizar a avaliação: Cliente já avaliou esta midia");
-        } else {
-            try {
-                this.listaNotas.add(avaliacao);
-            } catch(RuntimeException addAvaliacaoCException) {
-                System.out.println("Não foi possivel realizar a avaliação: " + addAvaliacaoCException.getMessage());
-            }
+        try {
+            this.listaNotas.add(avaliacao);
+        } catch(RuntimeException addAvaliacaoCException) {
+            System.out.println(addAvaliacaoCException.getMessage());
         }
     }
 
     public List<Avaliacao> getAvaliacoes() {
         return this.listaNotas;
+    }
+
+    public List<LocalDate> getDatasSeriesAssistidas() {
+        return this.datasSeriesAssistidas;
     }
 
     // Getters e setters para os atributos da classe Cliente
