@@ -33,9 +33,9 @@ public class Avaliacao {
         return this.nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(double nota) throws AvaliacaoNotaException{
         if(nota < 0 || nota > 5) {
-            throw new RuntimeException("A nota deve ser entre 0 e 5!");
+            throw new AvaliacaoNotaException();
         }
         this.nota = nota;
     }
