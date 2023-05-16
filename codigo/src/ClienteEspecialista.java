@@ -12,7 +12,7 @@ public class ClienteEspecialista extends Cliente implements Especialista {
     }
 
     @Override
-    public void adicionarComentario(Serie serie, String comentario) {
+    public void adicionarComentario(Serie serie, String comentario) throws EpisodiosMinimosException, MidiaNaoAssistidaException{
         LocalDate umMesAtras = LocalDate.now().minus(1, ChronoUnit.MONTHS);
 
         // Verifica se o cliente assistiu pelo menos 5 séries no último mês
@@ -21,11 +21,11 @@ public class ClienteEspecialista extends Cliente implements Especialista {
             .count();
 
         if (seriesAssistidasNoUltimoMes < 5) {
-            System.out.println("Você precisa assistir pelo menos 5 séries no último mês para adicionar um comentário!");
+            throw new EpisodiosMinimosException();  
         } else if (super.getListaJaVistas().contains(serie)) {
             comentarios.put(serie, comentario);
         } else {
-            System.out.println("Não é possível adicionar um comentário a uma série que você não assistiu!");
+            throw new MidiaNaoAssistidaException();
         }
     }
 
