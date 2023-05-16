@@ -25,9 +25,9 @@ public class Cliente {
 
         if(nome.length() < 2) {
             throw new RuntimeException("O nome do Cliente deve possuir mais de 2 caracteres!");
-        } else if(nomeDeUsuario.length() < 5) {
+        } else if(nomeDeUsuario.length() < 3) {
             throw new RuntimeException("O nome do Cliente deve possuir mais de 5 caracteres!");
-        } else if(senha.length() < 10) {
+        } else if(senha.length() < 6) {
             throw new RuntimeException("A senha deve possuir no minimo 10 caracteres!");
         }
 

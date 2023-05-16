@@ -1,13 +1,13 @@
 import java.util.HashMap;
 
 public interface Especialista {
-    HashMap<Serie, String> comentarios = new HashMap<>();
+    HashMap<Midia, String> comentarios = new HashMap<>();
 
-    default void adicionarComentario(Serie serie, String comentario) {
-        comentarios.put(serie, comentario);
+    default void adicionarComentario(Midia midia, String comentario) {
+        comentarios.put(midia, comentario);
     }
 
-    default HashMap<Serie, String> getComentarios() {
+    default HashMap<Midia, String> getComentarios() {
         return comentarios;
     }
 }
