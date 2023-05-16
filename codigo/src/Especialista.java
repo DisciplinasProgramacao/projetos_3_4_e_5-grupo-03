@@ -1,13 +1,7 @@
-import java.util.HashMap;
+import java.util.Map;
 
 public interface Especialista {
-    HashMap<Midia, String> comentarios = new HashMap<>();
+    public void adicionarComentario(Midia midia, String comentario) throws EpisodiosMinimosException, MidiaNaoAssistidaException;
 
-    default void adicionarComentario(Midia midia, String comentario) throws EpisodiosMinimosException, MidiaNaoAssistidaException {
-        comentarios.put(midia, comentario);
-    }
-
-    default HashMap<Midia, String> getComentarios() {
-        return comentarios;
-    }
+    public Map<Midia, String> getComentarios();
 }
