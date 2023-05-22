@@ -29,8 +29,12 @@ public class PlataformaStreaming {
      * 
      * @param nome Nome da plataforma de streaming.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
+     * @throws MidiaDataException
+     * @throws MidiaException
+     * @throws DuracaoFilmeException
+     * @throws ClienteException
      */
-    public PlataformaStreaming(String nome) throws IOException {
+    public PlataformaStreaming(String nome) throws IOException, DuracaoFilmeException, MidiaException, MidiaDataException, ClienteException {
         this.nome = nome;
         this.midias = new HashMap<Integer, Midia>();
         this.clientes = new HashMap<String, Cliente>();

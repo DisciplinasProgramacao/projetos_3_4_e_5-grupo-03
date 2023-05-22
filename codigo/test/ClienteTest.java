@@ -15,12 +15,12 @@ class ClienteTest {
 
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws ClienteException, MidiaException, MidiaDataException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         cliente = new Cliente("nome", "usuario1", "senha12345");
-        serie = new Serie(1, "Serie1", "comédia", "Portugues", 15, 0, dataDeLancamento1);
-        serie2 = new Serie(2, "Serie2", "drama", "inglês", 8, 0, dataDeLancamento2);
+        serie = new Serie(1, "Serie1", 4, 1, 15, 0, dataDeLancamento1);
+        serie2 = new Serie(2, "Serie2", 5, 2, 8, 0, dataDeLancamento2);
         cliente.adicionarNaLista(serie);
         cliente.adicionarNaLista(serie2);
         avaliacao = new Avaliacao(cliente, serie, 6.2);
@@ -33,19 +33,26 @@ class ClienteTest {
 
     @Test
     void testAdicionarNaLista() {
-        assertEquals(2, cliente.listaParaVer.size());
+        cliente.adicionarNaLista(serie2);
+        assertEquals(2, cliente.getListaParaVer().size());
     }
 
     @Test
     void testRetirarDaLista() {
-        assertEquals(2, cliente.listaParaVer.size());
+        assertEquals(2, cliente.getListaParaVer().size());
         cliente.retirarDaLista(serie);
-        assertEquals(1, cliente.listaParaVer.size());
+        assertEquals(1, cliente.getListaParaVer().size());
+        cliente.retirarDaLista(serie2);
+        assertEquals(0, cliente.getListaParaVer().size());
+        cliente.retirarDaLista(serie2);
+        assertEquals(0, cliente.getListaParaVer().size());
     }
+
+
 
     @Test
     void testFiltrarPorGenero() {
-        assertEquals(1, cliente.filtrarPorGenero("Humor").size());
+        assertEquals(1, cliente.filtrarPorGenero("Terror").size());
     }
 
     @Test
@@ -58,10 +65,16 @@ class ClienteTest {
         assertEquals(1, cliente.filtrarPorQtdEpisodios(15).size());
     }
     
+
+    
     @Test
     void registrarAudiencia() {
         cliente.registrarAudiencia(serie);
-        assertEquals(1, cliente.listaJaVistas.size());
+        assertEquals(1, cliente.getListaJaVistas().size());
+        cliente.registrarAudiencia(serie);
+        assertEquals(1, cliente.getListaJaVistas().size());
+        cliente.registrarAudiencia(serie2);
+        assertEquals(2, cliente.getListaJaVistas().size());
     }
 
     @Test

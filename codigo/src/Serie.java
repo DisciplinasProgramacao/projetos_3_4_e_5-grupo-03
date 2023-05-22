@@ -55,10 +55,10 @@ public class Serie extends Midia {
      * @throws MidiaDataException
      * @throws MidiaException
      */
-    public Serie(int id, String nome, String string, String string2, int i, int j,
+    public Serie(int id, String nome, int genero, int idioma, int quantidadeEps, int j,
             LocalDate dataLancamento) throws MidiaException, MidiaDataException {
-                super(id, nome, dataLancamento);
-                this.quantidadeEpisodios = quantidadeEpisodios;
+                super(id, nome, dataLancamento, genero, idioma);
+                this.quantidadeEpisodios = quantidadeEps;
     }
 
     /**

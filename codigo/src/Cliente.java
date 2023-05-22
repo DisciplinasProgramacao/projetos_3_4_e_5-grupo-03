@@ -46,7 +46,9 @@ public class Cliente {
     @param midia A midia a ser adicionada à lista.
     */
     public void adicionarNaLista(Midia midia) {
-        this.listaParaVer.add(midia);
+        if(!listaParaVer.contains(midia)) {
+            this.listaParaVer.add(midia);
+        }
     }
 
     /**
@@ -137,7 +139,7 @@ public class Cliente {
             return true; // Cliente viu a mídia, mas ainda não a avaliou
         }
         throw new ClienteAvaliaException();
-        return false; // Cliente ainda não viu a mídia
+        // return false; // Cliente ainda não viu a mídia
     }
 
 

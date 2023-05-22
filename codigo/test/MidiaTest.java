@@ -12,23 +12,32 @@ public class MidiaTest {
 
     private Cliente cliente;
     private Filme filme;
+    private Serie serie;
     private Avaliacao avaliacao;
 
     /**
      * Configuração inicial para os testes.
+     * @throws ClienteException
+     * @throws MidiaDataException
+     * @throws MidiaException
+     * @throws DuracaoFilmeException
      */
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws ClienteException, DuracaoFilmeException, MidiaException, MidiaDataException {
+        LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         cliente = new Cliente("John", "john@puc.com", "senha123");
         filme = new Filme(1, "Matrix", LocalDate.of(1999, 3, 31), 160);
+        serie = new Serie(1, "Serie1", 4, 2, 15, 0, dataDeLancamento1);
         avaliacao = new Avaliacao(cliente, filme, 9.0);
+        cliente.adicionarNaLista(filme);
     }
 
     /**
      * Testa a adição de uma avaliação à mídia.
+     * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testAdicionarAvaliacao() {
+    public void testAdicionarAvaliacao() throws MidiaNaoAssistidaException {
         assertTrue(filme.getAvaliacoes().isEmpty());
         filme.adicionarAvaliacao(avaliacao);
         assertEquals(1, filme.getAvaliacoes().size());
@@ -45,18 +54,20 @@ public class MidiaTest {
 
     /**
      * Testa o cálculo da média de notas com uma avaliação.
+     * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testCalcularMediaDeNotasComUmaAvaliacao() {
+    public void testCalcularMediaDeNotasComUmaAvaliacao() throws MidiaNaoAssistidaException {
         filme.adicionarAvaliacao(avaliacao);
         assertEquals(avaliacao.getNota(), filme.calcularMediaDeNotas());
     }
 
     /**
      * Testa o cálculo da média de notas com múltiplas avaliações.
+     * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testCalcularMediaDeNotasComMultiplasAvaliacoes() {
+    public void testCalcularMediaDeNotasComMultiplasAvaliacoes() throws MidiaNaoAssistidaException {
         filme.adicionarAvaliacao(avaliacao);
 
         Avaliacao avaliacao2 = new Avaliacao(cliente, filme, 7.0);
