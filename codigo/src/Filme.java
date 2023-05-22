@@ -38,4 +38,14 @@ public class Filme extends Midia{
         return this.duracao;
     }
 
+    
+    /**
+     * Retorna uma String com os dados do filme.
+     * @return Uma String com os dados do filme.
+     */
+    @Override
+    public String toString() {
+        // 9573;Complexity Of A Nuclear Winter;07/07/2022;97
+        return this.getId() + ";" + this.getNome() + ";" + this.getDataLancamento() + ";" + this.getDuracao();
+    }
 }

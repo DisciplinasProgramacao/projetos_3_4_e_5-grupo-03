@@ -1,14 +1,21 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
+import javax.print.DocFlavor.STRING;
+
 import java.time.format.DateTimeFormatter;
-
-
 
 public class PlataformaStreaming {
     private String nome;
@@ -42,18 +49,17 @@ public class PlataformaStreaming {
         this.midias = new HashMap<Integer, Midia>();
         this.clientes = new HashMap<String, Cliente>();
         this.avaliacoes = new HashMap<Integer, Avaliacao>();
-    
+
         this.clienteAtual = null;
     }
-    
-
 
     /**
      * Método para realizar o login de um cliente na plataforma.
      * 
      * @param nomeUsuario Nome de usuário do cliente.
      * @param senha       Senha do cliente.
-     * @return Retorna o objeto Cliente caso o login seja bem-sucedido, caso contrário, retorna null.
+     * @return Retorna o objeto Cliente caso o login seja bem-sucedido, caso
+     *         contrário, retorna null.
      */
     public Cliente login(String nomeUsuario, String senha) {
         Cliente cl = clientes.get(nomeUsuario);
@@ -76,7 +82,8 @@ public class PlataformaStreaming {
     /**
      * Adiciona um cliente à plataforma.
      * 
-     * @param cliente Objeto da classe Cliente representando o cliente a ser adicionado.
+     * @param cliente Objeto da classe Cliente representando o cliente a ser
+     *                adicionado.
      */
     public void adicionarCliente(Cliente cliente) {
         this.clientes.put(cliente.getNomeUsuario(), cliente);
@@ -91,7 +98,6 @@ public class PlataformaStreaming {
         this.midias.put(filme.getId(), filme);
     }
 
-
     /**
      * Filtra as mídias da plataforma por gênero.
      * 
@@ -100,20 +106,22 @@ public class PlataformaStreaming {
      */
     public List<Midia> filtrarPorGenero(String genero) {
         return this.midias.values().stream()
-            .filter(s -> s.getGenero().equalsIgnoreCase(genero))
-            .collect(Collectors.toList());
+                .filter(s -> s.getGenero().equalsIgnoreCase(genero))
+                .collect(Collectors.toList());
     }
 
-        /*Explicando o código:
-        return this.series.values().stream()
-        .filter(s -> s.getGenero().equalsIgnoreCase(genero))
-        .collect(Collectors.toList());
+    /*
+     * Explicando o código:
+     * return this.series.values().stream()
+     * .filter(s -> s.getGenero().equalsIgnoreCase(genero))
+     * .collect(Collectors.toList());
+     * 
+     * O método stream() cria um fluxo (stream) das séries
+     * e aplicamos o método filter() para filtrar as séries de acordo com o
+     * critério fornecido. No final, usamos o método collect() com o coletor
+     * Collectors.toList() para converter o fluxo filtrado de volta em uma lista.
+     */
 
-    O método stream() cria um fluxo (stream) das séries 
-    e aplicamos o método filter() para filtrar as séries de acordo com o 
-    critério fornecido. No final, usamos o método collect() com o coletor 
-    Collectors.toList() para converter o fluxo filtrado de volta em uma lista. */
-    
     /**
      * Filtra as mídias da plataforma por idioma.
      * 
@@ -122,26 +130,28 @@ public class PlataformaStreaming {
      */
     public List<Midia> filtrarPorIdioma(String idioma) {
         return this.midias.values().stream()
-            .filter(s -> s.getIdioma().equalsIgnoreCase(idioma))
-            .collect(Collectors.toList());
+                .filter(s -> s.getIdioma().equalsIgnoreCase(idioma))
+                .collect(Collectors.toList());
     }
-    
+
     /**
      * Filtra as mídias da plataforma pela quantidade de episódios.
      * 
      * @param quantEpisodios Quantidade de episódios a ser usada como filtro.
-     * @return Retorna uma lista de mídias que correspondem à quantidade de episódios informada.
+     * @return Retorna uma lista de mídias que correspondem à quantidade de
+     *         episódios informada.
      */
     public List<Midia> filtrarPorQtdEpisodios(int quantEpisodios) {
         return this.midias.values().stream()
-            .filter(s -> s.getQuantidadeEpisodios() == quantEpisodios)
-            .collect(Collectors.toList());
+                .filter(s -> s.getQuantidadeEpisodios() == quantEpisodios)
+                .collect(Collectors.toList());
     }
 
     /**
      * Registra a audiência de uma midia na plataforma.
      * 
-     * @param midia Objeto da classe Mdiia representando a midia cuja audiência será registrada.
+     * @param midia Objeto da classe Mdiia representando a midia cuja audiência será
+     *              registrada.
      */
     public void registrarAudiencia(Midia midia) {
     }
@@ -154,7 +164,6 @@ public class PlataformaStreaming {
     public HashMap<String, Cliente> getClientes() {
         return this.clientes;
     }
-
 
     /**
      * Retorna um HashMap contendo os clientes cadastrados na plataforma.
@@ -178,7 +187,8 @@ public class PlataformaStreaming {
     }
 
     /**
-     * Lê informações da audiência de um arquivo e registra a audiência na plataforma.
+     * Lê informações da audiência de um arquivo e registra a audiência na
+     * plataforma.
      * 
      * @param arquivo Nome do arquivo contendo as informações da audiência.
      * @throws IOException Exceção lançada em caso de falha na leitura do arquivo.
@@ -196,7 +206,7 @@ public class PlataformaStreaming {
                 Cliente cliente = this.getClientes().get(login);
                 if (cliente != null) {
                     Midia midia = this.midias.get(Integer.parseInt(id));
-                
+
                     if ("F".equalsIgnoreCase(tipo)) {
                         if (midia instanceof Serie) {
                             cliente.adicionarNaLista((Serie) midia);
@@ -207,10 +217,11 @@ public class PlataformaStreaming {
                         }
                     }
                 }
-                
+
             }
         }
     }
+
     /**
      * Lê informações das mídias de arquivos e adiciona as mídias à plataforma.
      * 
@@ -220,7 +231,7 @@ public class PlataformaStreaming {
      */
     private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    
+
         // Lendo séries
         try (Scanner scanner = new Scanner(new File(arquivoSeries))) {
             String linha;
@@ -231,13 +242,13 @@ public class PlataformaStreaming {
                 int id = Integer.parseInt(idStr);
                 String nomeSerie = campos[1];
                 LocalDate dataDeLancamento = LocalDate.parse(campos[2], dateFormatter);
-    
+
                 // Os campos adicionais podem ser adicionados conforme necessário
                 Serie serie = new Serie(id, nomeSerie, "", "", 0, 0, dataDeLancamento);
                 this.adicionarSerie(serie);
             }
         }
-    
+
         // Lendo filmes
         try (Scanner scanner = new Scanner(new File(arquivoFilmes))) {
             String linha;
@@ -250,21 +261,22 @@ public class PlataformaStreaming {
                 String nome = campos[1];
                 LocalDate dataDeLancamento = LocalDate.parse(campos[2], dateFormatter);
                 int duracao = Integer.parseInt(campos[3]);
-    
+
                 // Os campos adicionais podem ser adicionados conforme necessário
                 Filme filme = new Filme(idFilme, nome, dataDeLancamento, duracao);
                 this.adicionarFilme(filme);
             }
         }
     }
-    
+
     /**
      * Adiciona um cliente à plataforma se o nome de usuário não existir.
      * 
-     * @param nomeCompleto   Nome completo do cliente.
-     * @param nomeDeUsuario  Nome de usuário do cliente.
-     * @param senha          Senha do cliente.
-     * @return Retorna true se o cliente foi adicionado com sucesso, caso contrário, retorna false.
+     * @param nomeCompleto  Nome completo do cliente.
+     * @param nomeDeUsuario Nome de usuário do cliente.
+     * @param senha         Senha do cliente.
+     * @return Retorna true se o cliente foi adicionado com sucesso, caso contrário,
+     *         retorna false.
      */
     public boolean adicionarCliente(String nomeCompleto, String nomeDeUsuario, String senha) {
         // Verificar se o nome de usuário já existe
@@ -277,7 +289,7 @@ public class PlataformaStreaming {
         clientes.put(nomeDeUsuario, novoCliente);
         return true; // Cliente adicionado com sucesso
     }
-    
+
     private Midia encontrarMidiaPorId(int id, List<Midia> midias) {
         for (Midia midia : midias) {
             if (midia.getId() == id) {
@@ -286,5 +298,35 @@ public class PlataformaStreaming {
         }
         return null;
     }
-  }
-    
+
+    public void salvar() throws IOException {
+        // this.midias.forEach((id, midia) -> {
+        // System.out.println(midia.getClass().getSimpleName() + " - " + midia);
+        // });
+
+        Map<String, List<Midia>> mapaDeMidias = new HashMap<>();
+
+        // Iterando sobre a lista de mídias
+        midias.forEach((id, midia) -> {
+            // Obtendo o nome da classe
+            String nomeDaClasse = midia.getClass().getSimpleName();
+
+            // Verificando se a classe já existe no mapa
+            if (mapaDeMidias.containsKey(nomeDaClasse)) {
+                // Se a classe já existe, adiciona a mídia na lista correspondente
+                mapaDeMidias.get(nomeDaClasse).add(midia);
+            } else {
+                // Se a classe não existe, cria uma nova lista e adiciona a mídia
+                List<Midia> listaDeMidias = new ArrayList<>();
+                listaDeMidias.add(midia);
+                mapaDeMidias.put(nomeDaClasse, listaDeMidias);
+            }
+        });
+
+        mapaDeMidias.keySet().forEach(classe -> {
+            String nomeDoArquivo = "./salvar/POO_" + classe + ".csv";
+            List<Midia> midiasDaClasse = mapaDeMidias.get(classe);
+            //itere sobre as linhas salvando 
+        });
+    }
+}

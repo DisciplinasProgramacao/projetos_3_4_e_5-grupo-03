@@ -50,4 +50,9 @@ class PlataformaStreamingTest {
         boolean clienteAdicionado = plataforma.adicionarCliente("Jane Doe", "janedoe", "54321");
         assertFalse(clienteAdicionado, "Não deve adicionar o cliente, pois já existe um cliente com o mesmo nome de usuário");
     }
+
+    @Test
+    void testeSalvar() throws IOException {
+        plataforma.salvar();
+    }
 }

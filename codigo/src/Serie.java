@@ -4,12 +4,17 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashMap;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
+import org.junit.platform.console.shadow.picocli.CommandLine.ITypeConverter;
 
 /**
  * A classe Serie representa uma série de TV e herda da classe Midia.
  * Implementa a interface Serializable para permitir a gravação de objetos da classe em arquivos.
  */
-public class Serie extends Midia implements Serializable {
+public class Serie extends Midia {
    
     private int quantidadeEpisodios;
    
@@ -75,20 +80,12 @@ public class Serie extends Midia implements Serializable {
     }
 
     /**
-     * Salva a série em um arquivo chamado "serie.txt".
-     * @throws IOException Se ocorrer um erro durante a gravação do arquivo.
+     * Retorna uma String com os dados da série.
+     * @return Uma String com os dados da série.
      */
-    public void save() throws IOException {
-		File file = new File("serie.txt");
-		if (file.exists())
-			file.delete();
-        FileOutputStream arquivoGrav = new FileOutputStream(file, false); 
-        ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
-
-        objGravar.writeObject(this);
-        objGravar.flush();
-        objGravar.close();
-        arquivoGrav.flush();
-        arquivoGrav.close();
+    @Override
+    public String toString() {
+        // 3462;Pink is the new White;20/09/2018
+        return this.getId() + ";" + this.getNome() + ";" + this.getDataLancamento();
     }
 }
