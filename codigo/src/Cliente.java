@@ -115,6 +115,18 @@ public class Cliente {
         }
     }
 
+    // Método para verificar se o cliente já avaliou uma determinada mídia
+    public boolean jaAvaliouMidia(Midia midia) {
+        for (Avaliacao avaliacao : listaNotas) {
+            if (avaliacao.getMidia().equals(midia)) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    
+
     public List<Avaliacao> getAvaliacoes() {
         return this.listaNotas;
     }
