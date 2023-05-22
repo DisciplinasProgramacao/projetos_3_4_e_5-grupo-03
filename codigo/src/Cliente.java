@@ -102,30 +102,45 @@ public class Cliente {
         }
     }
 
-    /**
-    Adiciona uma midia à lista de avaliacoes do cliente.
-    @param avaliacao A midia a ser adicionada à lista.
-     * @throws ClienteAvaliaException
-    */
-    public void adicionarAvaliacao(Avaliacao avaliacao) throws ClienteAvaliaException {
-        if(this.listaJaVistas.contains(avaliacao.getMidia())) {
-            this.listaNotas.add(avaliacao);
-        } else {
-            throw new ClienteAvaliaException();
-        }
-    }
-
-    // Método para verificar se o cliente já avaliou uma determinada mídia
-    public boolean jaAvaliouMidia(Midia midia) {
-        for (Avaliacao avaliacao : listaNotas) {
-            if (avaliacao.getMidia().equals(midia)) {
-                return true; 
+///**
+//Adiciona uma midia à lista de avaliacoes do cliente.
+//@param avaliacao A midia a ser adicionada à lista.
+// * @throws ClienteAvaliaException
+//*/
+//public void adicionarAvaliacao(Avaliacao avaliacao) throws ClienteAvaliaException {
+//    if(this.listaJaVistas.contains(avaliacao.getMidia())) {
+//        this.listaNotas.add(avaliacao);
+//    } else {
+//        throw new ClienteAvaliaException();
+//    }
+//}
+//
+//// Método para verificar se o cliente já avaliou uma determinada mídia
+//public boolean jaAvaliouMidia(Midia midia) {
+//    for (Avaliacao avaliacao : listaNotas) {
+//        if (avaliacao.getMidia().equals(midia)) {
+//            return true; 
+//        }
+//    }
+//    return false; 
+//}
+//
+    public boolean podeAvaliarMidia(Midia midia) throws ClienteAvaliaException {
+        // Verifica se o cliente já viu a mídia
+        if (this.listaJaVistas.contains(midia)) {
+            // Verifica se o cliente já avaliou a mídia
+            for (Avaliacao avaliacao : this.listaNotas) {
+                if (avaliacao.getMidia().equals(midia)) {
+                    return false; // Cliente já avaliou a mídia anteriormente
+                }
             }
+            return true; // Cliente viu a mídia, mas ainda não a avaliou
         }
-        return false; 
+        throw new ClienteAvaliaException();
+        return false; // Cliente ainda não viu a mídia
     }
 
-    
+
 
     public List<Avaliacao> getAvaliacoes() {
         return this.listaNotas;
