@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class App {
     
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClienteException, MidiaException, MidiaDataException, DuracaoFilmeException {
 
         PlataformaStreaming plataforma = new PlataformaStreaming("teste"); 
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +37,7 @@ public class App {
         }
     }
 
-    private static void cadastrarCliente(PlataformaStreaming plataforma, Scanner scanner) {
+    private static void cadastrarCliente(PlataformaStreaming plataforma, Scanner scanner) throws ClienteException {
         System.out.println("Digite o nome completo do cliente:");
         String nomeCompleto = scanner.nextLine();
 
@@ -57,7 +57,7 @@ public class App {
 
     }
 
-    private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) {
+    private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) throws MidiaException, MidiaDataException, DuracaoFilmeException {
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Escolha o tipo de mídia:");
