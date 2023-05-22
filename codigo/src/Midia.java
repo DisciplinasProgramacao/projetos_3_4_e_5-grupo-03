@@ -58,14 +58,16 @@ public abstract class Midia {
      * @param id Identificador único da mídia.
      * @param nome Nome da mídia.
      * @param dataLancamento Data de lançamento da mídia.
+     * @throws MidiaException
+     * @throws MidiaDataException
      */
-    public Midia(int id, String nome, LocalDate dataLancamento) {
+    public Midia(int id, String nome, LocalDate dataLancamento) throws MidiaException, MidiaDataException {
         if(id < 0) {
-            throw new RuntimeException("O id da Midia deve ser maior que 0!");
+            throw new MidiaException("id", "0");
         } else if(nome.length() < 3) {
-            throw new RuntimeException("O nome da Midia deve possuir mais de 3 caracteres!");
+            throw new MidiaException("nome", "3");
         } else if(dataLancamento.isAfter(LocalDate.now())) {
-            throw new RuntimeException("O lançamento da Midia não pode ser uma data futura!");
+            throw new MidiaDataException("Midia");
         }
 
         this.id = id;
@@ -79,12 +81,17 @@ public abstract class Midia {
      *
      * @param avaliacao A avaliação a ser adicionada.
      */
-    public void adicionarAvaliacao(Avaliacao avaliacao) {
-        try {
+    public void adicionarAvaliacao(Avaliacao avaliacao) throws MidiaNaoAssistidaException{
+        if(this.dataAssistida != null) {
             this.avaliacoes.add(avaliacao);
-        } catch(RuntimeException addAvaliacaoMException) {
-            System.out.println(addAvaliacaoMException.getMessage());
+        } else {
+            throw new MidiaNaoAssistidaException();
         }
+        // try {
+        //     this.avaliacoes.add(avaliacao);
+        // } catch(RuntimeException addAvaliacaoMException) {
+        //     System.out.println(addAvaliacaoMException.getMessage());
+        // }
     }
 
     /**

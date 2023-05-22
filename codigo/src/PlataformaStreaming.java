@@ -169,8 +169,9 @@ public class PlataformaStreaming {
      * Retorna um HashMap contendo os clientes cadastrados na plataforma.
      * 
      * @return HashMap contendo os clientes.
+     * @throws ClienteException
      */
-    private void lerClientes(String arquivo) throws IOException {
+    private void lerClientes(String arquivo) throws IOException, ClienteException {
         try (Scanner scanner = new Scanner(new File(arquivo))) {
             String linha;
             while (scanner.hasNextLine()) {
@@ -228,8 +229,11 @@ public class PlataformaStreaming {
      * @param arquivoSeries Nome do arquivo contendo as informações das séries.
      * @param arquivoFilmes Nome do arquivo contendo as informações dos filmes.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
+     * @throws MidiaDataException
+     * @throws MidiaException
+     * @throws DuracaoFilmeException
      */
-    private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException {
+    private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException, DuracaoFilmeException, MidiaException, MidiaDataException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         // Lendo séries
@@ -271,14 +275,14 @@ public class PlataformaStreaming {
 
     /**
      * Adiciona um cliente à plataforma se o nome de usuário não existir.
-     * 
      * @param nomeCompleto  Nome completo do cliente.
      * @param nomeDeUsuario Nome de usuário do cliente.
      * @param senha         Senha do cliente.
      * @return Retorna true se o cliente foi adicionado com sucesso, caso contrário,
      *         retorna false.
+     * @throws ClienteException
      */
-    public boolean adicionarCliente(String nomeCompleto, String nomeDeUsuario, String senha) {
+    public boolean adicionarCliente(String nomeCompleto, String nomeDeUsuario, String senha) throws ClienteException {
         // Verificar se o nome de usuário já existe
         if (clientes.containsKey(nomeDeUsuario)) {
             return false; // Nome de usuário já existe, não é possível adicionar o cliente

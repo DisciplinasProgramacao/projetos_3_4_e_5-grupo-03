@@ -20,12 +20,15 @@ public class Filme extends Midia{
      * @param nome Nome do filme.
      * @param dataLancamento Data de lançamento do filme.
      * @param duracao Duração do filme em minutos.
+     * @throws DuracaoFilmeException
+     * @throws MidiaDataException
+     * @throws MidiaException
      */
-    public Filme(int id,String nome, LocalDate dataLancamento, int duracao){
+    public Filme(int id,String nome, LocalDate dataLancamento, int duracao) throws DuracaoFilmeException, MidiaException, MidiaDataException{
 
         super(id,nome, dataLancamento);
         if(duracao < 10) {
-            throw new RuntimeException("A duração do Filme não pode ser menor que 10 minutos!");
+            throw new DuracaoFilmeException();
         }
         this.duracao = duracao;
     }

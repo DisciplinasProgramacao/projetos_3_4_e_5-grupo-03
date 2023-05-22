@@ -6,7 +6,7 @@ import java.util.Map;
 public class ClienteEspecialista extends Cliente implements Especialista {
     private Map<Midia, String> comentarios;
 
-    public ClienteEspecialista(String nome, String nomeDeUsuario, String senha) {
+    public ClienteEspecialista(String nome, String nomeDeUsuario, String senha) throws ClienteException {
         super(nome, nomeDeUsuario, senha);
         this.comentarios = new HashMap<>();
     }

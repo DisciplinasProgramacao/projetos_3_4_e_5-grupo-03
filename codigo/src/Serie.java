@@ -31,8 +31,10 @@ public class Serie extends Midia {
      * @param nome Nome da série.
      * @param dataLancamento Data de lançamento da série.
      * @param quantidadeEpisodios Quantidade de episódios da série.
+     * @throws MidiaDataException
+     * @throws MidiaException
     */
-    public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) {
+    public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) throws MidiaException, MidiaDataException {
 
         super(id, nome, dataLancamento);
         if(quantidadeEpisodios < 1) {
@@ -50,9 +52,11 @@ public class Serie extends Midia {
      * @param i Parametro não utilizado.
      * @param j Parametro não utilizado.
      * @param dataLancamento Data de lançamento da série.
+     * @throws MidiaDataException
+     * @throws MidiaException
      */
     public Serie(int id, String nome, String string, String string2, int i, int j,
-            LocalDate dataLancamento) {
+            LocalDate dataLancamento) throws MidiaException, MidiaDataException {
                 super(id, nome, dataLancamento);
                 this.quantidadeEpisodios = quantidadeEpisodios;
     }
@@ -70,11 +74,11 @@ public class Serie extends Midia {
     /**
      * Define a quantidade de episódios da série.
      * @param quantidadeEpisodios A quantidade de episódios.
-     * @throws Error se a quantidade de episódios for menor que 2.
+     * @throws QuantidadeMinimaEpException se a quantidade de episódios for menor que 2.
      */
-    public void setQuantidadeEpisodios(int quantidadeEpisodios) {
+    public void setQuantidadeEpisodios(int quantidadeEpisodios) throws QuantidadeMinimaEpException {
         if(quantidadeEpisodios < 2){
-            throw new Error("O número mínimo de episódios deve ser 2");
+            throw new QuantidadeMinimaEpException();
         }
         this.quantidadeEpisodios = quantidadeEpisodios;
     }

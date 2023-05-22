@@ -20,15 +20,16 @@ public class Cliente {
     @param nome Nome completo do cliente.
     @param nomeDeUsuario Nome de usuário do cliente.
     @param senha Senha do cliente.
+     * @throws ClienteException
     */
-    public Cliente(String nome, String nomeDeUsuario, String senha) {
+    public Cliente(String nome, String nomeDeUsuario, String senha) throws ClienteException {
 
         if(nome.length() < 2) {
-            throw new RuntimeException("O nome do Cliente deve possuir mais de 2 caracteres!");
+            throw new ClienteException("nome", "3");
         } else if(nomeDeUsuario.length() < 3) {
-            throw new RuntimeException("O nome do Cliente deve possuir mais de 5 caracteres!");
+            throw new ClienteException("nome de usuário", "4");
         } else if(senha.length() < 6) {
-            throw new RuntimeException("A senha deve possuir no minimo 10 caracteres!");
+            throw new ClienteException("Senha", "7");
         }
 
         this.nome = nome;
@@ -104,12 +105,13 @@ public class Cliente {
     /**
     Adiciona uma midia à lista de avaliacoes do cliente.
     @param avaliacao A midia a ser adicionada à lista.
+     * @throws ClienteAvaliaException
     */
-    public void adicionarAvaliacao(Avaliacao avaliacao) {
-        try {
+    public void adicionarAvaliacao(Avaliacao avaliacao) throws ClienteAvaliaException {
+        if(this.listaJaVistas.contains(avaliacao.getMidia())) {
             this.listaNotas.add(avaliacao);
-        } catch(RuntimeException addAvaliacaoCException) {
-            System.out.println(addAvaliacaoCException.getMessage());
+        } else {
+            throw new ClienteAvaliaException();
         }
     }
 
