@@ -61,6 +61,11 @@ public class Serie extends Midia {
                 this.quantidadeEpisodios = quantidadeEps;
     }
 
+    public Serie(int id, String nome, LocalDate dataDeLancamento) throws MidiaException, MidiaDataException {
+        super(id, nome, dataDeLancamento);
+        this.quantidadeEpisodios = 1;
+    }
+
     /**
      * Retorna a quantidade de episódios da série.
      * @return A quantidade de episódios.

@@ -248,11 +248,11 @@ public class PlataformaStreaming {
                 String[] campos = linha.split(";");
                 String idStr = campos[0].replaceAll("[^\\d]", ""); // Remove caracteres não numéricos
                 int id = Integer.parseInt(idStr);
-                String nomeSerie = campos[1];
+                String nome = campos[1];
                 LocalDate dataDeLancamento = LocalDate.parse(campos[2], dateFormatter);
 
                 // Os campos adicionais podem ser adicionados conforme necessário
-                Serie serie = new Serie(id, nomeSerie, "", "", 0, 0, dataDeLancamento);
+                Serie serie = new Serie(id, nome, dataDeLancamento);
                 this.adicionarSerie(serie);
             }
         }
