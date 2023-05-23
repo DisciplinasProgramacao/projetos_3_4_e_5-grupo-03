@@ -40,12 +40,6 @@ public class Avaliacao {
         this.nota = nota;
     }
 
-    public static void avaliarMidia(Cliente cliente, Midia midia, double nota) throws AvaliacaoException {
-        if (!cliente.podeAvaliarMidia(midia)) {
-            throw new AvaliacaoException();
-        }
-
-        Avaliacao avaliacao = new Avaliacao(Cliente cliente, Midia midia, int nota);     
-    }
+   
 
 }

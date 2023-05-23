@@ -117,22 +117,17 @@ public class Cliente {
 //    }
 //}
 //
-//// Método para verificar se o cliente já avaliou uma determinada mídia
-//public boolean jaAvaliouMidia(Midia midia) {
-//    for (Avaliacao avaliacao : listaNotas) {
-//        if (avaliacao.getMidia().equals(midia)) {
-//            return true; 
-//        }
-//    }
-//    return false; 
-//}
-//
-    public boolean podeAvaliarMidia(Midia midia) throws ClienteAvaliaException {
+
+    public boolean podeAvaliarMidia(int idMidia) throws ClienteAvaliaException {
+       // Midia midia = buscarMidiaPorId(idMidia);
+       // if (midia == null) {
+       // }
+
         // Verifica se o cliente já viu a mídia
-        if (this.listaJaVistas.contains(midia)) {
+        if (this.listaJaVistas.contains(idMidia)) {
             // Verifica se o cliente já avaliou a mídia
             for (Avaliacao avaliacao : this.listaNotas) {
-                if (avaliacao.getMidia().equals(midia)) {
+                if (avaliacao.getMidia().equals(idMidia)) {
                     return false; // Cliente já avaliou a mídia anteriormente
                 }
             }
@@ -142,7 +137,18 @@ public class Cliente {
         // return false; // Cliente ainda não viu a mídia
     }
 
-
+    public void avaliarMidia(double nota, int idMidia) throws NaoPodeAvaliarException, ClienteAvaliaException{
+             
+        if (!podeAvaliarMidia(idMidia)) {
+            throw new NaoPodeAvaliarException();
+        }
+        
+        Avaliacao avaliacao = new Avaliacao(midia, nota);
+       // Avaliacao.add(avaliacao);
+        
+        this.listaNotas.add(avaliacao);
+        this.listaJaVistas.add(Idmidia);
+    }
 
     public List<Avaliacao> getAvaliacoes() {
         return this.listaNotas;
