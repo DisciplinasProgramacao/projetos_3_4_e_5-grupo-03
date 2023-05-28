@@ -23,16 +23,15 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 1. Aderência às classes do diagrama: 0/2 pontos
   
 2. Requisitos de corretamente implementados: 7,8/12 pontos
-  - Carga de dados					2/2 pontos
-  - Cadastro + salvar dados			1,2/2 pontos
-  - Robustez básica					0/1 ponto
-  - Clientes						0,8/2 pontos
-	Listas, audiência sem repet
-  - Séries							1/1 ponto
-	- audiência
-  - Filme/Herança de mídia			0,8/1 ponto
-  - Buscas 							2,0/3 pontos
-	- nome, gênero, idioma
+    - Carga de dados					2/2 pontos
+    - Cadastro + salvar dados			1,2/2 pontos
+    - Robustez básica					0/1 ponto
+    - Clientes						0,8/2 pontos
+	      - Listas, audiência sem repet
+    - Séries							1/1 ponto
+    - Filme/Herança de mídia			0,8/1 ponto
+    - Buscas 							2,0/3 pontos
+	      - nome, gênero, idioma
 
 3. Documentação de código: 4/4 pontos
 
