@@ -11,12 +11,12 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 ### Comentários
 
 - Sem documentação aqui no cabeçalho
-- Não há um diagrama png ou jpg nem está nomeado na documentação
-- **ERRO DE POLIMORFISMO**: plataforma só precisa de um método "adicionarMidia". Este método deve ser chamado apenas 1 vez no main
+- 🚨 Não há um diagrama png ou jpg nem está nomeado na documentação 🚨
+- 🚨 **ERRO DE POLIMORFISMO**: plataforma só precisa de um método "adicionarMidia". Este método deve ser chamado apenas 1 vez no main 🚨
 - não está salvando novos cadastrados de clientes nem audiência
 - filtros do cliente devem retornar lista de mídias, não de séries
 - clientes devem adicionar mídias, não séries
-- diversos sets desnecessários e sem validação no Cliente e na Midia
+- 🚨 diversos sets desnecessários e sem validação no Cliente e na Midia 🚨
 - não se lançam erros aqui, só exceptions. E, no caso, série nem deve ter um setQuantEpisodios público.
 
 
