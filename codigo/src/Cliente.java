@@ -136,36 +136,29 @@ public class Cliente {
 //}
 //
 
-    public boolean podeAvaliarMidia(int idMidia) throws ClienteAvaliaException {
+    public boolean podeAvaliarMidia(Midia idMidia) throws ClienteAvaliaException {
        // Midia midia = buscarMidiaPorId(idMidia);
        // if (midia == null) {
        // }
 
-        // Verifica se o cliente já viu a mídia
-        if (this.listaJaVistas.contains(idMidia)) {
-            // Verifica se o cliente já avaliou a mídia
-            for (Avaliacao avaliacao : this.listaNotas) {
-                if (avaliacao.getMidia().equals(idMidia)) {
-                    return false; // Cliente já avaliou a mídia anteriormente
-                }
-            }
+        // Verifica se o cliente já viu a mídia e ja avaliou tal midia
+        if (this.listaJaVistas.contains(idMidia) && !listaNotas.contains(idMidia)) {
             return true; // Cliente viu a mídia, mas ainda não a avaliou
         }
         throw new ClienteAvaliaException();
         // return false; // Cliente ainda não viu a mídia
     }
 
-    public void avaliarMidia(double nota, int idMidia) throws NaoPodeAvaliarException, ClienteAvaliaException{
+    public void avaliarMidia(double nota, Midia idMidia) throws NaoPodeAvaliarException, ClienteAvaliaException{
              
         if (!podeAvaliarMidia(idMidia)) {
             throw new NaoPodeAvaliarException();
         }
         
-        Avaliacao avaliacao = new Avaliacao(midia, nota);
-       // Avaliacao.add(avaliacao);
+        Avaliacao avaliacao = new Avaliacao(this, idMidia, nota);
         
         this.listaNotas.add(avaliacao);
-        this.listaJaVistas.add(Idmidia);
+        this.listaJaVistas.add(idMidia);
     }
 
     public List<Avaliacao> getAvaliacoes() {
@@ -177,9 +170,6 @@ public class Cliente {
     }
 
     // Getters e setters para os atributos da classe Cliente
-    public String getNomeUsuario() {
-        return this.nomeDeUsuario;
-    }
 
     public String getSenha() {
         return this.senha;

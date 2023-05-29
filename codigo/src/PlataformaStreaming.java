@@ -75,7 +75,7 @@ public class PlataformaStreaming {
      */
     public Cliente login(String nomeUsuario, String senha) {
         Cliente cl = clientes.get(nomeUsuario);
-        if (cl.getNomeUsuario() == nomeUsuario && cl.getSenha() == senha) {
+        if (cl.getNomeDeUsuario() == nomeUsuario && cl.getSenha() == senha) {
             this.clienteAtual = cl;
             return cl;
         }
@@ -98,7 +98,7 @@ public class PlataformaStreaming {
      *                adicionado.
      */
     public void adicionarCliente(Cliente cliente) {
-        this.clientes.put(cliente.getNomeUsuario(), cliente);
+        this.clientes.put(cliente.getNomeDeUsuario(), cliente);
     }
 
     /**
