@@ -15,13 +15,13 @@ Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
 ## Documentação ✔
 Atualização do diagrama UML ✔
-Implementação e teste da classe PlataformaStreaming 
+Implementação e teste da classe PlataformaStreaming ✔
 Método(s) para carregamento dos dados ✔
 Criação de um pequeno aplicativo para chamar o carregamento dos dados ✔
 Classe filme e carga do catálogo de filmes ✔
 Primeira versão do protótipo do aplicativo ✔
 Cadastro de novas entidades ✔
-Salvar dados das entidades 
+Salvar dados das entidades ✔
 Robustez no sistema principal ✔
 Implementação e teste da classe avaliação ✔
 Finalizar documentação ✔

@@ -194,9 +194,4 @@ public class Cliente {
     public void setListaJaVistas(List<Midia> listaJaVistas) {
         this.listaJaVistas = listaJaVistas;
     }
-
-    public void registrarDataAssistida(Serie serie1, LocalDate of) {
-    }
-
-
 }

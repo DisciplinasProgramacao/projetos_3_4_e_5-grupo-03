@@ -86,7 +86,7 @@ public abstract class Midia {
      *
      * @param avaliacao A avaliação a ser adicionada.
      */
-    public void adicionarAvaliacao(Avaliacao avaliacao){
+    public void adicionarAvaliacao(Avaliacao avaliacao) {
             this.avaliacoes.add(avaliacao);
 
         // try {
