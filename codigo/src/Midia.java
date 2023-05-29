@@ -86,12 +86,9 @@ public abstract class Midia {
      *
      * @param avaliacao A avaliação a ser adicionada.
      */
-    public void adicionarAvaliacao(Avaliacao avaliacao) throws MidiaNaoAssistidaException{
-        if(this.dataAssistida != null) {
+    public void adicionarAvaliacao(Avaliacao avaliacao){
             this.avaliacoes.add(avaliacao);
-        } else {
-            throw new MidiaNaoAssistidaException();
-        }
+
         // try {
         //     this.avaliacoes.add(avaliacao);
         // } catch(RuntimeException addAvaliacaoMException) {

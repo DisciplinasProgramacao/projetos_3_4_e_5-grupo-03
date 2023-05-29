@@ -1,7 +1,11 @@
 import org.junit.jupiter.api.*;
 
+import exceptions.AvaliacaoNotaException;
+import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaNaoAssistidaException;
+import exceptions.NaoPodeAvaliarException;
 
 import java.util.List;
 
@@ -17,10 +21,9 @@ class ClienteTest {
     Cliente cliente;
     Serie serie1;
     Serie serie2;
-    Avaliacao avaliacao;
 
     @BeforeEach
-    public void setUp() throws ClienteException, MidiaException, MidiaDataException {
+    public void setUp() throws ClienteException, MidiaException, MidiaDataException, NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         cliente = new Cliente("nome", "usuario1", "senha12345");
@@ -28,7 +31,9 @@ class ClienteTest {
         serie2 = new Serie(4, "Serie 2", 1, 1, 10, LocalDate.of(2021, 1, 1));
         cliente.adicionarNaLista(serie1);
         cliente.adicionarNaLista(serie2);
-        avaliacao = new Avaliacao(cliente, serie1, 6.2);
+        cliente.registrarAudiencia(serie1);
+
+
     }
 
     @Test
@@ -102,10 +107,9 @@ class ClienteTest {
     }
 
     @Test
-    void registrarAvaliacao() {
-        cliente.adicionarAvaliacao(avaliacao);
-        assertEquals(1, cliente.getAvaliacoes().size());
-        // cliente.adicionarAvaliacao(avaliacao);
-        //assertEquals(1, cliente.getAvaliacoes().size());
+    public void testAvaliarMidia() throws AvaliacaoNotaException, NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException {
+        cliente.avaliarMidia(4.5, serie1);
+        Assertions.assertEquals(1, serie1.getAvaliacoes().size());
+
     }
 }

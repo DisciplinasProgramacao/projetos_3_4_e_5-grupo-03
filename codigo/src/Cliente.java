@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
+import exceptions.MidiaNaoAssistidaException;
 import exceptions.NaoPodeAvaliarException;
 
 
@@ -130,11 +131,12 @@ public class Cliente {
                   return false;
      }
 
-     public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException{
+     public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException{
              
         if (podeAvaliarMidia(midia)) {       
             Avaliacao avaliacao = new Avaliacao(this,  midia ,nota);
             this.listaNotas.add(avaliacao);
+            midia.adicionarAvaliacao(avaliacao);
             
         }else{
             throw new NaoPodeAvaliarException();
@@ -191,6 +193,9 @@ public class Cliente {
 
     public void setListaJaVistas(List<Midia> listaJaVistas) {
         this.listaJaVistas = listaJaVistas;
+    }
+
+    public void registrarDataAssistida(Serie serie1, LocalDate of) {
     }
 
 

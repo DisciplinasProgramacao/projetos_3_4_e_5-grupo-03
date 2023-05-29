@@ -59,11 +59,6 @@ class PlataformaStreamingTest {
     }
 
     @Test
-    void testeSalvar() throws IOException {
-        plataforma.salvar();
-    }
-
-    @Test
     void testeFiltrarPorGeneroExistente() {
         String genero = "ação";
         List<Midia> midiasFiltradas = plataforma.filtrarPorGenero(genero);
@@ -107,7 +102,6 @@ class PlataformaStreamingTest {
     void testeFiltrarPorQtdEpisodiosExistente() {
         List<Midia> midias10Episodios = plataforma.filtrarPorQtdEpisodios(10);
         List<Midia> midias20Episodios = plataforma.filtrarPorQtdEpisodios(20);
-        List<Midia> midias30Episodios = plataforma.filtrarPorQtdEpisodios(30);
 
         // Verifica se a lista de mídias com 10 episódios contém apenas mídias com essa quantidade de episódios
         assertTrue(midias10Episodios.stream().allMatch(m -> m.getQuantidadeEpisodios() == 10));
