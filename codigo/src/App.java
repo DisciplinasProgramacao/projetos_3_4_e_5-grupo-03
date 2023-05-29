@@ -3,6 +3,10 @@ import java.time.format.DateTimeFormatter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import exceptions.ClienteException;
+import exceptions.DuracaoFilmeException;
+import exceptions.MidiaDataException;
+
 public class App {
     
     public static void main(String[] args) throws IOException, ClienteException, MidiaException, MidiaDataException, DuracaoFilmeException {

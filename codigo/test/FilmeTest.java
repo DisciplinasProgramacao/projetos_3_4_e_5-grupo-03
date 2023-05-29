@@ -1,9 +1,38 @@
-import org.junit.jupiter.api.*;
-import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import exceptions.DuracaoFilmeException;
+import exceptions.MidiaDataException;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-class FilmeTest 
+import static org.junit.jupiter.api.Assertions.*;
+
+class FilmeTest {
+    private Filme filme;
+
+    @BeforeEach
+    void setUp() throws MidiaException, MidiaDataException, DuracaoFilmeException {
+        filme = new Filme(1, "Filme Teste", LocalDate.of(2021, 1, 1), 120);
+    }
+
+    @Test
+    void getDuracaoTest() {
+        int duracao = filme.getDuracao();
+        assertEquals(120, duracao);
+    }
+
+    @Test
+    void toStringTest() {
+        String resultadoEsperado = "1;Filme Teste;2021-01-01;120";
+        String resultadoObtido = filme.toString();
+        assertEquals(resultadoEsperado, resultadoObtido);
+    }
+
+    @Test
+    void construtorDuracaoInvalidaTest() {
+        assertThrows(DuracaoFilmeException.class, () -> {
+            new Filme(2, "Filme Invalido", LocalDate.of(2021, 1, 1), 5);
+        });
+    }
+}

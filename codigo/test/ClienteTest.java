@@ -1,7 +1,13 @@
 import org.junit.jupiter.api.*;
+
+import exceptions.ClienteException;
+import exceptions.MidiaDataException;
+
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -9,69 +15,87 @@ import java.util.ArrayList;
 
 class ClienteTest {
     Cliente cliente;
-    Serie serie;
+    Serie serie1;
     Serie serie2;
     Avaliacao avaliacao;
-
 
     @BeforeEach
     public void setUp() throws ClienteException, MidiaException, MidiaDataException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         cliente = new Cliente("nome", "usuario1", "senha12345");
-        serie = new Serie(1, "Serie1", 4, 1, 15, 0, dataDeLancamento1);
-        serie2 = new Serie(2, "Serie2", 5, 2, 8, 0, dataDeLancamento2);
-        cliente.adicionarNaLista(serie);
+        serie1 = new Serie(3, "Serie 1", 0, 0, 20,  LocalDate.of(2020, 1, 1));
+        serie2 = new Serie(4, "Serie 2", 1, 1, 10, LocalDate.of(2021, 1, 1));
+        cliente.adicionarNaLista(serie1);
         cliente.adicionarNaLista(serie2);
-        avaliacao = new Avaliacao(cliente, serie, 6.2);
+        avaliacao = new Avaliacao(cliente, serie1, 6.2);
     }
 
     @Test
-    void testSave() throws IOException {
-        serie.save();
-    }
-
-    @Test
-    void testAdicionarNaLista() {
-        cliente.adicionarNaLista(serie2);
-        assertEquals(2, cliente.getListaParaVer().size());
+    void testAdicionarNaLista() throws MidiaException, MidiaDataException {
+        Serie serie3 = new Serie(5, "Serie 3", LocalDate.of(2022, 1, 1), 15);
+        cliente.adicionarNaLista(serie3);
+        assertEquals(3, cliente.getListaParaVer().size());
+        assertTrue(cliente.getListaParaVer().contains(serie3));
     }
 
     @Test
     void testRetirarDaLista() {
         assertEquals(2, cliente.getListaParaVer().size());
-        cliente.retirarDaLista(serie);
+        cliente.retirarDaLista(serie1);
         assertEquals(1, cliente.getListaParaVer().size());
+        assertFalse(cliente.getListaParaVer().contains(serie1));
         cliente.retirarDaLista(serie2);
         assertEquals(0, cliente.getListaParaVer().size());
+        assertFalse(cliente.getListaParaVer().contains(serie2));
         cliente.retirarDaLista(serie2);
         assertEquals(0, cliente.getListaParaVer().size());
     }
 
-
-
     @Test
-    void testFiltrarPorGenero() {
-        assertEquals(1, cliente.filtrarPorGenero("Terror").size());
+    void testFiltrarPorGeneroExistente() {
+        List<Midia> filtradas = cliente.filtrarPorGenero("Comédia");
+        assertEquals(1, filtradas.size());
+        assertTrue(filtradas.contains(serie2));
     }
 
     @Test
-    void testFiltrarPorIdioma() {
-        assertEquals(1, cliente.filtrarPorIdioma("Portugues").size());
+    void testFiltrarPorGeneroInexistente() {
+        List<Midia> filtradas = cliente.filtrarPorGenero("Terror");
+        assertEquals(0, filtradas.size());
     }
 
     @Test
-    void testFiltrarPorQtdEpisodios() {
-        assertEquals(1, cliente.filtrarPorQtdEpisodios(15).size());
+    void testFiltrarPorIdiomaExistente() {
+        List<Midia> filtradas = cliente.filtrarPorIdioma("Português");
+        assertEquals(1, filtradas.size());
+        assertTrue(filtradas.contains(serie2));
     }
-    
 
-    
     @Test
-    void registrarAudiencia() {
-        cliente.registrarAudiencia(serie);
+    void testFiltrarPorIdiomaInexistente() {
+        List<Midia> filtradas = cliente.filtrarPorIdioma("Espanhol");
+        assertEquals(0, filtradas.size());
+    }
+
+    @Test
+    void testFiltrarPorQtdEpisodiosExistente() {
+        List<Midia> filtradas = cliente.filtrarPorQtdEpisodios(10);
+        assertEquals(1, filtradas.size());
+        assertTrue(filtradas.contains(serie2));
+    }
+
+    @Test
+    void testFiltrarPorQtdEpisodiosInexistente() {
+        List<Midia> filtradas = cliente.filtrarPorQtdEpisodios(5);
+        assertEquals(0, filtradas.size());
+    }
+
+    @Test
+    void testRegistrarAudiencia() {
+        cliente.registrarAudiencia(serie1);
         assertEquals(1, cliente.getListaJaVistas().size());
-        cliente.registrarAudiencia(serie);
+        cliente.registrarAudiencia(serie1);
         assertEquals(1, cliente.getListaJaVistas().size());
         cliente.registrarAudiencia(serie2);
         assertEquals(2, cliente.getListaJaVistas().size());

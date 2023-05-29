@@ -1,5 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import exceptions.ClienteException;
+import exceptions.DuracaoFilmeException;
+import exceptions.MidiaDataException;
+import exceptions.MidiaNaoAssistidaException;
+
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,9 +33,12 @@ public class MidiaTest {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         cliente = new Cliente("John", "john@puc.com", "senha123");
         filme = new Filme(1, "Matrix", LocalDate.of(1999, 3, 31), 160);
-        serie = new Serie(1, "Serie1", 4, 2, 15, 0, dataDeLancamento1);
-        avaliacao = new Avaliacao(cliente, filme, 9.0);
+        serie = new Serie(1, "Serie1", 4, 2, 10, dataDeLancamento1);
+
         cliente.adicionarNaLista(filme);
+        cliente.adicionarNaLista(serie);
+
+        avaliacao = new Avaliacao(cliente, filme, 9.0);
     }
 
     /**

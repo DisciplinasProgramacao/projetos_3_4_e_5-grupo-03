@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import exceptions.MidiaDataException;
+import exceptions.MidiaNaoAssistidaException;
+
 /**
  * Classe abstrata Midia que representa uma mídia genérica.
  */
@@ -27,7 +30,9 @@ public abstract class Midia {
         "ficção cinetífica"
     )); 
     private static final List<String> IDIOMAS = new ArrayList<>(Arrays.asList(
-        "inglês", "português", "espanhol"
+        "inglês", 
+        "português", 
+        "espanhol"
     ));
 
     /**
@@ -150,7 +155,7 @@ public abstract class Midia {
         return this.id;
     }
 
-    public void setId() {
+    public void setId(int id) {
         this.id = id;
     }
 

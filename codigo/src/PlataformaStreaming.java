@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,10 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.print.DocFlavor.STRING;
+
+import exceptions.ClienteException;
+import exceptions.DuracaoFilmeException;
+import exceptions.MidiaDataException;
 
 import java.time.format.DateTimeFormatter;
 
@@ -106,37 +111,42 @@ public class PlataformaStreaming {
      * Filtra as mídias da plataforma por gênero.
      * 
      * @param genero Gênero a ser usado como filtro.
-     * @return Retorna uma lista de mídias que correspondem ao gênero informado.
+     * @return Uma lista imutável de mídias que correspondem ao gênero informado. Se o gênero for nulo ou vazio, retorna uma lista vazia.
      */
     public List<Midia> filtrarPorGenero(String genero) {
-        return this.midias.values().stream()
-                .filter(s -> s.getGenero().equalsIgnoreCase(genero))
-                .collect(Collectors.toList());
+        if (genero == null || genero.isEmpty()) {
+            return Collections.emptyList(); // Retorna uma lista vazia se o gênero for nulo ou vazio
+        }
+    
+        String generoLowerCase = genero.toLowerCase(); // Converter o gênero para minúsculas
+    
+        return List.copyOf(
+            this.midias.values().stream()
+                .filter(m -> m.getGenero() != null && m.getGenero().equalsIgnoreCase(generoLowerCase))
+                .collect(Collectors.toList())
+        );
     }
-
-    /*
-     * Explicando o código:
-     * return this.series.values().stream()
-     * .filter(s -> s.getGenero().equalsIgnoreCase(genero))
-     * .collect(Collectors.toList());
-     * 
-     * O método stream() cria um fluxo (stream) das séries
-     * e aplicamos o método filter() para filtrar as séries de acordo com o
-     * critério fornecido. No final, usamos o método collect() com o coletor
-     * Collectors.toList() para converter o fluxo filtrado de volta em uma lista.
-     */
 
     /**
      * Filtra as mídias da plataforma por idioma.
      * 
      * @param idioma Idioma a ser usado como filtro.
-     * @return Retorna uma lista de mídias que correspondem ao idioma informado.
+     * @return Uma lista imutável de mídias que correspondem ao idioma informado. Se o idioma for nulo ou vazio, retorna uma lista vazia.
      */
     public List<Midia> filtrarPorIdioma(String idioma) {
-        return this.midias.values().stream()
-                .filter(s -> s.getIdioma().equalsIgnoreCase(idioma))
-                .collect(Collectors.toList());
+        if (idioma == null || idioma.isEmpty()) {
+            return Collections.emptyList(); // Retorna uma lista vazia se o idioma for nulo ou vazio
+        }
+    
+        String idiomaLowerCase = idioma.toLowerCase(); // Converter o idioma para minúsculas
+    
+        return List.copyOf(
+            this.midias.values().stream()
+                .filter(m -> m.getIdioma() != null && m.getIdioma().equalsIgnoreCase(idiomaLowerCase))
+                .collect(Collectors.toList())
+        );
     }
+    
 
     /**
      * Filtra as mídias da plataforma pela quantidade de episódios.
@@ -149,15 +159,6 @@ public class PlataformaStreaming {
         return this.midias.values().stream()
                 .filter(s -> s.getQuantidadeEpisodios() == quantEpisodios)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * Registra a audiência de uma midia na plataforma.
-     * 
-     * @param midia Objeto da classe Mdiia representando a midia cuja audiência será
-     *              registrada.
-     */
-    public void registrarAudiencia(Midia midia) {
     }
 
     /**

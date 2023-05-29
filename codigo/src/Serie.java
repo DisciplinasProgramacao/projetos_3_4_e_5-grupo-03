@@ -10,6 +10,9 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.junit.platform.console.shadow.picocli.CommandLine.ITypeConverter;
 
+import exceptions.MidiaDataException;
+import exceptions.QuantidadeMinimaEpException;
+
 /**
  * A classe Serie representa uma série de TV e herda da classe Midia.
  * Implementa a interface Serializable para permitir a gravação de objetos da classe em arquivos.
@@ -55,7 +58,7 @@ public class Serie extends Midia {
      * @throws MidiaDataException
      * @throws MidiaException
      */
-    public Serie(int id, String nome, int genero, int idioma, int quantidadeEps, int j,
+    public Serie(int id, String nome, int genero, int idioma, int quantidadeEps,
             LocalDate dataLancamento) throws MidiaException, MidiaDataException {
                 super(id, nome, dataLancamento, genero, idioma);
                 this.quantidadeEpisodios = quantidadeEps;

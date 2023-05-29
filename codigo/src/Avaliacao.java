@@ -1,4 +1,4 @@
-
+import exceptions.AvaliacaoNotaException;
 
 public class Avaliacao {
     private Cliente cliente;

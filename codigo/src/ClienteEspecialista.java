@@ -3,6 +3,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
+import exceptions.ClienteException;
+import exceptions.EpisodiosMinimosException;
+import exceptions.MidiaNaoAssistidaException;
+
 public class ClienteEspecialista extends Cliente implements Especialista {
     private Map<Midia, String> comentarios;
 

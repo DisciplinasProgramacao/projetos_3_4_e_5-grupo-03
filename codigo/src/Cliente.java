@@ -1,6 +1,11 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import exceptions.ClienteAvaliaException;
+import exceptions.ClienteException;
+import exceptions.NaoPodeAvaliarException;
 
 
 /**
@@ -60,37 +65,50 @@ public class Cliente {
     }
 
     /**
-    Filtra a lista de séries para assistir do cliente por gênero.
-    @param genero O gênero pelo qual filtrar as séries.
-    @return Uma lista das séries filtradas por gênero.
-    */
+     * Filtra a lista de séries para assistir do cliente por gênero.
+     * 
+     * @param genero O gênero pelo qual filtrar as séries.
+     * @return Uma lista das séries filtradas por gênero.
+     */
     public List<Midia> filtrarPorGenero(String genero) {
-        return this.listaParaVer.stream()
-        .filter(s -> s.getGenero().toLowerCase().equals(genero))
-        .toList();
+        String generoLowerCase = genero.toLowerCase();
+        return listaParaVer.stream()
+                .filter(s -> s.getGenero().toLowerCase().equals(generoLowerCase))
+                .collect(Collectors.toList());
     }
 
+
     /**
-    Filtra a lista de séries para assistir do cliente por idioma.
-    @param idioma O idioma pelo qual filtrar as séries.
-    @return Uma lista das séries filtradas por idioma.
-    */
+     * Filtra a lista de séries para assistir do cliente por idioma.
+     * 
+     * @param idioma O idioma pelo qual filtrar as séries.
+     * @return Uma lista das séries filtradas por idioma.
+     */
     public List<Midia> filtrarPorIdioma(String idioma) {
-        return this.listaParaVer.stream()
-        .filter(s -> s.getIdioma().equals(idioma))
-        .toList();
+        String idiomaLowerCase = idioma.toLowerCase();
+        return listaParaVer.stream()
+                .filter(s -> s.getIdioma().toLowerCase().equals(idiomaLowerCase))
+                .collect(Collectors.toList());
     }
+
+
     
     /**
-    Filtra a lista de séries para assistir do cliente pela quantidade de episódios.
-    @param qtdEpisodios A quantidade de episódios pelo qual filtrar as séries.
-    @return Uma lista das séries filtradas pela quantidade de episódios.
-    */
+     * Filtra a lista de séries para assistir do cliente pela quantidade de episódios.
+     * 
+     * @param qtdEpisodios A quantidade de episódios pelo qual filtrar as séries.
+     * @return Uma lista das séries filtradas pela quantidade de episódios.
+     */
     public List<Midia> filtrarPorQtdEpisodios(int qtdEpisodios) {
-        return this.listaParaVer.stream()
-        .filter(s -> s.getQuantidadeEpisodios() == qtdEpisodios)
-        .toList();
+        if (qtdEpisodios <= 0) {
+            throw new IllegalArgumentException("A quantidade de episódios deve ser um valor válido e maior que zero.");
+        }
+        
+        return listaParaVer.stream()
+                .filter(s -> s.getQuantidadeEpisodios() == qtdEpisodios)
+                .collect(Collectors.toList());
     }
+
 
     /**
     Registra a audiência de uma série na lista de séries já vistas do cliente.

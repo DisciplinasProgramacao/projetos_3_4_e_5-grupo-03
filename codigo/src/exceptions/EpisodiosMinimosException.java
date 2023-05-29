@@ -1,3 +1,4 @@
+package exceptions;
 
 public class EpisodiosMinimosException extends Exception {
     public EpisodiosMinimosException() {

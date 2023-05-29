@@ -1,3 +1,4 @@
+package exceptions;
 public class NaoPodeAvaliarException extends Exception {
     
     public NaoPodeAvaliarException() {

@@ -1,5 +1,8 @@
 import java.time.LocalDate;
 
+import exceptions.DuracaoFilmeException;
+import exceptions.MidiaDataException;
+
 /**
  * A classe Filme representa um filme e herda da classe Midia.
  */
@@ -33,6 +36,27 @@ public class Filme extends Midia{
         this.duracao = duracao;
     }
 
+        /**
+     * Construtor da classe Filme.
+     * @param id Identificador único do filme.
+     * @param nome Nome do filme.
+     * @param dataLancamento Data de lançamento do filme.
+     * @param duracao Duração do filme em minutos.
+     * @param genero Genero do filme.
+     * @throws DuracaoFilmeException
+     * @throws MidiaDataException
+     * @throws MidiaException
+     */
+    public Filme(int id,String nome, LocalDate dataLancamento, int duracao, int genero, int idioma) throws DuracaoFilmeException, MidiaException, MidiaDataException{
+
+        super(id,nome, dataLancamento, genero, idioma);
+        if(duracao < 10) {
+            throw new DuracaoFilmeException();
+        }
+        this.duracao = duracao;
+    }
+
+    
     /**
      * Retorna a duração do filme.
      * @return A duração do filme em minutos.

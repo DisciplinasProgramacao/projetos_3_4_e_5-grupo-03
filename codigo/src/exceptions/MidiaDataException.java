@@ -1,3 +1,4 @@
+package exceptions;
 public class MidiaDataException extends Exception {
     
     public MidiaDataException(String nome) {
