@@ -124,12 +124,13 @@ public class Cliente {
     }
 
     public boolean podeAvaliarMidia(Midia midia) throws ClienteAvaliaException {
-     
-                  if (this.listaJaVistas.contains(midia) && !listaNotas.contains(midia)){
-                      return true; // pode avaliar
-                  }
-                  return false;
-     }
+        for (Avaliacao avaliacao : listaNotas) {
+            if (avaliacao.getMidia().equals(midia) || !this.listaJaVistas.contains(midia)) {
+                return false; // A mídia já foi avaliada pelo cliente
+            }
+        }
+        return true;
+    }
 
      public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException{
              
