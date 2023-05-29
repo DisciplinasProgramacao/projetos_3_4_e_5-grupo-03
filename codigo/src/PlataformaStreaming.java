@@ -298,14 +298,17 @@ public class PlataformaStreaming {
         return true; // Cliente adicionado com sucesso
     }
 
-    private Midia encontrarMidiaPorId(int id, List<Midia> midias) {
-        for (Midia midia : midias) {
-            if (midia.getId() == id) {
-                return midia;
-            }
-        }
-        return null;
-    }
+//  public Midia buscarMidiaPorId(int idMidia) {
+//      for(thisMidia.get(idMidia)){
+//          
+//      }
+//      for (Midia midia : midias) {
+//          if (midia.getId() == idMidia) {
+//              return midia;
+//          }
+//      }
+//      return null;
+//  }
 
     public void salvar() throws IOException {
         Map<String, List<Midia>> mapaDeMidias = new HashMap<>();

@@ -122,44 +122,26 @@ public class Cliente {
         }
     }
 
-///**
-//Adiciona uma midia à lista de avaliacoes do cliente.
-//@param avaliacao A midia a ser adicionada à lista.
-// * @throws ClienteAvaliaException
-//*/
-//public void adicionarAvaliacao(Avaliacao avaliacao) throws ClienteAvaliaException {
-//    if(this.listaJaVistas.contains(avaliacao.getMidia())) {
-//        this.listaNotas.add(avaliacao);
-//    } else {
-//        throw new ClienteAvaliaException();
-//    }
-//}
-//
+    public boolean podeAvaliarMidia(Midia midia) throws ClienteAvaliaException {
+     
+                  if (this.listaJaVistas.contains(midia) && !listaNotas.contains(midia)){
+                      return true; // pode avaliar
+                  }
+                  return false;
+     }
 
-    public boolean podeAvaliarMidia(Midia idMidia) throws ClienteAvaliaException {
-       // Midia midia = buscarMidiaPorId(idMidia);
-       // if (midia == null) {
-       // }
-
-        // Verifica se o cliente já viu a mídia e ja avaliou tal midia
-        if (this.listaJaVistas.contains(idMidia) && !listaNotas.contains(idMidia)) {
-            return true; // Cliente viu a mídia, mas ainda não a avaliou
-        }
-        throw new ClienteAvaliaException();
-        // return false; // Cliente ainda não viu a mídia
-    }
-
-    public void avaliarMidia(double nota, Midia idMidia) throws NaoPodeAvaliarException, ClienteAvaliaException{
+     public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException{
              
-        if (!podeAvaliarMidia(idMidia)) {
+        if (podeAvaliarMidia(midia)) {       
+            Avaliacao avaliacao = new Avaliacao(this,  midia ,nota);
+            this.listaNotas.add(avaliacao);
+            
+        }else{
             throw new NaoPodeAvaliarException();
         }
-        
-        Avaliacao avaliacao = new Avaliacao(this, idMidia, nota);
-        
-        this.listaNotas.add(avaliacao);
-        this.listaJaVistas.add(idMidia);
     }
+
+    
 
     public List<Avaliacao> getAvaliacoes() {
         return this.listaNotas;
