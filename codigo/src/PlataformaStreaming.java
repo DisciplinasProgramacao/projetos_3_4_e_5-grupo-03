@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -120,11 +123,9 @@ public class PlataformaStreaming {
     
         String generoLowerCase = genero.toLowerCase(); // Converter o gênero para minúsculas
     
-        return List.copyOf(
-            this.midias.values().stream()
+        return this.midias.values().stream()
                 .filter(m -> m.getGenero() != null && m.getGenero().equalsIgnoreCase(generoLowerCase))
-                .collect(Collectors.toList())
-        );
+                .collect(Collectors.toList());
     }
 
     /**
@@ -140,11 +141,9 @@ public class PlataformaStreaming {
     
         String idiomaLowerCase = idioma.toLowerCase(); // Converter o idioma para minúsculas
     
-        return List.copyOf(
-            this.midias.values().stream()
+        return this.midias.values().stream()
                 .filter(m -> m.getIdioma() != null && m.getIdioma().equalsIgnoreCase(idiomaLowerCase))
-                .collect(Collectors.toList())
-        );
+                .collect(Collectors.toList());
     }
     
 
@@ -309,23 +308,14 @@ public class PlataformaStreaming {
     }
 
     public void salvar() throws IOException {
-        // this.midias.forEach((id, midia) -> {
-        // System.out.println(midia.getClass().getSimpleName() + " - " + midia);
-        // });
-
         Map<String, List<Midia>> mapaDeMidias = new HashMap<>();
 
-        // Iterando sobre a lista de mídias
         midias.forEach((id, midia) -> {
-            // Obtendo o nome da classe
             String nomeDaClasse = midia.getClass().getSimpleName();
 
-            // Verificando se a classe já existe no mapa
             if (mapaDeMidias.containsKey(nomeDaClasse)) {
-                // Se a classe já existe, adiciona a mídia na lista correspondente
                 mapaDeMidias.get(nomeDaClasse).add(midia);
             } else {
-                // Se a classe não existe, cria uma nova lista e adiciona a mídia
                 List<Midia> listaDeMidias = new ArrayList<>();
                 listaDeMidias.add(midia);
                 mapaDeMidias.put(nomeDaClasse, listaDeMidias);
@@ -333,9 +323,20 @@ public class PlataformaStreaming {
         });
 
         mapaDeMidias.keySet().forEach(classe -> {
-            String nomeDoArquivo = "./salvar/POO_" + classe + ".csv";
+            Path nomeDoArquivo = Paths.get("salvar/POO_" + classe + ".csv");
             List<Midia> midiasDaClasse = mapaDeMidias.get(classe);
-            //itere sobre as linhas salvando 
+
+            try {
+                if (!Files.exists(nomeDoArquivo)) {
+                    Files.createFile(nomeDoArquivo);
+                }
+
+                Files.write(nomeDoArquivo, midiasDaClasse.stream()
+                                            .map(Object::toString)
+                                            .collect(Collectors.toList()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }
