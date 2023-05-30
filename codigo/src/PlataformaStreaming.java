@@ -57,6 +57,12 @@ public class PlataformaStreaming {
 
     }
 
+    /**
+     * Construtor da classe PlataformaStreaming para criação de uma instância com um nome e um valor booleano.
+     * 
+     * @param nome O nome da plataforma de streaming.
+     * @param dummy Um valor booleano utilizado para inicialização.
+     */
     public PlataformaStreaming(String nome, boolean dummy) {
         this.nome = nome;
         this.midias = new HashMap<Integer, Midia>();
@@ -299,18 +305,12 @@ public class PlataformaStreaming {
         return true; // Cliente adicionado com sucesso
     }
 
-//  public Midia buscarMidiaPorId(int idMidia) {
-//      for(thisMidia.get(idMidia)){
-//          
-//      }
-//      for (Midia midia : midias) {
-//          if (midia.getId() == idMidia) {
-//              return midia;
-//          }
-//      }
-//      return null;
-//  }
 
+    /**
+     * Salva as informações das mídias em arquivos CSV.
+     * 
+     * @throws IOException Exceção lançada em caso de erro ao salvar os arquivos.
+     */
     public void salvar() throws IOException {
         Map<String, List<Midia>> mapaDeMidias = new HashMap<>();
 

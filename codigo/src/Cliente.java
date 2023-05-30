@@ -122,7 +122,13 @@ public class Cliente {
             this.datasSeriesAssistidas.add(LocalDate.now());
         }
     }
-
+    /**
+     * Verifica se o cliente pode avaliar a mídia.
+     * 
+     * @param midia A mídia a ser avaliada.
+     * @return true se o cliente pode avaliar a mídia, false caso contrário.
+     * @throws ClienteAvaliaException Exceção lançada quando o cliente não pode avaliar a mídia.
+     */
     public boolean podeAvaliarMidia(Midia midia) throws ClienteAvaliaException {
         for (Avaliacao avaliacao : listaNotas) {
             if (avaliacao.getMidia().equals(midia) || !this.listaJaVistas.contains(midia)) {
@@ -132,7 +138,16 @@ public class Cliente {
         return true;
     }
 
-     public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException{
+    /**
+     * Avalia uma mídia atribuindo uma nota a ela.
+     * 
+     * @param nota A nota a ser atribuída à mídia.
+     * @param midia A mídia a ser avaliada.
+     * @throws NaoPodeAvaliarException Exceção lançada quando o cliente não pode avaliar a mídia.
+     * @throws ClienteAvaliaException Exceção lançada em caso de erro ao avaliar a mídia pelo cliente.
+     * @throws MidiaNaoAssistidaException Exceção lançada quando a mídia não foi assistida antes de ser avaliada.
+     */
+    public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException{
              
         if (podeAvaliarMidia(midia)) {       
             Avaliacao avaliacao = new Avaliacao(this,  midia ,nota);

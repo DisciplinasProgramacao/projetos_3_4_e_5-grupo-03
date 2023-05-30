@@ -33,6 +33,12 @@ public class Avaliacao {
         return this.nota;
     }
 
+    /**
+     * Atribui uma nota à avaliação.
+     * 
+     * @param nota A nota a ser atribuída.
+     * @throws AvaliacaoNotaException Exceção lançada quando a nota é inválida.
+     */
     public void setNota(double nota) throws AvaliacaoNotaException{
         if(nota < 0 || nota > 5) {
             throw new AvaliacaoNotaException();
