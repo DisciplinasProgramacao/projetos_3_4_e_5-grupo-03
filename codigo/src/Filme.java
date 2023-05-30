@@ -2,6 +2,7 @@ import java.time.LocalDate;
 
 import exceptions.DuracaoFilmeException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 
 /**
  * A classe Filme representa um filme e herda da classe Midia.

@@ -22,6 +22,7 @@ import javax.print.DocFlavor.STRING;
 import exceptions.ClienteException;
 import exceptions.DuracaoFilmeException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 
 import java.time.format.DateTimeFormatter;
 

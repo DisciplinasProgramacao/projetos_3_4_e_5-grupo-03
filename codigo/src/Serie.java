@@ -12,6 +12,7 @@ import org.junit.platform.console.shadow.picocli.CommandLine.ITypeConverter;
 
 import exceptions.MidiaDataException;
 import exceptions.QuantidadeMinimaEpException;
+import exceptions.MidiaException;
 
 /**
  * A classe Serie representa uma série de TV e herda da classe Midia.

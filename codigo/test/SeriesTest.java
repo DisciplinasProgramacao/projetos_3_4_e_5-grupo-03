@@ -3,6 +3,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 import exceptions.QuantidadeMinimaEpException;
 
 import java.time.LocalDate;

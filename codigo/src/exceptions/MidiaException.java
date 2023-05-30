@@ -1,3 +1,5 @@
+package exceptions;
+
 public class MidiaException extends Exception {
     
     public MidiaException(String nome, String caracteres) {

@@ -4,6 +4,7 @@ import exceptions.AvaliacaoNotaException;
 import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 import exceptions.MidiaNaoAssistidaException;
 import exceptions.NaoPodeAvaliarException;
 

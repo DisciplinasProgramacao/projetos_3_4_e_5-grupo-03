@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import exceptions.ClienteException;
 import exceptions.DuracaoFilmeException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 
 import java.io.IOException;
 import java.time.LocalDate;

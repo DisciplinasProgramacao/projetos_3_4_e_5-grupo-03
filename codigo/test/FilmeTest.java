@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 
 import exceptions.DuracaoFilmeException;
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 
 import java.time.LocalDate;
 

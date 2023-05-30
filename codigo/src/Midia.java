@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import exceptions.MidiaDataException;
+import exceptions.MidiaException;
 import exceptions.MidiaNaoAssistidaException;
 
 /**

@@ -5,6 +5,7 @@ import exceptions.ClienteException;
 import exceptions.DuracaoFilmeException;
 import exceptions.MidiaDataException;
 import exceptions.MidiaNaoAssistidaException;
+import exceptions.MidiaException;
 
 import java.time.LocalDate;
 
