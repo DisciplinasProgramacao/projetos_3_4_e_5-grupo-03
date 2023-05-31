@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 import exceptions.DuracaoFilmeException;
@@ -24,15 +25,13 @@ public class Filme extends Midia{
      * @param nome Nome do filme.
      * @param dataLancamento Data de lançamento do filme.
      * @param duracao Duração do filme em minutos.
-     * @throws DuracaoFilmeException
-     * @throws MidiaDataException
-     * @throws MidiaException
+     * @throws InvalidParameterException
      */
-    public Filme(int id,String nome, LocalDate dataLancamento, int duracao) throws DuracaoFilmeException, MidiaException, MidiaDataException{
+    public Filme(int id,String nome, LocalDate dataLancamento, int duracao) throws InvalidParameterException{
 
         super(id,nome, dataLancamento);
         if(duracao < 10) {
-            throw new DuracaoFilmeException();
+            throw new InvalidParameterException("A duração do Filme não pode ser menor que 1 minutos!");
         }
         this.duracao = duracao;
     }
@@ -44,15 +43,13 @@ public class Filme extends Midia{
      * @param dataLancamento Data de lançamento do filme.
      * @param duracao Duração do filme em minutos.
      * @param genero Genero do filme.
-     * @throws DuracaoFilmeException
-     * @throws MidiaDataException
-     * @throws MidiaException
+     * @throws InvalidParameterException
      */
-    public Filme(int id,String nome, LocalDate dataLancamento, int duracao, int genero, int idioma) throws DuracaoFilmeException, MidiaException, MidiaDataException{
+    public Filme(int id,String nome, LocalDate dataLancamento, int duracao, int genero, int idioma) throws InvalidParameterException {
 
         super(id,nome, dataLancamento, genero, idioma);
-        if(duracao < 10) {
-            throw new DuracaoFilmeException();
+        if(duracao < 1) {
+            throw new InvalidParameterException("A duração do Filme não pode ser menor que 1 minutos!");
         }
         this.duracao = duracao;
     }

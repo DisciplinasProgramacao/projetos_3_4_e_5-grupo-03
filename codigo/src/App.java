@@ -9,7 +9,7 @@ import exceptions.MidiaDataException;
 
 public class App {
     
-    public static void main(String[] args) throws IOException, ClienteException, MidiaException, MidiaDataException, DuracaoFilmeException {
+    public static void main(String[] args) throws IOException, ClienteException, InvalidParameterException {
 
         PlataformaStreaming plataforma = new PlataformaStreaming("teste"); 
         Scanner scanner = new Scanner(System.in);
@@ -56,7 +56,7 @@ public class App {
         System.out.println("Cliente adicionado com sucesso!");
     }
 
-    private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) throws MidiaException, MidiaDataException, DuracaoFilmeException {
+    private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) throws InvalidParameterException {
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Escolha o tipo de mídia:");

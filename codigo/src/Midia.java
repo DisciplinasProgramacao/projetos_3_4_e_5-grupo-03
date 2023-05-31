@@ -64,16 +64,15 @@ public abstract class Midia {
      * @param id Identificador único da mídia.
      * @param nome Nome da mídia.
      * @param dataLancamento Data de lançamento da mídia.
-     * @throws MidiaException
-     * @throws MidiaDataException
+     * @throws InvalidParameterException
      */
-    public Midia(int id, String nome, LocalDate dataLancamento) throws MidiaException, MidiaDataException {
+    public Midia(int id, String nome, LocalDate dataLancamento) throws InvalidParameterException {
         if(id < 0) {
-            throw new MidiaException("id", "0");
+            throw new InvalidParameterException("O ID da Midia não pode ser vazio!");
         } else if(nome.length() < 3) {
-            throw new MidiaException("nome", "3");
+            throw new InvalidParameterException("O nome da Midia deve possuir mais de 3 caracteres!");
         } else if(dataLancamento.isAfter(LocalDate.now())) {
-            throw new MidiaDataException("Midia");
+            throw new InvalidParameterException("O lançamento da Midia não pode ser uma data futura!");
         }
 
         this.id = id;

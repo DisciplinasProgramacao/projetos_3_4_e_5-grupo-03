@@ -143,19 +143,18 @@ public class Cliente {
      * 
      * @param nota A nota a ser atribuída à mídia.
      * @param midia A mídia a ser avaliada.
-     * @throws NaoPodeAvaliarException Exceção lançada quando o cliente não pode avaliar a mídia.
      * @throws ClienteAvaliaException Exceção lançada em caso de erro ao avaliar a mídia pelo cliente.
-     * @throws MidiaNaoAssistidaException Exceção lançada quando a mídia não foi assistida antes de ser avaliada.
+     * @throws InvalidParameterException Exceção lançada quando a mídia não foi assistida antes de ser avaliada.
      */
-    public void avaliarMidia(double nota, Midia midia) throws NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException{
+    public void avaliarMidia(double nota, Midia midia) throws ClienteAvaliaException, InvalidParameterException{
              
         if (podeAvaliarMidia(midia)) {       
-            Avaliacao avaliacao = new Avaliacao(this,  midia ,nota);
+            Avaliacao avaliacao = new Avaliacao(this, midia ,nota);
             this.listaNotas.add(avaliacao);
             midia.adicionarAvaliacao(avaliacao);
             
         }else{
-            throw new NaoPodeAvaliarException();
+            throw new InvalidParameterException("O cliente não pode avaliar esta mídia.");
         }
     }
 

@@ -3,6 +3,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.management.InvalidAttributeValueException;
+
 import exceptions.ClienteException;
 import exceptions.EpisodiosMinimosException;
 import exceptions.MidiaNaoAssistidaException;
@@ -16,7 +18,7 @@ public class ClienteEspecialista extends Cliente implements Especialista {
     }
 
     @Override
-    public void adicionarComentario(Midia midia, String comentario) throws EpisodiosMinimosException, MidiaNaoAssistidaException{
+    public void adicionarComentario(Midia midia, String comentario) throws InvalidParameterException {
         LocalDate umMesAtras = LocalDate.now().minus(1, ChronoUnit.MONTHS);
 
         // Verifica se o cliente assistiu pelo menos 5 séries no último mês
@@ -25,11 +27,11 @@ public class ClienteEspecialista extends Cliente implements Especialista {
             .count();
 
         if (seriesAssistidasNoUltimoMes < 5) {
-            throw new EpisodiosMinimosException();  
+            throw new InvalidParameterException("A quantidade mínima de episódios vistos para adicionar um comentario precisa ser 5");  
         } else if (super.getListaJaVistas().contains(midia)) {
             comentarios.put(midia, comentario);
         } else {
-            throw new MidiaNaoAssistidaException();
+            throw new InvalidParameterException("Não é possivel adicionar um comentário a uma série que você não assistiu");
         }
     }
 

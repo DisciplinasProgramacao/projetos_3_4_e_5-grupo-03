@@ -37,11 +37,11 @@ public class Avaliacao {
      * Atribui uma nota à avaliação.
      * 
      * @param nota A nota a ser atribuída.
-     * @throws AvaliacaoNotaException Exceção lançada quando a nota é inválida.
+     * @throws InvalidParameterException Exceção lançada quando a nota é inválida.
      */
-    public void setNota(double nota) throws AvaliacaoNotaException{
+    public void setNota(double nota) throws InvalidParameterException{
         if(nota < 0 || nota > 5) {
-            throw new AvaliacaoNotaException();
+            throw new InvalidParameterException("A nota deve ser entre 0 e 5!");
         }
         this.nota = nota;
     }

@@ -35,14 +35,13 @@ public class Serie extends Midia {
      * @param nome Nome da série.
      * @param dataLancamento Data de lançamento da série.
      * @param quantidadeEpisodios Quantidade de episódios da série.
-     * @throws MidiaDataException
-     * @throws MidiaException
+     * @throws InvalidParameterException
     */
-    public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) throws MidiaException, MidiaDataException {
+    public Serie(int id, String nome, LocalDate dataLancamento, int quantidadeEpisodios) throws InvalidParameterException {
 
         super(id, nome, dataLancamento);
         if(quantidadeEpisodios < 1) {
-            throw new RuntimeException("A quantidade de episódios não pode ser 0!");
+            throw new InvalidParameterException("A quantidade de episódios não pode ser 0!");
         }
         this.quantidadeEpisodios = quantidadeEpisodios;
     }
@@ -56,11 +55,10 @@ public class Serie extends Midia {
      * @param i Parametro não utilizado.
      * @param j Parametro não utilizado.
      * @param dataLancamento Data de lançamento da série.
-     * @throws MidiaDataException
-     * @throws MidiaException
+     * @throws InvalidParameterException
      */
     public Serie(int id, String nome, int genero, int idioma, int quantidadeEps,
-            LocalDate dataLancamento) throws MidiaException, MidiaDataException {
+            LocalDate dataLancamento) throws InvalidParameterException {
                 super(id, nome, dataLancamento, genero, idioma);
                 this.quantidadeEpisodios = quantidadeEps;
     }
@@ -70,10 +68,9 @@ public class Serie extends Midia {
     * @param id Identificador único da série.
     * @param nome Nome da série.
     * @param dataLancamento Data de lançamento da série.
-    * @throws MidiaDataException
-    * @throws MidiaException
+    * @throws InvalidParameterException
     */
-    public Serie(int id, String nome, LocalDate dataDeLancamento) throws MidiaException, MidiaDataException {
+    public Serie(int id, String nome, LocalDate dataDeLancamento) throws InvalidParameterException {
         super(id, nome, dataDeLancamento);
         this.quantidadeEpisodios = 1;
     }
@@ -91,11 +88,11 @@ public class Serie extends Midia {
     /**
      * Define a quantidade de episódios da série.
      * @param quantidadeEpisodios A quantidade de episódios.
-     * @throws QuantidadeMinimaEpException se a quantidade de episódios for menor que 2.
+     * @throws InvalidParameterException se a quantidade de episódios for menor que 2.
      */
-    public void setQuantidadeEpisodios(int quantidadeEpisodios) throws QuantidadeMinimaEpException {
+    public void setQuantidadeEpisodios(int quantidadeEpisodios) throws InvalidParameterException {
         if(quantidadeEpisodios < 2){
-            throw new QuantidadeMinimaEpException();
+            throw new InvalidParameterException("A quantidade de episódios não pode ser 0!");
         }
         this.quantidadeEpisodios = quantidadeEpisodios;
     }

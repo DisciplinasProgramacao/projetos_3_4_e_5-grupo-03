@@ -38,12 +38,10 @@ public class PlataformaStreaming {
      * 
      * @param nome Nome da plataforma de streaming.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
-     * @throws MidiaDataException
-     * @throws MidiaException
-     * @throws DuracaoFilmeException
+     * @throws InvalidParameterException
      * @throws ClienteException
      */
-    public PlataformaStreaming(String nome) throws IOException, DuracaoFilmeException, MidiaException, MidiaDataException, ClienteException {
+    public PlataformaStreaming(String nome) throws IOException, InvalidParameterException, ClienteException {
         this.nome = nome;
         this.midias = new HashMap<Integer, Midia>();
         this.clientes = new HashMap<String, Cliente>();
@@ -240,11 +238,9 @@ public class PlataformaStreaming {
      * @param arquivoSeries Nome do arquivo contendo as informações das séries.
      * @param arquivoFilmes Nome do arquivo contendo as informações dos filmes.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
-     * @throws MidiaDataException
-     * @throws MidiaException
-     * @throws DuracaoFilmeException
+     * @throws InvalidParameterException
      */
-    private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException, DuracaoFilmeException, MidiaException, MidiaDataException {
+    private void lerMidias(String arquivoSeries, String arquivoFilmes) throws IOException, InvalidParameterException {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         // Lendo séries
