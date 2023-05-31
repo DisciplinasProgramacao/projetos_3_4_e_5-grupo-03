@@ -1,11 +1,11 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.Scanner;
 
 import exceptions.ClienteException;
-import exceptions.DuracaoFilmeException;
-import exceptions.MidiaDataException;
+
 
 public class App {
     

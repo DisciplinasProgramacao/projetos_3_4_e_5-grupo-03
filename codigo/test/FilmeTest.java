@@ -1,10 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import exceptions.DuracaoFilmeException;
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
-
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +10,7 @@ class FilmeTest {
     private Filme filme;
 
     @BeforeEach
-    void setUp() throws MidiaException, MidiaDataException, DuracaoFilmeException {
+    void setUp() throws InvalidParameterException {
         filme = new Filme(1, "Filme Teste", LocalDate.of(2021, 1, 1), 120);
     }
 
@@ -32,7 +29,7 @@ class FilmeTest {
 
     @Test
     void construtorDuracaoInvalidaTest() {
-        assertThrows(DuracaoFilmeException.class, () -> {
+        assertThrows(InvalidParameterException.class, () -> {
             new Filme(2, "Filme Invalido", LocalDate.of(2021, 1, 1), 5);
         });
     }

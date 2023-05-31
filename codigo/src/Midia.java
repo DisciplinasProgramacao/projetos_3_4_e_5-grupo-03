@@ -1,11 +1,9 @@
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
-import exceptions.MidiaNaoAssistidaException;
 
 /**
  * Classe abstrata Midia que representa uma mídia genérica.

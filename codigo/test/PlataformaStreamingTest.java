@@ -3,11 +3,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import exceptions.ClienteException;
-import exceptions.DuracaoFilmeException;
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,7 +14,7 @@ class PlataformaStreamingTest {
     private PlataformaStreaming plataforma;
 
     @BeforeEach
-    void setUp() throws MidiaException, MidiaDataException, ClienteException, DuracaoFilmeException {
+    void setUp() throws InvalidParameterException, ClienteException {
         plataforma = new PlataformaStreaming("Plataforma Teste", true);
         
         // Adicionar clientes

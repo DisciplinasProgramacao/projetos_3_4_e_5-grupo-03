@@ -2,10 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
-import exceptions.QuantidadeMinimaEpException;
-
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +11,7 @@ class SeriesTest {
     private Serie serie;
 
     @BeforeEach
-    void setUp() throws MidiaException, MidiaDataException {
+    void setUp() throws InvalidParameterException {
         serie = new Serie(1, "Série Teste", LocalDate.of(2021, 1, 1), 10);
     }
 
@@ -30,14 +27,14 @@ class SeriesTest {
             serie.setQuantidadeEpisodios(20);
             int novaQuantidadeEpisodios = serie.getQuantidadeEpisodios();
             assertEquals(20, novaQuantidadeEpisodios);
-        } catch (QuantidadeMinimaEpException e) {
+        } catch (InvalidParameterException e) {
             fail("Exceção QuantidadeMinimaEpException não deveria ter sido lançada.");
         }
     }
 
     @Test
     void setQuantidadeEpisodiosQuantidadeMinimaTest() {
-        assertThrows(QuantidadeMinimaEpException.class, () -> {
+        assertThrows(InvalidParameterException.class, () -> {
             serie.setQuantidadeEpisodios(1);
         });
     }

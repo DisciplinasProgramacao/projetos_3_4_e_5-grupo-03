@@ -1,13 +1,7 @@
 import org.junit.jupiter.api.*;
 
-import exceptions.AvaliacaoNotaException;
 import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
-import exceptions.MidiaNaoAssistidaException;
-import exceptions.NaoPodeAvaliarException;
-
 import java.util.List;
 
 import static org.junit.Assert.assertTrue;
@@ -15,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -24,7 +19,7 @@ class ClienteTest {
     Serie serie2;
 
     @BeforeEach
-    public void setUp() throws ClienteException, MidiaException, MidiaDataException, NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException {
+    public void setUp() throws ClienteException, InvalidParameterException, ClienteAvaliaException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         LocalDate dataDeLancamento2 = LocalDate.of(2020, 1, 1);
         cliente = new Cliente("nome", "usuario1", "senha12345");
@@ -38,7 +33,7 @@ class ClienteTest {
     }
 
     @Test
-    void testAdicionarNaLista() throws MidiaException, MidiaDataException {
+    void testAdicionarNaLista() throws InvalidParameterException {
         Serie serie3 = new Serie(5, "Serie 3", LocalDate.of(2022, 1, 1), 15);
         cliente.adicionarNaLista(serie3);
         assertEquals(3, cliente.getListaParaVer().size());
@@ -108,7 +103,7 @@ class ClienteTest {
     }
 
     @Test
-    public void testAvaliarMidia() throws AvaliacaoNotaException, NaoPodeAvaliarException, ClienteAvaliaException, MidiaNaoAssistidaException {
+    public void testAvaliarMidia() throws InvalidParameterException, ClienteAvaliaException {
         cliente.avaliarMidia(4.5, serie1);
         Assertions.assertEquals(1, serie1.getAvaliacoes().size());
 

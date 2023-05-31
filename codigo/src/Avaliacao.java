@@ -1,4 +1,6 @@
-import exceptions.AvaliacaoNotaException;
+import java.security.InvalidParameterException;
+
+
 
 public class Avaliacao {
     private Cliente cliente;

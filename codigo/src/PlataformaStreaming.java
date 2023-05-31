@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +21,6 @@ import java.util.stream.Collectors;
 import javax.print.DocFlavor.STRING;
 
 import exceptions.ClienteException;
-import exceptions.DuracaoFilmeException;
-import exceptions.MidiaDataException;
-import exceptions.MidiaException;
 
 import java.time.format.DateTimeFormatter;
 

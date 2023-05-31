@@ -3,6 +3,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.HashMap;
 
@@ -10,9 +11,6 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import org.junit.platform.console.shadow.picocli.CommandLine.ITypeConverter;
 
-import exceptions.MidiaDataException;
-import exceptions.QuantidadeMinimaEpException;
-import exceptions.MidiaException;
 
 /**
  * A classe Serie representa uma série de TV e herda da classe Midia.

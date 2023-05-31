@@ -2,11 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import exceptions.ClienteException;
-import exceptions.DuracaoFilmeException;
-import exceptions.MidiaDataException;
-import exceptions.MidiaNaoAssistidaException;
-import exceptions.MidiaException;
 
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,7 +27,7 @@ public class MidiaTest {
      * @throws DuracaoFilmeException
      */
     @BeforeEach
-    public void setUp() throws ClienteException, DuracaoFilmeException, MidiaException, MidiaDataException {
+    public void setUp() throws ClienteException, InvalidParameterException {
         LocalDate dataDeLancamento1 = LocalDate.of(2021, 1, 1);
         cliente = new Cliente("John", "john@puc.com", "senha123");
         filme = new Filme(1, "Matrix", LocalDate.of(1999, 3, 31), 160);
@@ -47,7 +44,7 @@ public class MidiaTest {
      * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testAdicionarAvaliacao() throws MidiaNaoAssistidaException {
+    public void testAdicionarAvaliacao() throws InvalidParameterException {
         assertTrue(filme.getAvaliacoes().isEmpty());
         filme.adicionarAvaliacao(avaliacao);
         assertEquals(1, filme.getAvaliacoes().size());
@@ -67,7 +64,7 @@ public class MidiaTest {
      * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testCalcularMediaDeNotasComUmaAvaliacao() throws MidiaNaoAssistidaException {
+    public void testCalcularMediaDeNotasComUmaAvaliacao() throws InvalidParameterException {
         filme.adicionarAvaliacao(avaliacao);
         assertEquals(avaliacao.getNota(), filme.calcularMediaDeNotas());
     }
@@ -77,7 +74,7 @@ public class MidiaTest {
      * @throws MidiaNaoAssistidaException
      */
     @Test
-    public void testCalcularMediaDeNotasComMultiplasAvaliacoes() throws MidiaNaoAssistidaException {
+    public void testCalcularMediaDeNotasComMultiplasAvaliacoes() throws InvalidParameterException {
         filme.adicionarAvaliacao(avaliacao);
 
         Avaliacao avaliacao2 = new Avaliacao(cliente, filme, 7.0);

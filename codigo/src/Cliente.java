@@ -1,3 +1,4 @@
+import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,8 +6,6 @@ import java.util.stream.Collectors;
 
 import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
-import exceptions.MidiaNaoAssistidaException;
-import exceptions.NaoPodeAvaliarException;
 
 
 /**
