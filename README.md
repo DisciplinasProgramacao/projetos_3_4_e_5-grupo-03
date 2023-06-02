@@ -29,9 +29,13 @@ Gerar javadoc ✔
 
 ## Novos Requisitos:
 
-Qual cliente assistiu mais mídias, e quantas mídias;
-Qual cliente tem mais avaliações, e quantas avaliações;
-Qual a porcentagem dos clientes com pelo menos 15 avaliações;
-Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente;
-Quais são as 10 mídias com mais visualizações, em ordem decrescente;
-Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero.
+Gêneros restritos (Daniel) ✔ (Perguntar ao Caram se temos que fornecer um método para cadastrar junto das midias a categiria)
+Mídias de lançamento e restrição de visualização (Caio)
+Avanço do app e relatórios iniciados (Augusto)
+Existem mídias restritas marcadas como “lançamento”. Somente os clientes profissionais podem fazer operações com estas mídias (Vitor) 
+Qual cliente assistiu mais mídias, e quantas mídias (Daniel)
+Qual cliente tem mais avaliações, e quantas avaliações (Caio)
+Qual a porcentagem dos clientes com pelo menos 15 avaliações (Augusto)
+Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente; (Vitor)
+Quais são as 10 mídias com mais visualizações, em ordem decrescente (Daniel, Caio, Augusto, Vitor)
+Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero (Daniel, Caio, Augusto, Vitor)

@@ -20,13 +20,15 @@ public abstract class Midia {
     private List<Avaliacao> avaliacoes;
 
     private static final List<String> GENEROS = new ArrayList<>(Arrays.asList(
-        "ação",
-        "comédia",
-        "suspense",
-        "terror",
-        "romance",
-        "drama",
-        "ficção cinetífica"
+        "Ação",
+        "Anime",
+        "Aventura",
+        "Comédia",
+        "Documentário",
+        "Drama",
+        "Policial",
+        "Romance",
+        "Suspense"
     )); 
     private static final List<String> IDIOMAS = new ArrayList<>(Arrays.asList(
         "inglês", 
