@@ -141,6 +141,19 @@ public abstract class Midia {
         return somaNotas / quantidadeDeAvaliacoes;
     }
     
+     public boolean isLancamento() {
+        LocalDate dataAtual = LocalDate.now();
+        LocalDate dataLancamento = getDataLancamento();
+        return dataLancamento.isAfter(dataAtual.minusMonths(1));
+    } 
+
+    public boolean verificarAcessoLancamento(Cliente cliente) {
+        if (isLancamento() && !(cliente instanceof Profissional)) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Registra a audiência da mídia.
      */
