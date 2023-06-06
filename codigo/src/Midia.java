@@ -148,7 +148,7 @@ public abstract class Midia {
     } 
 
     public boolean verificarAcessoLancamento(Cliente cliente) {
-        return !(isLancamento() && !(cliente instanceof Especialista));
+        return cliente.podeVer(this);
     }
 
     /**
