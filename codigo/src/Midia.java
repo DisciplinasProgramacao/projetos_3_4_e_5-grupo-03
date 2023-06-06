@@ -148,10 +148,7 @@ public abstract class Midia {
     } 
 
     public boolean verificarAcessoLancamento(Cliente cliente) {
-        if (isLancamento() && !(cliente instanceof Profissional)) {
-            return false;
-        }
-        return true;
+        return !(isLancamento() && !(cliente instanceof Especialista));
     }
 
     /**
