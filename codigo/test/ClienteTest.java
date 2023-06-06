@@ -1,17 +1,12 @@
 import org.junit.jupiter.api.*;
-
 import exceptions.ClienteAvaliaException;
 import exceptions.ClienteException;
 import java.util.List;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 class ClienteTest {
     Cliente cliente;

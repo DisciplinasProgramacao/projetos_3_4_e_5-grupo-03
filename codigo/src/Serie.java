@@ -1,16 +1,5 @@
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
-import java.util.HashMap;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import org.junit.platform.console.shadow.picocli.CommandLine.ITypeConverter;
-
 
 /**
  * A classe Serie representa uma série de TV e herda da classe Midia.

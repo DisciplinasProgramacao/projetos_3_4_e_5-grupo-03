@@ -1,10 +1,6 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import exceptions.ClienteException;
-
-import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.List;

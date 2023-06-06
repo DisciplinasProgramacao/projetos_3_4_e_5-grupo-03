@@ -1,11 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import exceptions.ClienteException;
-
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
