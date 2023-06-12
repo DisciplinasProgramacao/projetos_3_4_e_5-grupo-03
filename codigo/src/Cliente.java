@@ -1,6 +1,7 @@
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -207,5 +208,9 @@ public class Cliente {
 
     public void setListaJaVistas(List<Midia> listaJaVistas) {
         this.listaJaVistas = listaJaVistas;
+    }
+
+    public List<Avaliacao> getListaNotas() {
+        return this.listaNotas;
     }
 }

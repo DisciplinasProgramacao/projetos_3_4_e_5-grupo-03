@@ -186,6 +186,58 @@ public class PlataformaStreaming {
     }
 
     /**
+     * Obtém o relatório do cliente que assistiu mais mídias.
+     *
+     * @return Array de Strings contendo o nome do cliente e a quantidade de mídias assistidas.
+     */
+    public String[] ClienteQueMaisAssistiu() {
+
+        Cliente clienteMaisAssistiu = null;
+        int quantidadeMidiasAssistidas = 0;
+
+        for (Cliente cliente : clientes.values()) {
+            int quantidadeMidiasCliente = cliente.getListaJaVistas().size();
+            if (quantidadeMidiasCliente > quantidadeMidiasAssistidas) {
+                clienteMaisAssistiu = cliente;
+                quantidadeMidiasAssistidas = quantidadeMidiasCliente;
+            }
+        }
+
+        if (clienteMaisAssistiu != null) {
+            String nomeCliente = clienteMaisAssistiu.getNomeDeUsuario();
+            return new String[]{nomeCliente, Integer.toString(quantidadeMidiasAssistidas)};
+        } else {
+            return new String[]{"Nenhum cliente assistiu mídias na plataforma.", ""};
+        }
+    }
+
+    /**
+     * Obtém o relatório do cliente que possui mais avaliações.
+     *
+     * @return Array de Strings contendo o nome do cliente e a quantidade de avaliações realizadas.
+     */
+    public String[] ClienteComMaisAvaliacoes() {
+
+        Cliente clienteComMaisAvaliacoes = null;
+        int quantidadeAvaliacoes = 0;
+
+        for (Cliente cliente : clientes.values()) {
+            int quantidadeAvaliacoesCliente = cliente.getListaNotas().size();
+            if (quantidadeAvaliacoesCliente > quantidadeAvaliacoes) {
+                clienteComMaisAvaliacoes = cliente;
+                quantidadeAvaliacoes = quantidadeAvaliacoesCliente;
+            }
+        }
+
+        if (clienteComMaisAvaliacoes != null) {
+            String nomeCliente = clienteComMaisAvaliacoes.getNomeDeUsuario();
+            return new String[]{nomeCliente, Integer.toString(quantidadeAvaliacoes)};
+        } else {
+            return new String[]{"Nenhum cliente realizou avaliações na plataforma.", ""};
+        }
+    }
+
+    /**
      * Lê informações da audiência de um arquivo e registra a audiência na
      * plataforma.
      * 
