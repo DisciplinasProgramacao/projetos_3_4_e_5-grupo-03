@@ -254,6 +254,31 @@ public class PlataformaStreaming {
         return (double) (clientesComAvaliacoes / totalClientes) * 100.0;
     }
 
+    /**
+     * Retorna as 10 mídias de melhor avaliação, com pelo menos 100 avaliações,
+     * em ordem decrescente.
+     *
+     * @return Lista das 10 mídias de melhor avaliação.
+     */
+    public List<Midia> Top10MelhoresMidias() {
+        return   midias.values().stream()
+                .filter(midia -> midia.getAvaliacoes().size() >= 100)
+                .sorted(Comparator.comparingDouble(Midia::calcularMediaDeNotas).reversed())
+                .limit(10)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Retorna as 10 mídias com mais visualizações, em ordem decrescente.
+     *
+     * @return Lista das 10 mídias com mais visualizações.
+     */
+    public List<Midia> Top10MidiasMaisVisualizadas() {
+        return midias.values().stream()
+                .sorted(Comparator.comparingInt(Midia::getAudiencia).reversed())
+                .limit(10)
+                .collect(Collectors.toList());
+    }
 
     /**
      * Lê informações da audiência de um arquivo e registra a audiência na
