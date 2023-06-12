@@ -7,6 +7,7 @@ import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -242,7 +243,7 @@ public class PlataformaStreaming {
      *
      * @return A porcentagem de clientes com pelo menos 15 avaliações.
      */
-    public double calcularPorcentagemClientesComAvaliacoes() {
+    public double PorcentagemClientesCom15Avaliacoes() {
        
         long totalClientes = clientes.size();
 
