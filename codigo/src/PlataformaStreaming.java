@@ -237,6 +237,23 @@ public class PlataformaStreaming {
         }
     }
 
+     /**
+     * Calcula a porcentagem de clientes com pelo menos 15 avaliações na plataforma.
+     *
+     * @return A porcentagem de clientes com pelo menos 15 avaliações.
+     */
+    public double calcularPorcentagemClientesComAvaliacoes() {
+       
+        long totalClientes = clientes.size();
+
+        long clientesComAvaliacoes = clientes.values().stream()
+                .filter(cliente -> cliente.getListaNotas().size() >= 15)
+                .count();
+
+        return (double) (clientesComAvaliacoes / totalClientes) * 100.0;
+    }
+
+
     /**
      * Lê informações da audiência de um arquivo e registra a audiência na
      * plataforma.
