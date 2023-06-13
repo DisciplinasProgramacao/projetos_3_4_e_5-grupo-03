@@ -280,6 +280,31 @@ public class PlataformaStreaming {
                 .collect(Collectors.toList());
     }
 
+/*     public Map<String, List<Midia>> getTop10MelhoresMidiasPorGenero() {
+        return midias.values().stream()
+            .filter(midia -> midia.getAvaliacoes().size() >= 100)
+            .collect(Collectors.groupingBy(Midia::getGenero))
+            .entrySet().stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream()
+                .sorted(Comparator.comparingDouble(Midia::calcularMediaDeNotas).reversed())
+                .limit(10)
+                .collect(Collectors.toList())));
+    }
+
+
+
+    public Map<String, List<Midia>> getTop10MidiasMaisVisualizadasPorGenero() {
+        return midias.values().stream()
+            .collect(Collectors.groupingBy(Midia::getGenero))
+            .entrySet().stream()
+            .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream()
+                .sorted(Comparator.comparingInt(Midia::getAudiencia).reversed())
+                .limit(10)
+                .collect(Collectors.toList())));
+    } */
+
+
+
     /**
      * Lê informações da audiência de um arquivo e registra a audiência na
      * plataforma.

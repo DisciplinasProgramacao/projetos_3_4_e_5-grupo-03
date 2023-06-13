@@ -111,4 +111,6 @@ class PlataformaStreamingTest {
         // Verifica se a lista de mídias com 40 episódios está vazia
         assertTrue(midias40Episodios.isEmpty());
     }
+
+    
 }
