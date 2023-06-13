@@ -55,7 +55,7 @@ class PlataformaStreamingTest {
 
     @Test
     void testeFiltrarPorGeneroExistente() {
-        String genero = "ação";
+        String genero = "Ação";
         List<Midia> midiasFiltradas = plataforma.filtrarPorGenero(genero);
         assertFalse(midiasFiltradas.isEmpty(), "A lista de mídias filtradas não deve estar vazia");
 

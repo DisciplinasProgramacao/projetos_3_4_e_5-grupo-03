@@ -147,9 +147,9 @@ public abstract class Midia {
         return dataLancamento.isAfter(dataAtual.minusMonths(1));
     } 
 
-    public boolean verificarAcessoLancamento(Cliente cliente) {
+/*     public boolean verificarAcessoLancamento(Cliente cliente) {
         return cliente.podeVer(this);
-    }
+    } */
 
     /**
      * Registra a audiência da mídia.

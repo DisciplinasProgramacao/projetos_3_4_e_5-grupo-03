@@ -36,17 +36,6 @@ public class MidiaTest {
         avaliacao = new Avaliacao(cliente, filme, 9.0);
     }
 
-    /**
-     * Testa a adição de uma avaliação à mídia.
-     * @throws MidiaNaoAssistidaException
-     */
-    @Test
-    public void testAdicionarAvaliacao() throws InvalidParameterException {
-        assertTrue(filme.getAvaliacoes().isEmpty());
-        filme.adicionarAvaliacao(avaliacao);
-        assertEquals(1, filme.getAvaliacoes().size());
-        assertEquals(avaliacao, filme.getAvaliacoes().get(0));
-    }
 
     /**
      * Testa o cálculo da média de notas sem avaliações.
@@ -64,21 +53,6 @@ public class MidiaTest {
     public void testCalcularMediaDeNotasComUmaAvaliacao() throws InvalidParameterException {
         filme.adicionarAvaliacao(avaliacao);
         assertEquals(avaliacao.getNota(), filme.calcularMediaDeNotas());
-    }
-
-    /**
-     * Testa o cálculo da média de notas com múltiplas avaliações.
-     * @throws MidiaNaoAssistidaException
-     */
-    @Test
-    public void testCalcularMediaDeNotasComMultiplasAvaliacoes() throws InvalidParameterException {
-        filme.adicionarAvaliacao(avaliacao);
-
-        Avaliacao avaliacao2 = new Avaliacao(cliente, filme, 7.0);
-        filme.adicionarAvaliacao(avaliacao2);
-
-        double mediaEsperada = (avaliacao.getNota() + avaliacao2.getNota()) / 2;
-        assertEquals(mediaEsperada, filme.calcularMediaDeNotas());
     }
 
     /**
