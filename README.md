@@ -39,3 +39,10 @@ Qual a porcentagem dos clientes com pelo menos 15 avaliações (Augusto)
 Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente; (Vitor)
 Quais são as 10 mídias com mais visualizações, em ordem decrescente (Daniel, Caio, Augusto, Vitor)
 Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero (Daniel, Caio, Augusto, Vitor)
+
+Testar cliente comentarista/especialista (Se o cliente especialista consegue comentar, se um normal não consegue comentar e se conseguimos transformar um cliente em especialista e comentarista)
+
+Implementar trailers de filmes e séries no catálogo da plataforma. Trailers podem ser visualizados e buscados pelos espectadores, porém não precisam computar audiência e tampouco podem ser colocados em listas para assistir futuramente ou serem avaliados.
+
+Completar o app
+
