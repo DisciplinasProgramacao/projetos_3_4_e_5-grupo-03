@@ -37,10 +37,6 @@ public class Serie extends Midia {
      * Construtor alternativo da classe Serie.
      * @param id Identificador único da série.
      * @param nome Nome da série.
-     * @param string Parametro não utilizado.
-     * @param string2 Parametro não utilizado.
-     * @param i Parametro não utilizado.
-     * @param j Parametro não utilizado.
      * @param dataLancamento Data de lançamento da série.
      * @throws InvalidParameterException
      */
@@ -54,7 +50,6 @@ public class Serie extends Midia {
     * Construtor alternativo da classe Serie.
     * @param id Identificador único da série.
     * @param nome Nome da série.
-    * @param dataLancamento Data de lançamento da série.
     * @throws InvalidParameterException
     */
     public Serie(int id, String nome, LocalDate dataDeLancamento) throws InvalidParameterException {

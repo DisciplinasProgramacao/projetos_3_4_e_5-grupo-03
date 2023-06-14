@@ -34,8 +34,6 @@ public class Cliente {
             throw new ClienteException("nome", "3");
         } else if(nomeDeUsuario.length() < 3) {
             throw new ClienteException("nome de usuário", "4");
-        } else if(senha.length() < 6) {
-            throw new ClienteException("Senha", "7");
         }
 
         this.nome = nome;
