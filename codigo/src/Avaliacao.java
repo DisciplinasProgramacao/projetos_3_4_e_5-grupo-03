@@ -1,5 +1,6 @@
 import java.security.InvalidParameterException;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Avaliacao {
@@ -7,13 +8,24 @@ public class Avaliacao {
     private Midia midia;
     private double nota;
 
+    private Map<Cliente, String> comentarios;
+
 
     public Avaliacao(Cliente cliente, Midia midia, double nota) {
         this.cliente = cliente;
         this.midia = midia;
         this.nota = nota;
+        this.comentarios = new HashMap<>();
     }
 
+    public Avaliacao(Cliente cliente, Midia midia, double nota, String comentario) {
+        this(cliente, midia, nota);
+        this.addComentario(cliente, comentario);
+    }
+
+    private void addComentario(Cliente cliente, String comentario) {
+        this.comentarios.put(cliente, comentario);
+    }
 
     public Cliente getCliente() {
         return this.cliente;
