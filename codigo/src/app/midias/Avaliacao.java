@@ -1,3 +1,5 @@
+package app.midias;
+import app.clientes.Cliente;
 import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +9,6 @@ public class Avaliacao {
     private Cliente cliente;
     private Midia midia;
     private double nota;
-
     private Map<Cliente, String> comentarios;
 
 

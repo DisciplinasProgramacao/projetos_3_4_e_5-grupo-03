@@ -1,3 +1,4 @@
+package app.midias;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.security.InvalidParameterException;

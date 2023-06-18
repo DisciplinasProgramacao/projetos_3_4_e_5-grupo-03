@@ -1,8 +1,9 @@
+package app.midias;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 /**
- * A classe Serie representa uma série de TV e herda da classe Midia.
+ * A classe midia.Serie representa uma série de TV e herda da classe midia.Midia.
  * Implementa a interface Serializable para permitir a gravação de objetos da classe em arquivos.
  */
 public class Serie extends Midia {
@@ -17,7 +18,7 @@ public class Serie extends Midia {
     }
 
     /**
-     * Construtor da classe Serie.
+     * Construtor da classe midia.Serie.
      * @param id Identificador único da série.
      * @param nome Nome da série.
      * @param dataLancamento Data de lançamento da série.
@@ -34,7 +35,7 @@ public class Serie extends Midia {
     }
 
     /**
-     * Construtor alternativo da classe Serie.
+     * Construtor alternativo da classe midia.Serie.
      * @param id Identificador único da série.
      * @param nome Nome da série.
      * @param dataLancamento Data de lançamento da série.
@@ -47,7 +48,7 @@ public class Serie extends Midia {
     }
 
     /**
-    * Construtor alternativo da classe Serie.
+    * Construtor alternativo da classe midia.Serie.
     * @param id Identificador único da série.
     * @param nome Nome da série.
     * @throws InvalidParameterException

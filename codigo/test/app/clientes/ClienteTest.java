@@ -1,9 +1,10 @@
-import exceptions.ClienteAvaliaException;
-import exceptions.ClienteException;
+package app.clientes;
+import app.midias.Serie;
+import app.exceptions.ClienteAvaliaException;
+import app.exceptions.ClienteException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
@@ -16,8 +17,8 @@ class ClienteTest {
     @BeforeEach
     public void setUp() throws ClienteException, InvalidParameterException, ClienteAvaliaException {
         cliente = new Cliente("Nome", "usuario1", "senha12345");
-        serie1 = new Serie(3, "Serie 1", 0, 0, 20, LocalDate.of(2020, 1, 1));
-        serie2 = new Serie(4, "Serie 2", 1, 1, 10, LocalDate.of(2021, 1, 1));
+        serie1 = new Serie(3, "midia.Serie 1", 0, 0, 20, LocalDate.of(2020, 1, 1));
+        serie2 = new Serie(4, "midia.Serie 2", 1, 1, 10, LocalDate.of(2021, 1, 1));
         cliente.adicionarNaLista(serie1);
         cliente.adicionarNaLista(serie2);
         cliente.registrarAudiencia(serie1);
@@ -25,7 +26,7 @@ class ClienteTest {
 
     @Test
     public void testAdicionarNaLista() {
-        Serie serie3 = new Serie(5, "Serie 3", LocalDate.of(2022, 1, 1), 15);
+        Serie serie3 = new Serie(5, "midia.Serie 3", LocalDate.of(2022, 1, 1), 15);
         cliente.adicionarNaLista(serie3);
         Assertions.assertEquals(3, cliente.getListaParaVer().size());
         Assertions.assertTrue(cliente.getListaParaVer().contains(serie3));

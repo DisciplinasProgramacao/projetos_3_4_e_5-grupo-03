@@ -1,28 +1,29 @@
+package app.clientes;
+import app.midias.Avaliacao;
+import app.midias.Midia;
+import app.exceptions.ClienteAvaliaException;
+import app.exceptions.ClienteException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import exceptions.ClienteAvaliaException;
-import exceptions.ClienteException;
-
 
 /**
-Classe Cliente que representa um cliente na plataforma de streaming.
+Classe app.app.clientes.Cliente que representa um cliente na plataforma de streaming.
 */
 public class Cliente {
     private String nome;
     private String nomeDeUsuario;
     private String senha;
-    private List<Midia> listaParaVer; 
+    private List<Midia> listaParaVer;
     private List<Midia> listaJaVistas; 
     private List<Avaliacao> listaNotas;
     private List<LocalDate> datasSeriesAssistidas;
 
     /**
-    Construtor da classe Cliente.
+    Construtor da classe app.app.clientes.Cliente.
     @param nome Nome completo do cliente.
     @param nomeDeUsuario Nome de usuário do cliente.
     @param senha Senha do cliente.
@@ -46,7 +47,7 @@ public class Cliente {
     }
 
     /**
-    Adiciona uma media à lista de midias para assistir do cliente.
+    Adiciona uma media à lista de app.app.midias para assistir do cliente.
     @param midia A midia a ser adicionada à lista.
     */
     public void adicionarNaLista(Midia midia) {
@@ -166,7 +167,7 @@ public class Cliente {
         return this.datasSeriesAssistidas;
     }
 
-    // Getters e setters para os atributos da classe Cliente
+    // Getters e setters para os atributos da classe app.app.clientes.Cliente
 
     public String getSenha() {
         return this.senha;

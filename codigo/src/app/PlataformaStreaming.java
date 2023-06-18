@@ -1,3 +1,10 @@
+package app;
+import app.clientes.Cliente;
+import app.midias.Avaliacao;
+import app.midias.Filme;
+import app.midias.Midia;
+import app.midias.Serie;
+import app.exceptions.ClienteException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -5,16 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.stream.Collectors;
-import exceptions.ClienteException;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlataformaStreaming {
     private String nome;
@@ -24,7 +24,7 @@ public class PlataformaStreaming {
     private Cliente clienteAtual;
 
     /**
-     * Construtor da classe PlataformaStreaming.
+     * Construtor da classe app.PlataformaStreaming.
      * 
      * @param nome Nome da plataforma de streaming.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
@@ -46,7 +46,7 @@ public class PlataformaStreaming {
     }
 
     /**
-     * Construtor da classe PlataformaStreaming para criação de uma instância com um nome e um valor booleano.
+     * Construtor da classe app.PlataformaStreaming para criação de uma instância com um nome e um valor booleano.
      * 
      * @param nome O nome da plataforma de streaming.
      * @param dummy Um valor booleano utilizado para inicialização.
@@ -65,7 +65,7 @@ public class PlataformaStreaming {
      * 
      * @param nomeUsuario Nome de usuário do cliente.
      * @param senha       Senha do cliente.
-     * @return Retorna o objeto Cliente caso o login seja bem-sucedido, caso
+     * @return Retorna o objeto app.app.clientes.Cliente caso o login seja bem-sucedido, caso
      *         contrário, retorna null.
      */
     public Cliente login(String nomeUsuario, String senha) {
@@ -80,7 +80,7 @@ public class PlataformaStreaming {
     /**
      * Adiciona uma série à plataforma.
      * 
-     * @param serie Objeto da classe Midia representando a série a ser adicionada.
+     * @param serie Objeto da classe midia.Midia representando a série a ser adicionada.
      */
     public void adicionarSerie(Midia serie) {
         this.midias.put(serie.getId(), serie);
@@ -89,7 +89,7 @@ public class PlataformaStreaming {
     /**
      * Adiciona um cliente à plataforma.
      * 
-     * @param cliente Objeto da classe Cliente representando o cliente a ser
+     * @param cliente Objeto da classe app.app.clientes.Cliente representando o cliente a ser
      *                adicionado.
      */
     public void adicionarCliente(Cliente cliente) {
@@ -99,7 +99,7 @@ public class PlataformaStreaming {
     /**
      * Adiciona um filme à plataforma.
      * 
-     * @param filme Objeto da classe Midia representando o filme a ser adicionado.
+     * @param filme Objeto da classe midia.Midia representando o filme a ser adicionado.
      */
     public void adicionarFilme(Midia filme) {
         this.midias.put(filme.getId(), filme);
@@ -156,18 +156,18 @@ public class PlataformaStreaming {
     }
 
     /**
-     * Retorna um HashMap contendo os clientes cadastrados na plataforma.
+     * Retorna um HashMap contendo os app.app.clientes cadastrados na plataforma.
      * 
-     * @return HashMap contendo os clientes.
+     * @return HashMap contendo os app.app.clientes.
      */
     public HashMap<String, Cliente> getClientes() {
         return this.clientes;
     }
 
     /**
-     * Retorna um HashMap contendo os clientes cadastrados na plataforma.
+     * Retorna um HashMap contendo os app.app.clientes cadastrados na plataforma.
      * 
-     * @return HashMap contendo os clientes.
+     * @return HashMap contendo os app.app.clientes.
      * @throws ClienteException
      */
     private void lerClientes(String arquivo) throws IOException, ClienteException {
@@ -239,9 +239,9 @@ public class PlataformaStreaming {
     }
 
      /**
-     * Calcula a porcentagem de clientes com pelo menos 15 avaliações na plataforma.
+     * Calcula a porcentagem de app.app.clientes com pelo menos 15 avaliações na plataforma.
      *
-     * @return A porcentagem de clientes com pelo menos 15 avaliações.
+     * @return A porcentagem de app.app.clientes com pelo menos 15 avaliações.
      */
     public double PorcentagemClientesCom15Avaliacoes() {
        
@@ -280,25 +280,25 @@ public class PlataformaStreaming {
                 .collect(Collectors.toList());
     }
 
-/*     public Map<String, List<Midia>> getTop10MelhoresMidiasPorGenero() {
-        return midias.values().stream()
+/*     public Map<String, List<midia.Midia>> getTop10MelhoresMidiasPorGenero() {
+        return app.app.midias.values().stream()
             .filter(midia -> midia.getAvaliacoes().size() >= 100)
-            .collect(Collectors.groupingBy(Midia::getGenero))
+            .collect(Collectors.groupingBy(midia.Midia::getGenero))
             .entrySet().stream()
             .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream()
-                .sorted(Comparator.comparingDouble(Midia::calcularMediaDeNotas).reversed())
+                .sorted(Comparator.comparingDouble(midia.Midia::calcularMediaDeNotas).reversed())
                 .limit(10)
                 .collect(Collectors.toList())));
     }
 
 
 
-    public Map<String, List<Midia>> getTop10MidiasMaisVisualizadasPorGenero() {
-        return midias.values().stream()
-            .collect(Collectors.groupingBy(Midia::getGenero))
+    public Map<String, List<midia.Midia>> getTop10MidiasMaisVisualizadasPorGenero() {
+        return app.app.midias.values().stream()
+            .collect(Collectors.groupingBy(midia.Midia::getGenero))
             .entrySet().stream()
             .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().stream()
-                .sorted(Comparator.comparingInt(Midia::getAudiencia).reversed())
+                .sorted(Comparator.comparingInt(midia.Midia::getAudiencia).reversed())
                 .limit(10)
                 .collect(Collectors.toList())));
     } */
@@ -407,7 +407,7 @@ public class PlataformaStreaming {
         // Criar uma nova instância do cliente e adicioná-la ao HashMap
         Cliente novoCliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
         clientes.put(nomeDeUsuario, novoCliente);
-        return true; // Cliente adicionado com sucesso
+        return true; // app.app.clientes.Cliente adicionado com sucesso
     }
 
 

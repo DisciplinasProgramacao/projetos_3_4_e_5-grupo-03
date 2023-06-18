@@ -1,23 +1,24 @@
+package app.midias;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 
 
 /**
- * A classe Filme representa um filme e herda da classe Midia.
+ * A classe midia.Filme representa um filme e herda da classe midia.Midia.
  */
 public class Filme extends Midia{
 
     private int duracao;
 
     /**
-     * Construtor padrão da classe Filme.
+     * Construtor padrão da classe midia.Filme.
      */
     public Filme(){
         super();
     }
 
     /**
-     * Construtor da classe Filme.
+     * Construtor da classe midia.Filme.
      * @param id Identificador único do filme.
      * @param nome Nome do filme.
      * @param dataLancamento Data de lançamento do filme.
@@ -28,13 +29,13 @@ public class Filme extends Midia{
 
         super(id,nome, dataLancamento);
         if(duracao < 10) {
-            throw new InvalidParameterException("A duração do Filme não pode ser menor que 1 minutos!");
+            throw new InvalidParameterException("A duração do midia.Filme não pode ser menor que 1 minutos!");
         }
         this.duracao = duracao;
     }
 
         /**
-     * Construtor da classe Filme.
+     * Construtor da classe midia.Filme.
      * @param id Identificador único do filme.
      * @param nome Nome do filme.
      * @param dataLancamento Data de lançamento do filme.
@@ -46,7 +47,7 @@ public class Filme extends Midia{
 
         super(id,nome, dataLancamento, genero, idioma);
         if(duracao < 1) {
-            throw new InvalidParameterException("A duração do Filme não pode ser menor que 1 minutos!");
+            throw new InvalidParameterException("A duração do midia.Filme não pode ser menor que 1 minutos!");
         }
         this.duracao = duracao;
     }

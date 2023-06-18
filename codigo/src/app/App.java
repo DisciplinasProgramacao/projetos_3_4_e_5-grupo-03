@@ -1,11 +1,13 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+package app;
+import app.clientes.Cliente;
+import app.midias.Filme;
+import app.midias.Serie;
+import app.exceptions.ClienteException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-
-import exceptions.ClienteException;
-
 
 public class App {
     
@@ -53,7 +55,7 @@ public class App {
 
         Cliente cliente = new Cliente(nomeCompleto, nomeUsuario, senha);
         plataforma.adicionarCliente(cliente);
-        System.out.println("Cliente adicionado com sucesso!");
+        System.out.println("app.app.clientes.Cliente adicionado com sucesso!");
     }
 
     private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) throws InvalidParameterException {
@@ -61,7 +63,7 @@ public class App {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Escolha o tipo de mídia:");
         System.out.println("1. Série");
-        System.out.println("2. Filme");
+        System.out.println("2. midia.Filme");
 
         System.out.print("Digite a opção: ");
         int opcao = scanner.nextInt();
@@ -105,7 +107,7 @@ public class App {
 
                 Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao);
                 plataforma.adicionarFilme(filme);
-                System.out.println("Filme adicionado com sucesso!");
+                System.out.println("midia.Filme adicionado com sucesso!");
                 break;
             default:
                 System.out.println("Opção inválida. Tente novamente.");

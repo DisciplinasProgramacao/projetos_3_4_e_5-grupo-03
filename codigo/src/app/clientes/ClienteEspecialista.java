@@ -1,9 +1,11 @@
+package app.clientes;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
-import exceptions.ClienteException;
+import app.midias.Midia;
+import app.exceptions.ClienteException;
 
 public class ClienteEspecialista extends Cliente implements Especialista {
     private Map<Midia, String> comentarios;

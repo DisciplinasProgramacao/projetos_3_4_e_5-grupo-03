@@ -1,13 +1,14 @@
+package app.midias;
+import app.clientes.Cliente;
+import app.exceptions.ClienteException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import exceptions.ClienteException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Classe de teste para a classe Midia.
+ * Classe de teste para a classe midia.Midia.
  */
 public class MidiaTest {
 
@@ -19,9 +20,6 @@ public class MidiaTest {
     /**
      * Configuração inicial para os testes.
      * @throws ClienteException
-     * @throws MidiaDataException
-     * @throws MidiaException
-     * @throws DuracaoFilmeException
      */
     @BeforeEach
     public void setUp() throws ClienteException, InvalidParameterException {
@@ -47,7 +45,6 @@ public class MidiaTest {
 
     /**
      * Testa o cálculo da média de notas com uma avaliação.
-     * @throws MidiaNaoAssistidaException
      */
     @Test
     public void testCalcularMediaDeNotasComUmaAvaliacao() throws InvalidParameterException {

@@ -1,9 +1,15 @@
+package app;
+import app.clientes.Cliente;
+import app.midias.Filme;
+import app.midias.Midia;
+import app.midias.Serie;
+import app.exceptions.ClienteException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import exceptions.ClienteException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlataformaStreamingTest {
@@ -13,18 +19,18 @@ class PlataformaStreamingTest {
     void setUp() throws InvalidParameterException, ClienteException {
         plataforma = new PlataformaStreaming("Plataforma Teste", true);
         
-        // Adicionar clientes
+        // Adicionar app.app.clientes
         Cliente cliente1 = new Cliente("João Silva", "joaosilva", "123456");
         Cliente cliente2 = new Cliente("Maria Souza", "mariasouza", "789012");
         plataforma.adicionarCliente(cliente1);
         plataforma.adicionarCliente(cliente2);
 
         // Adicionar mídias
-        Filme filme1 = new Filme(1, "Filme 1", LocalDate.of(2020, 1, 1), 120);
-        Filme filme2 = new Filme(2, "Filme 2", LocalDate.of(2021, 1, 1), 150);
-        Filme filme3 = new Filme(2, "Filme 2", LocalDate.of(2021, 1, 1), 150, 0 , 1);
-        Serie serie1 = new Serie(3, "Serie 1", LocalDate.of(2020, 1, 1), 10);
-        Serie serie2 = new Serie(4, "Serie 2", LocalDate.of(2021, 1, 1), 20);
+        Filme filme1 = new Filme(1, "midia.Filme 1", LocalDate.of(2020, 1, 1), 120);
+        Filme filme2 = new Filme(2, "midia.Filme 2", LocalDate.of(2021, 1, 1), 150);
+        Filme filme3 = new Filme(2, "midia.Filme 2", LocalDate.of(2021, 1, 1), 150, 0 , 1);
+        Serie serie1 = new Serie(3, "midia.Serie 1", LocalDate.of(2020, 1, 1), 10);
+        Serie serie2 = new Serie(4, "midia.Serie 2", LocalDate.of(2021, 1, 1), 20);
 
         plataforma.adicionarFilme(filme1);
         plataforma.adicionarFilme(filme2);

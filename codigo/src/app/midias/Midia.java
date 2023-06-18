@@ -1,3 +1,4 @@
+package app.midias;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,7 +7,7 @@ import java.util.List;
 
 
 /**
- * Classe abstrata Midia que representa uma mídia genérica.
+ * Classe abstrata midia.Midia que representa uma mídia genérica.
  */
 public abstract class Midia {
 
@@ -37,13 +38,13 @@ public abstract class Midia {
     ));
 
     /**
-     * Construtor padrão da classe Midia.
+     * Construtor padrão da classe midia.Midia.
      */
     public Midia(){
     }
 
     /**
-     * Construtor da classe Midia.
+     * Construtor da classe midia.Midia.
      * @param id Identificador único da mídia.
      * @param nome Nome da mídia.
      * @param dataLancamento Data de lançamento da mídia.
@@ -60,7 +61,7 @@ public abstract class Midia {
     }
 
     /**
-     * Construtor da classe Midia.
+     * Construtor da classe midia.Midia.
      * @param id Identificador único da mídia.
      * @param nome Nome da mídia.
      * @param dataLancamento Data de lançamento da mídia.
@@ -68,11 +69,11 @@ public abstract class Midia {
      */
     public Midia(int id, String nome, LocalDate dataLancamento) throws InvalidParameterException {
         if(id < 0) {
-            throw new InvalidParameterException("O ID da Midia não pode ser vazio!");
+            throw new InvalidParameterException("O ID da midia.Midia não pode ser vazio!");
         } else if(nome.length() < 3) {
-            throw new InvalidParameterException("O nome da Midia deve possuir mais de 3 caracteres!");
+            throw new InvalidParameterException("O nome da midia.Midia deve possuir mais de 3 caracteres!");
         } else if(dataLancamento.isAfter(LocalDate.now())) {
-            throw new InvalidParameterException("O lançamento da Midia não pode ser uma data futura!");
+            throw new InvalidParameterException("O lançamento da midia.Midia não pode ser uma data futura!");
         }
 
         this.id = id;
@@ -122,9 +123,9 @@ public abstract class Midia {
     }
 
     /**
-     * Calcula a média das notas atribuídas por todos os clientes para esta mídia.
+     * Calcula a média das notas atribuídas por todos os app.app.clientes para esta mídia.
      *
-     * @return A média das notas atribuídas pelos clientes para esta mídia.
+     * @return A média das notas atribuídas pelos app.app.clientes para esta mídia.
      */
     public double calcularMediaDeNotas() {
         if (avaliacoes.isEmpty()) {
@@ -147,7 +148,7 @@ public abstract class Midia {
         return dataLancamento.isAfter(dataAtual.minusMonths(1));
     } 
 
-/*     public boolean verificarAcessoLancamento(Cliente cliente) {
+/*     public boolean verificarAcessoLancamento(app.app.clientes.Cliente cliente) {
         return cliente.podeVer(this);
     } */
 
@@ -208,7 +209,7 @@ public abstract class Midia {
 
     /**
      * Retorna a quantidade de episódios da mídia.
-     * @return -1, já que a classe Midia é abstrata e não possui episódios.
+     * @return -1, já que a classe midia.Midia é abstrata e não possui episódios.
     */
     public int getQuantidadeEpisodios() {
         return -1;
