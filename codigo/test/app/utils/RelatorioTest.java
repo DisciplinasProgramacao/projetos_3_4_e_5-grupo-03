@@ -40,7 +40,9 @@ public class RelatorioTest {
     }
 
     @Test
-    void testClienteAssistiuMaisMidias() {
-        System.out.println(this.relatorio.clienteAssistiuMaisMidias().getNome());
+    void testRelatorios() {
+        this.relatorio.clienteAssistiuMaisMidias();
+        this.relatorio.clienteMaisAvaliacoes();
+        this.relatorio.porcentagemClientesComMais15Avaliacoes();
     }
 }
