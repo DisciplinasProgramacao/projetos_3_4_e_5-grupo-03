@@ -4,6 +4,7 @@ import app.midias.Avaliacao;
 import app.midias.Filme;
 import app.midias.Midia;
 import app.midias.Serie;
+import app.midias.Trailer;
 import app.exceptions.ClienteException;
 import java.io.File;
 import java.io.IOException;
@@ -106,6 +107,10 @@ public class PlataformaStreaming {
         this.midias.put(filme.getId(), filme);
     }
 
+
+    public void adicionarTrailer(Midia trailer) {
+        this.midias.put(trailer.getId(), trailer);
+    }
     /**
      * Filtra as mídias da plataforma por gênero.
      *
@@ -335,4 +340,6 @@ public class PlataformaStreaming {
             }
         });
     }
+
+
 }

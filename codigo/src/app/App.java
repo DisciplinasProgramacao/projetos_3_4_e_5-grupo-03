@@ -2,6 +2,7 @@ package app;
 import app.clientes.Cliente;
 import app.midias.Filme;
 import app.midias.Serie;
+import app.midias.Trailer;
 import app.utils.Relatorio;
 import app.exceptions.ClienteException;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class App {
                 case 3:
                     puxarRelatorio(plataforma, scanner);
                     break;
-                case 4:
+                /*   case 4:
                     System.out.println("Digite o nome de usuário do cliente:");
                     String nomeUsuario = scanner.nextLine();
 
@@ -49,13 +50,13 @@ public class App {
 
 
                     menuCliente(plataforma, scanner);
-/*                     Cliente cliente = plataforma.login(nomeUsuario, senha);
+                     Cliente cliente = plataforma.login(nomeUsuario, senha);
                     if (cliente != null) {
                         menuCliente(plataforma, scanner);
                     } else {
                         System.out.println("Usuário ou senha inválidos.");
-                    }  NÃO CONSEGUI FAZER FUNCIONAR, NO LOGIN Não consegue encontrar um usuário*/
-                    break;
+                    }  NÃO CONSEGUI FAZER FUNCIONAR, NO LOGIN Não consegue encontrar um usuário
+                    break;     */
                 case 0:
                     System.out.println("Saindo...");
                     scanner.close();
@@ -87,6 +88,8 @@ public class App {
         System.out.println("Escolha o tipo de mídia:");
         System.out.println("1. Série");
         System.out.println("2. Filme");
+        System.out.println("3. Trailer");
+        System.out.println("0. Sair");
 
         System.out.print("Digite a opção: ");
         int opcao = scanner.nextInt();
@@ -154,6 +157,32 @@ public class App {
                 plataforma.adicionarFilme(filme);
                 System.out.println("Filme adicionado com sucesso!");
                 break;
+            
+            case 3: 
+                System.out.println("Digite o ID do trailer:");
+                int idTrailer = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Digite o nome do trailer:");
+                String nomeTrailer = scanner.nextLine();
+
+                System.out.println("Digite a data de lançamento no formato dd/MM/yyyy:");
+                LocalDate dataLancamentoTrailer = LocalDate.parse(scanner.nextLine(), dateFormatter);
+
+                System.out.println("Generos disponiveis: \n 0. Ação \n 1. Anime \n 2. Aventura \n 3. Comédia \n 4. Documentário \n 5. Drama \n 6. Policial \n 7. Romance \n 8. Suspense");
+                System.out.println("Digite o número da categoria que encaixa com esse trailer:");
+                int generoTrailer = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Idiomas disponiveis: \n 0. inglês \n 1. português \n 2. espanhol");
+                System.out.println("Digite o número do idioma que encaixa com esse trailer:");
+                int idiomaTrailer = scanner.nextInt();
+                scanner.nextLine();
+
+                Trailer trailer = new Trailer(idTrailer, nomeTrailer, dataLancamentoTrailer, generoTrailer, idiomaTrailer);
+                plataforma.adicionarTrailer(trailer);
+                System.out.println("Trailer adicionado com sucesso!");
+                break;
 
             default:
                 System.out.println("Opção inválida. Tente novamente.");
@@ -204,18 +233,17 @@ public class App {
         }
     }
 
-    private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
+    /* private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
         System.out.println("Menu:");
         System.out.println("1. Assistir mídia");
         System.out.println("2. Avaliar mídia");
         System.out.println("3. Filtrar mídias do genero escolhido");
         System.out.println("4. Filtrar midias do idioma escolhido");
         System.out.println("5. Filtrar series por quantidade de episodios");
-        System.out.println("6. Listar mídias não avaliadas");
-        System.out.println("7. Listar mídias por gênero");
-        System.out.println("8. Listar mídias por idioma");
-        System.out.println("9. Listar mídias por data de lançamento");
-        System.out.println("10. Listar mídias por nome");
+        System.out.println("6. Lista de todas as mídias");
+        System.out.println("7. Adicionar na lista de assistir mais tarde");
+        System.out.println("8. Retirar da lista de assistir mais tarde");
+
         System.out.print("Escolha uma opção: ");
 
         int opcao = scanner.nextInt();
@@ -252,6 +280,6 @@ public class App {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
         }
-    }
+    } */
 }
 
