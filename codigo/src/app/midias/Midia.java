@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -192,7 +193,8 @@ public abstract class Midia {
     }
 
     public String getGenero() {
-        return this.genero;
+        return Optional.ofNullable(this.genero)
+                .orElse("NÃO CADASTRADO");
     }
 
     public void setGenero(String genero) {

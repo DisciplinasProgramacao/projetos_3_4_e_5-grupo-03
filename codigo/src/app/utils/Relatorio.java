@@ -59,4 +59,24 @@ public class Relatorio {
 
         System.out.println("Lista de mais visualizações: " + lista);
     }
+
+
+    public void midiasComMaisAvaliacoesPorGenero() {
+        Map<String, List<Midia>> lista = this.plataformaStreaming.getMidias().values().stream()
+                .filter(o -> o.getAvaliacoes().size() > 100)
+                .sorted(Comparator.comparingInt(o -> o.getAvaliacoes().size()))
+                .limit(10)
+                .collect(Collectors.groupingBy(Midia::getGenero));
+
+        System.out.println("Lista de mais avaliados por genero: " + lista);
+    }
+
+    public void midiasComMaisVisualizacoesPorGenero() {
+        Map<String, List<Midia>> lista =  this.plataformaStreaming.getMidias().values().stream()
+                .sorted(Comparator.comparingInt(Midia::getAudiencia))
+                .limit(10)
+                .collect(Collectors.groupingBy(Midia::getGenero));
+
+        System.out.println("Lista de mais visualizações por genero: " + lista);
+    }
 }
