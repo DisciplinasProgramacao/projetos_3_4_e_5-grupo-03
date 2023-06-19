@@ -2,6 +2,7 @@ package app;
 import app.clientes.Cliente;
 import app.midias.Filme;
 import app.midias.Serie;
+import app.utils.Relatorio;
 import app.exceptions.ClienteException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
@@ -20,6 +21,7 @@ public class App {
             System.out.println("Menu:");
             System.out.println("1. Adicionar cliente");
             System.out.println("2. Adicionar mídia");
+            System.out.println("3. Relatórios");
             System.out.println("0. Sair");
 
             System.out.print("Escolha uma opção: ");
@@ -32,6 +34,9 @@ public class App {
                     break;
                 case 2:
                     cadastrarMidia(plataforma, scanner);
+                    break;
+                case 3:
+                    puxarRelatorio(plataforma);
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -130,6 +135,51 @@ public class App {
                 Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao, generoFilme, idiomaFilme);
                 plataforma.adicionarFilme(filme);
                 System.out.println("Filme adicionado com sucesso!");
+                break;
+
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+        }
+    }
+
+    private static void puxarRelatorio(PlataformaStreaming plataforma) {
+        System.out.println("Escolha o relatório:");
+        System.out.println("1. Qual cliente assistiu mais mídias, e quantas mídias");
+        System.out.println("2. Qual cliente tem mais avaliações, e quantas avaliações");
+        System.out.println("3. Qual a porcentagem dos clientes com pelo menos 15 avaliações");
+        System.out.println("4. Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente");
+        System.out.println("5. Qual a mídia mais assistida pelos clientes");
+        System.out.println("6. Qual são as 10 mídias com mais avaliações por genero (Avaliações > 100)");
+        System.out.println("7. Qual são as 10 mídias com mais visualizações por genero");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite a opção: ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        Relatorio relatorio = new Relatorio(plataforma);
+
+        switch (opcao) {
+            case 1:
+                relatorio.clienteAssistiuMaisMidias();
+                break;
+            case 2:
+                relatorio.clienteMaisAvaliacoes();
+                break;
+            case 3:
+                relatorio.porcentagemClientesComMais15Avaliacoes();
+                break;
+            case 4:
+                relatorio.midiasComMaisAvaliacoes();
+                break;
+            case 5:
+                relatorio.midiasComMaisVisualizacoes();
+                break;
+            case 6:
+                relatorio.midiasComMaisAvaliacoesPorGenero();
+                break;
+            case 7:
+                relatorio.midiasComMaisVisualizacoesPorGenero();
                 break;
 
             default:
