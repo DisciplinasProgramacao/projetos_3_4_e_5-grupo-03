@@ -12,6 +12,9 @@ public class Relatorio {
         this.plataformaStreaming = plataformaStreaming;
     }
 
+    /**
+     * Qual cliente assistiu mais mídias, e quantas mídias;
+     */
     public void clienteAssistiuMaisMidias() {
         Cliente cliente = this.plataformaStreaming.getClientes().entrySet().stream()
                 .max(Comparator.comparingInt(p -> p.getValue().getListaJaVistas().size()))
@@ -21,6 +24,9 @@ public class Relatorio {
         System.out.println("Cliente: " + cliente.getNome() + " - Assistiu: " + cliente.getListaJaVistas().size());
     }
 
+    /**
+     * Qual cliente tem mais avaliações, e quantas avaliações;
+     */
     public void clienteMaisAvaliacoes() {
         Cliente cliente = this.plataformaStreaming.getClientes().entrySet().stream()
                 .max(Comparator.comparingInt(p -> p.getValue().getAvaliacoes().size()))
@@ -30,6 +36,9 @@ public class Relatorio {
         System.out.println("Cliente: " + cliente.getNome() + " - Avaliações: " + cliente.getAvaliacoes().size());
     }
 
+    /**
+     * Qual a porcentagem dos clientes com pelo menos 15 avaliações;
+     */
     public void porcentagemClientesComMais15Avaliacoes() {
         long total = this.plataformaStreaming.getClientes().entrySet().stream()
                 .map(Map.Entry::getValue)
@@ -41,6 +50,9 @@ public class Relatorio {
         System.out.println("Porcentagem: " + porcentagem + "%");
     }
 
+    /**
+     * Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente;
+     */
     public void midiasComMaisAvaliacoes() {
         List<Midia> lista = this.plataformaStreaming.getMidias().values().stream()
                 .filter(o -> o.getAvaliacoes().size() > 100)
@@ -51,6 +63,9 @@ public class Relatorio {
         System.out.println("Lista de mais avaliados: " + lista);
     }
 
+    /**
+     * Quais são as 10 mídias com mais visualizações, em ordem decrescente;
+     */
     public void midiasComMaisVisualizacoes() {
         List<Midia> lista =  this.plataformaStreaming.getMidias().values().stream()
                 .sorted(Comparator.comparingInt(Midia::getAudiencia))
@@ -61,6 +76,9 @@ public class Relatorio {
     }
 
 
+    /**
+     * Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente por genero;
+     */
     public void midiasComMaisAvaliacoesPorGenero() {
         Map<String, List<Midia>> lista = this.plataformaStreaming.getMidias().values().stream()
                 .filter(o -> o.getAvaliacoes().size() > 100)
@@ -71,6 +89,9 @@ public class Relatorio {
         System.out.println("Lista de mais avaliados por genero: " + lista);
     }
 
+    /**
+     * Quais são as 10 mídias com mais visualizações, em ordem decrescente por genero;
+     */
     public void midiasComMaisVisualizacoesPorGenero() {
         Map<String, List<Midia>> lista =  this.plataformaStreaming.getMidias().values().stream()
                 .sorted(Comparator.comparingInt(Midia::getAudiencia))
