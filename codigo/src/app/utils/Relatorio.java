@@ -1,12 +1,9 @@
 package app.utils;
 import app.PlataformaStreaming;
 import app.clientes.Cliente;
-
-import javax.sound.midi.Soundbank;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import app.midias.*;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Relatorio {
     PlataformaStreaming plataformaStreaming;
@@ -44,11 +41,22 @@ public class Relatorio {
         System.out.println("Porcentagem: " + porcentagem + "%");
     }
 
-//    public List<Midia> midiasComMaisAvaliacoes() {
-//
-//    }
-//
-//    public List<Midia> midiasComMaisVisualizacoes() {
-//
-//    }
+    public void midiasComMaisAvaliacoes() {
+        List<Midia> lista = this.plataformaStreaming.getMidias().values().stream()
+                .filter(o -> o.getAvaliacoes().size() > 100)
+                .sorted(Comparator.comparingInt(o -> o.getAvaliacoes().size()))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        System.out.println("Lista de mais avaliados: " + lista);
+    }
+
+    public void midiasComMaisVisualizacoes() {
+        List<Midia> lista =  this.plataformaStreaming.getMidias().values().stream()
+                .sorted(Comparator.comparingInt(Midia::getAudiencia))
+                .limit(10)
+                .collect(Collectors.toList());
+
+        System.out.println("Lista de mais visualizações: " + lista);
+    }
 }

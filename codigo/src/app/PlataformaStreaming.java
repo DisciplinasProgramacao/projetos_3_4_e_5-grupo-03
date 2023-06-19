@@ -18,14 +18,15 @@ import java.util.stream.Collectors;
 
 public class PlataformaStreaming {
     private String nome;
+
     private HashMap<Integer, Midia> midias;
+
     private HashMap<String, Cliente> clientes;
     private HashMap<Integer, Avaliacao> avaliacoes;
     private Cliente clienteAtual;
-
     /**
      * Construtor da classe app.PlataformaStreaming.
-     * 
+     *
      * @param nome Nome da plataforma de streaming.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
      * @throws InvalidParameterException
@@ -47,7 +48,7 @@ public class PlataformaStreaming {
 
     /**
      * Construtor da classe app.PlataformaStreaming para criação de uma instância com um nome e um valor booleano.
-     * 
+     *
      * @param nome O nome da plataforma de streaming.
      * @param dummy Um valor booleano utilizado para inicialização.
      */
@@ -62,7 +63,7 @@ public class PlataformaStreaming {
 
     /**
      * Método para realizar o login de um cliente na plataforma.
-     * 
+     *
      * @param nomeUsuario Nome de usuário do cliente.
      * @param senha       Senha do cliente.
      * @return Retorna o objeto app.app.clientes.Cliente caso o login seja bem-sucedido, caso
@@ -79,7 +80,7 @@ public class PlataformaStreaming {
 
     /**
      * Adiciona uma série à plataforma.
-     * 
+     *
      * @param serie Objeto da classe midia.Midia representando a série a ser adicionada.
      */
     public void adicionarSerie(Midia serie) {
@@ -88,7 +89,7 @@ public class PlataformaStreaming {
 
     /**
      * Adiciona um cliente à plataforma.
-     * 
+     *
      * @param cliente Objeto da classe app.app.clientes.Cliente representando o cliente a ser
      *                adicionado.
      */
@@ -98,7 +99,7 @@ public class PlataformaStreaming {
 
     /**
      * Adiciona um filme à plataforma.
-     * 
+     *
      * @param filme Objeto da classe midia.Midia representando o filme a ser adicionado.
      */
     public void adicionarFilme(Midia filme) {
@@ -107,7 +108,7 @@ public class PlataformaStreaming {
 
     /**
      * Filtra as mídias da plataforma por gênero.
-     * 
+     *
      * @param genero Gênero a ser usado como filtro.
      * @return Uma lista imutável de mídias que correspondem ao gênero informado. Se o gênero for nulo ou vazio, retorna uma lista vazia.
      */
@@ -115,9 +116,9 @@ public class PlataformaStreaming {
         if (genero == null || genero.isEmpty()) {
             return Collections.emptyList(); // Retorna uma lista vazia se o gênero for nulo ou vazio
         }
-    
+
         String generoLowerCase = genero.toLowerCase(); // Converter o gênero para minúsculas
-    
+
         return this.midias.values().stream()
                 .filter(m -> m.getGenero() != null && m.getGenero().equalsIgnoreCase(generoLowerCase))
                 .collect(Collectors.toList());
@@ -125,7 +126,7 @@ public class PlataformaStreaming {
 
     /**
      * Filtra as mídias da plataforma por idioma.
-     * 
+     *
      * @param idioma Idioma a ser usado como filtro.
      * @return Uma lista imutável de mídias que correspondem ao idioma informado. Se o idioma for nulo ou vazio, retorna uma lista vazia.
      */
@@ -133,18 +134,18 @@ public class PlataformaStreaming {
         if (idioma == null || idioma.isEmpty()) {
             return Collections.emptyList(); // Retorna uma lista vazia se o idioma for nulo ou vazio
         }
-    
+
         String idiomaLowerCase = idioma.toLowerCase(); // Converter o idioma para minúsculas
-    
+
         return this.midias.values().stream()
                 .filter(m -> m.getIdioma() != null && m.getIdioma().equalsIgnoreCase(idiomaLowerCase))
                 .collect(Collectors.toList());
     }
-    
+
 
     /**
      * Filtra as mídias da plataforma pela quantidade de episódios.
-     * 
+     *
      * @param quantEpisodios Quantidade de episódios a ser usada como filtro.
      * @return Retorna uma lista de mídias que correspondem à quantidade de
      *         episódios informada.
@@ -157,7 +158,7 @@ public class PlataformaStreaming {
 
     /**
      * Retorna um HashMap contendo os app.app.clientes cadastrados na plataforma.
-     * 
+     *
      * @return HashMap contendo os app.app.clientes.
      */
     public HashMap<String, Cliente> getClientes() {
@@ -166,7 +167,7 @@ public class PlataformaStreaming {
 
     /**
      * Retorna um HashMap contendo os app.app.clientes cadastrados na plataforma.
-     * 
+     *
      * @return HashMap contendo os app.app.clientes.
      * @throws ClienteException
      */
@@ -244,7 +245,7 @@ public class PlataformaStreaming {
      * @return A porcentagem de app.app.clientes com pelo menos 15 avaliações.
      */
     public double PorcentagemClientesCom15Avaliacoes() {
-       
+
         long totalClientes = clientes.size();
 
         long clientesComAvaliacoes = clientes.values().stream()
@@ -280,6 +281,7 @@ public class PlataformaStreaming {
                 .collect(Collectors.toList());
     }
 
+
 /*     public Map<String, List<midia.Midia>> getTop10MelhoresMidiasPorGenero() {
         return app.app.midias.values().stream()
             .filter(midia -> midia.getAvaliacoes().size() >= 100)
@@ -304,11 +306,10 @@ public class PlataformaStreaming {
     } */
 
 
-
     /**
      * Lê informações da audiência de um arquivo e registra a audiência na
      * plataforma.
-     * 
+     *
      * @param arquivo Nome do arquivo contendo as informações da audiência.
      * @throws IOException Exceção lançada em caso de falha na leitura do arquivo.
      */
@@ -343,7 +344,7 @@ public class PlataformaStreaming {
 
     /**
      * Lê informações das mídias de arquivos e adiciona as mídias à plataforma.
-     * 
+     *
      * @param arquivoSeries Nome do arquivo contendo as informações das séries.
      * @param arquivoFilmes Nome do arquivo contendo as informações dos filmes.
      * @throws IOException Exceção lançada em caso de falha na leitura dos arquivos.
@@ -410,6 +411,10 @@ public class PlataformaStreaming {
         return true; // app.app.clientes.Cliente adicionado com sucesso
     }
 
+
+    public HashMap<Integer, Midia> getMidias() {
+        return midias;
+    }
 
     /**
      * Salva as informações das mídias em arquivos CSV.

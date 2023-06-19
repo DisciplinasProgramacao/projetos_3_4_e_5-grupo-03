@@ -44,5 +44,7 @@ public class RelatorioTest {
         this.relatorio.clienteAssistiuMaisMidias();
         this.relatorio.clienteMaisAvaliacoes();
         this.relatorio.porcentagemClientesComMais15Avaliacoes();
+        this.relatorio.midiasComMaisAvaliacoes();
+        this.relatorio.midiasComMaisVisualizacoes();
     }
 }
