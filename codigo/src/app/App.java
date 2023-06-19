@@ -129,9 +129,9 @@ public class App {
 
                 Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao, generoFilme, idiomaFilme);
                 plataforma.adicionarFilme(filme);
-                System.out.println("midia.Filme adicionado com sucesso!");
+                System.out.println("Filme adicionado com sucesso!");
                 break;
-                
+
             default:
                 System.out.println("Opção inválida. Tente novamente.");
         }
