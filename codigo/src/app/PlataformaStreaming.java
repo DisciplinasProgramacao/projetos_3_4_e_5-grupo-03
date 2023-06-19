@@ -284,13 +284,13 @@ public class PlataformaStreaming {
     public boolean adicionarCliente(String nomeCompleto, String nomeDeUsuario, String senha) throws ClienteException {
         // Verificar se o nome de usuário já existe
         if (clientes.containsKey(nomeDeUsuario)) {
-            return false; // Nome de usuário já existe, não é possível adicionar o cliente
+            return false; 
         }
 
-        // Criar uma nova instância do cliente e adicioná-la ao HashMap
+
         Cliente novoCliente = new Cliente(nomeCompleto, nomeDeUsuario, senha);
         clientes.put(nomeDeUsuario, novoCliente);
-        return true; // app.app.clientes.Cliente adicionado com sucesso
+        return true;
     }
 
 

@@ -22,6 +22,8 @@ public class App {
             System.out.println("1. Adicionar cliente");
             System.out.println("2. Adicionar mídia");
             System.out.println("3. Relatórios");
+            System.out.println("4. Funções do cliente");
+            System.out.println("5. Salvar");
             System.out.println("0. Sair");
 
             System.out.print("Escolha uma opção: ");
@@ -36,7 +38,23 @@ public class App {
                     cadastrarMidia(plataforma, scanner);
                     break;
                 case 3:
-                    puxarRelatorio(plataforma);
+                    puxarRelatorio(plataforma, scanner);
+                    break;
+                case 4:
+                    System.out.println("Digite o nome de usuário do cliente:");
+                    String nomeUsuario = scanner.nextLine();
+
+                    System.out.println("Digite a senha do cliente:");
+                    String senha = scanner.nextLine();
+
+
+                    menuCliente(plataforma, scanner);
+/*                     Cliente cliente = plataforma.login(nomeUsuario, senha);
+                    if (cliente != null) {
+                        menuCliente(plataforma, scanner);
+                    } else {
+                        System.out.println("Usuário ou senha inválidos.");
+                    }  NÃO CONSEGUI FAZER FUNCIONAR, NO LOGIN Não consegue encontrar um usuário*/
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -142,7 +160,7 @@ public class App {
         }
     }
 
-    private static void puxarRelatorio(PlataformaStreaming plataforma) {
+    private static void puxarRelatorio(PlataformaStreaming plataforma, Scanner scanner) {
         System.out.println("Escolha o relatório:");
         System.out.println("1. Qual cliente assistiu mais mídias, e quantas mídias");
         System.out.println("2. Qual cliente tem mais avaliações, e quantas avaliações");
@@ -152,7 +170,6 @@ public class App {
         System.out.println("6. Qual são as 10 mídias com mais avaliações por genero (Avaliações > 100)");
         System.out.println("7. Qual são as 10 mídias com mais visualizações por genero");
 
-        Scanner scanner = new Scanner(System.in);
         System.out.print("Digite a opção: ");
         int opcao = scanner.nextInt();
         scanner.nextLine();
@@ -186,4 +203,55 @@ public class App {
                 System.out.println("Opção inválida. Tente novamente.");
         }
     }
+
+    private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
+        System.out.println("Menu:");
+        System.out.println("1. Assistir mídia");
+        System.out.println("2. Avaliar mídia");
+        System.out.println("3. Filtrar mídias do genero escolhido");
+        System.out.println("4. Filtrar midias do idioma escolhido");
+        System.out.println("5. Filtrar series por quantidade de episodios");
+        System.out.println("6. Listar mídias não avaliadas");
+        System.out.println("7. Listar mídias por gênero");
+        System.out.println("8. Listar mídias por idioma");
+        System.out.println("9. Listar mídias por data de lançamento");
+        System.out.println("10. Listar mídias por nome");
+        System.out.print("Escolha uma opção: ");
+
+        int opcao = scanner.nextInt();
+        scanner.nextLine(); 
+
+        switch (opcao) {
+                case 1:
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    String genero = scanner.nextLine();
+                    plataforma.filtrarPorGenero(genero);
+                    break;
+                case 4:
+                    String idioma = scanner.nextLine();
+                    plataforma.filtrarPorIdioma(idioma);
+                    break;
+                case 5:
+                    int qtdEpisodios = scanner.nextInt();
+                    scanner.nextLine();
+                    plataforma.filtrarPorQtdEpisodios(qtdEpisodios);
+                    break;
+                case 6:
+                    
+                    break;
+
+                case 0:
+                    System.out.println("Saindo...");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+        }
+    }
 }
+
