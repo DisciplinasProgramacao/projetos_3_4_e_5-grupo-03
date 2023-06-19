@@ -24,7 +24,7 @@ public class App {
 
             System.out.print("Escolha uma opção: ");
             int opcao = scanner.nextInt();
-            scanner.nextLine(); // Limpar o buffer do scanner
+            scanner.nextLine(); 
 
             switch (opcao) {
                 case 1:
@@ -63,17 +63,17 @@ public class App {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Escolha o tipo de mídia:");
         System.out.println("1. Série");
-        System.out.println("2. midia.Filme");
+        System.out.println("2. Filme");
 
         System.out.print("Digite a opção: ");
         int opcao = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do scanner
+        scanner.nextLine();
 
         switch (opcao) {
             case 1:
                 System.out.println("Digite o ID da série:");
                 int id = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do scanner
+                scanner.nextLine(); 
 
                 System.out.println("Digite o nome da série:");
                 String nome = scanner.nextLine();
@@ -83,9 +83,20 @@ public class App {
 
                 System.out.println("Digite o número de episodios:");
                 int qtdEpisodios = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do scanner
+                scanner.nextLine();
 
-                Serie serie = new Serie(id, nome, dataLancamento, qtdEpisodios);
+
+                System.out.println("Generos disponiveis: \n 0. Ação \n 1. Anime \n 2. Aventura \n 3. Comédia \n 4. Documentário \n 5. Drama \n 6. Policial \n 7. Romance \n 8. Suspense");
+                System.out.println("Digite o número da categoria que encaixa com essa série:");
+                int genero = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Idiomas disponiveis: \n 0. inglês \n 1. português \n 2. espanhol");
+                System.out.println("Digite o número do idioma que encaixa com essa série:");
+                int idioma = scanner.nextInt();
+                scanner.nextLine();
+
+                Serie serie = new Serie(id, nome, genero, idioma, qtdEpisodios, dataLancamento);
                 plataforma.adicionarSerie(serie);
                 System.out.println("Série adicionada com sucesso!");
                 break;
@@ -93,7 +104,7 @@ public class App {
             case 2:
                 System.out.println("Digite o ID do filme:");
                 int idFilme = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do scanner
+                scanner.nextLine(); 
 
                 System.out.println("Digite o nome do filme:");
                 String nomeFilme = scanner.nextLine();
@@ -103,12 +114,24 @@ public class App {
 
                 System.out.println("Digite a duração do filme:");
                 int duracao = scanner.nextInt();
-                scanner.nextLine(); // Limpar o buffer do scanner
+                scanner.nextLine(); 
 
-                Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao);
+                System.out.println("Generos disponiveis: \n 0. Ação \n 1. Anime \n 2. Aventura \n 3. Comédia \n 4. Documentário \n 5. Drama \n 6. Policial \n 7. Romance \n 8. Suspense");
+                System.out.println("Digite o número da categoria que encaixa com esse filme:");
+                int generoFilme = scanner.nextInt();
+                scanner.nextLine();
+
+                System.out.println("Idiomas disponiveis: \n 0. inglês \n 1. português \n 2. espanhol");
+                System.out.println("Digite o número do idioma que encaixa com esse filme:");
+
+                int idiomaFilme = scanner.nextInt();
+                scanner.nextLine();
+
+                Filme filme = new Filme(idFilme, nomeFilme, dataLancamentoFilme, duracao, generoFilme, idiomaFilme);
                 plataforma.adicionarFilme(filme);
                 System.out.println("midia.Filme adicionado com sucesso!");
                 break;
+                
             default:
                 System.out.println("Opção inválida. Tente novamente.");
         }
