@@ -56,7 +56,7 @@ public class Relatorio {
     public void midiasComMaisAvaliacoes() {
         List<Midia> lista = this.plataformaStreaming.getMidias().values().stream()
                 .filter(o -> o.getAvaliacoes().size() > 100)
-                .sorted(Comparator.comparing(Midia::getNumAvaliacoes).reversed()) //
+                .sorted(Comparator.comparingInt(Midia::getNumAvaliacoes).reversed()) //
                 .limit(10)
                 .collect(Collectors.toList());
 
@@ -82,7 +82,7 @@ public class Relatorio {
     public void midiasComMaisAvaliacoesPorGenero() {
         Map<String, List<Midia>> lista = this.plataformaStreaming.getMidias().values().stream()
                 .filter(o -> o.getAvaliacoes().size() > 100)
-                .sorted(Comparator.comparing(Midia::getNumAvaliacoes).reversed())
+                .sorted(Comparator.comparingInt(Midia::getNumAvaliacoes).reversed())
                 .limit(10)
                 .collect(Collectors.groupingBy(Midia::getGenero));
 
