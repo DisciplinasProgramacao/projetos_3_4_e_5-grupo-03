@@ -42,11 +42,31 @@ public class RelatorioTest {
     @Test
     void testRelatorios() {
         this.relatorio.clienteAssistiuMaisMidias();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.clienteMaisAvaliacoes();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.porcentagemClientesComMais15Avaliacoes();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.midiasComMaisAvaliacoes();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.midiasComMaisVisualizacoes();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.midiasComMaisAvaliacoesPorGenero();
+
+        System.out.println("--------------------------------------------------------");
+
         this.relatorio.midiasComMaisVisualizacoesPorGenero();
+        
+        System.out.println("--------------------------------------------------------");
     }
 }

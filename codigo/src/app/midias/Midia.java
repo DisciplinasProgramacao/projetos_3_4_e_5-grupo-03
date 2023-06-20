@@ -224,6 +224,4 @@ public abstract class Midia {
     public int getQuantidadeEpisodios() {
         return -1;
     }
-
-
 }

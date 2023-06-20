@@ -60,7 +60,8 @@ public class Relatorio {
                 .limit(10)
                 .collect(Collectors.toList());
 
-        System.out.println("Lista de mais avaliados: " + lista);
+        System.out.println("Lista de mais avaliados");
+        for (Midia obj : lista) this.printMidia(obj);
     }
 
     /**
@@ -72,7 +73,8 @@ public class Relatorio {
                 .limit(10)
                 .collect(Collectors.toList());
 
-        System.out.println("Lista de mais visualizações: " + lista);
+        System.out.println("Lista de mais visualizações");
+        for (Midia obj : lista) this.printMidia(obj);
     }
 
 
@@ -86,7 +88,15 @@ public class Relatorio {
                 .limit(10)
                 .collect(Collectors.groupingBy(Midia::getGenero));
 
-        System.out.println("Lista de mais avaliados por genero: " + lista);
+        System.out.println("Lista de mais avaliados por genero: ");
+
+        for (Map.Entry<String, List<Midia>> entry : lista.entrySet()) {
+            String chave = entry.getKey();
+            List<Midia> listaInterna = entry.getValue();
+            System.out.println("Chave: " + chave);
+
+            for (Midia midia : listaInterna) this.printMidia(midia);
+        }
     }
 
     /**
@@ -98,6 +108,18 @@ public class Relatorio {
                 .limit(10)
                 .collect(Collectors.groupingBy(Midia::getGenero));
 
-        System.out.println("Lista de mais visualizações por genero: " + lista);
+        System.out.println("Lista de mais visualizações por genero: ");
+
+        for (Map.Entry<String, List<Midia>> entry : lista.entrySet()) {
+            String chave = entry.getKey();
+            List<Midia> listaInterna = entry.getValue();
+            System.out.println("Chave: " + chave);
+
+            for (Midia midia : listaInterna) this.printMidia(midia);
+        }
+    }
+
+    private void printMidia(Midia midia) {
+        System.out.println("    Nome: " + midia.getNome() + " | Avaliações: " + midia.getNumAvaliacoes() + " | Audiência:" + midia.getAudiencia());
     }
 }
