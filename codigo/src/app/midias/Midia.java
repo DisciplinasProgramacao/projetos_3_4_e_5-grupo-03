@@ -123,6 +123,14 @@ public abstract class Midia {
         return this.avaliacoes;
     }
 
+
+    /**
+     * @return Quantidade de avaliações
+     */
+    public int getNumAvaliacoes() {
+        return this.avaliacoes.size();
+    }
+
     /**
      * Calcula a média das notas atribuídas por todos os app.app.clientes para esta mídia.
      *
