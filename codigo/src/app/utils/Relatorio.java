@@ -61,7 +61,7 @@ public class Relatorio {
                 .collect(Collectors.toList());
 
         System.out.println("Lista de mais avaliados");
-        for (Midia obj : lista) this.printMidia(obj);
+        for (Midia obj : lista) this.printMidiaAvaliacoes(obj);
     }
 
     /**
@@ -74,7 +74,7 @@ public class Relatorio {
                 .collect(Collectors.toList());
 
         System.out.println("Lista de mais visualizações");
-        for (Midia obj : lista) this.printMidia(obj);
+        for (Midia obj : lista) this.printMidiaVisualizacoes(obj);
     }
 
 
@@ -95,7 +95,7 @@ public class Relatorio {
             List<Midia> listaInterna = entry.getValue();
             System.out.println("Chave: " + chave);
 
-            for (Midia midia : listaInterna) this.printMidia(midia);
+            for (Midia midia : listaInterna) this.printMidiaAvaliacoes(midia);
         }
     }
 
@@ -115,11 +115,15 @@ public class Relatorio {
             List<Midia> listaInterna = entry.getValue();
             System.out.println("Chave: " + chave);
 
-            for (Midia midia : listaInterna) this.printMidia(midia);
+            for (Midia midia : listaInterna) this.printMidiaVisualizacoes(midia);
         }
     }
 
-    private void printMidia(Midia midia) {
-        System.out.println("    Nome: " + midia.getNome() + " | Avaliações: " + midia.getNumAvaliacoes() + " | Audiência:" + midia.getAudiencia());
+    private void printMidiaVisualizacoes(Midia midia) {
+        System.out.println("    Nome: " + midia.getNome() + " | Visualizações:" + midia.getAudiencia());
+    }
+
+    private void printMidiaAvaliacoes(Midia midia) {
+        System.out.println("    Nome: " + midia.getNome() + " | Avaliações: " + midia.getNumAvaliacoes());
     }
 }

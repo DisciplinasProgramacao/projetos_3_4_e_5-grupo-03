@@ -66,7 +66,7 @@ public class RelatorioTest {
         System.out.println("--------------------------------------------------------");
 
         this.relatorio.midiasComMaisVisualizacoesPorGenero();
-        
+
         System.out.println("--------------------------------------------------------");
     }
 }
