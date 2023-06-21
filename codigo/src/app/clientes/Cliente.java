@@ -18,7 +18,10 @@ public class Cliente {
     private String nomeDeUsuario;
     private String senha;
     private List<Midia> listaParaVer;
-    private List<Midia> listaJaVistas; 
+    private List<Midia> listaJaVistas;
+
+    private List<Midia> listaDesejos;
+
     private List<Avaliacao> listaNotas;
     private List<LocalDate> datasSeriesAssistidas;
 
@@ -147,7 +150,7 @@ public class Cliente {
      */
     public void avaliarMidia(double nota, Midia midia) throws ClienteAvaliaException, InvalidParameterException{
              
-        if (podeAvaliarMidia(midia)) {       
+        if (podeAvaliarMidia(midia) && nota > 0 && nota < 6) {
             Avaliacao avaliacao = new Avaliacao(this, midia ,nota);
             this.listaNotas.add(avaliacao);
             midia.adicionarAvaliacao(avaliacao);
@@ -212,4 +215,14 @@ public class Cliente {
     public List<Avaliacao> getListaNotas() {
         return this.listaNotas;
     }
+
+
+    /**
+     * Adiciona Midia na lista de desejos
+     * @param midia
+     */
+    public void addListaDesejos(Midia midia) {
+        this.listaDesejos.add(midia);
+    }
+
 }
