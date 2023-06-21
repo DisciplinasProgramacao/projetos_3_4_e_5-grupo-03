@@ -23,7 +23,7 @@ public class App {
             System.out.println("1. Adicionar cliente");
             System.out.println("2. Adicionar mídia");
             System.out.println("3. Relatórios");
-            /* System.out.println("4. Funções do cliente"); */
+            System.out.println("4. Funções do cliente");
             System.out.println("5. Salvar");
             System.out.println("0. Sair");
 
@@ -41,22 +41,20 @@ public class App {
                 case 3:
                     puxarRelatorio(plataforma, scanner);
                     break;
-                /*   case 4:
+                case 4:
                     System.out.println("Digite o nome de usuário do cliente:");
                     String nomeUsuario = scanner.nextLine();
 
                     System.out.println("Digite a senha do cliente:");
                     String senha = scanner.nextLine();
 
-
-                    menuCliente(plataforma, scanner);
-                     Cliente cliente = plataforma.login(nomeUsuario, senha);
+                    Cliente cliente = plataforma.login(nomeUsuario, senha);
                     if (cliente != null) {
                         menuCliente(plataforma, scanner);
                     } else {
                         System.out.println("Usuário ou senha inválidos.");
-                    }  NÃO CONSEGUI FAZER FUNCIONAR, NO LOGIN Não consegue encontrar um usuário
-                    break;     */
+                    }  
+                    break;     
                 case 0:
                     System.out.println("Saindo...");
                     scanner.close();
@@ -233,7 +231,7 @@ public class App {
         }
     }
 
-    /* private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
+    private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
         System.out.println("Menu:");
         System.out.println("1. Assistir mídia");
         System.out.println("2. Avaliar mídia");
@@ -251,7 +249,7 @@ public class App {
 
         switch (opcao) {
                 case 1:
-                    
+                    System.out.println("Case 1 Funcionando");
                     break;
                 case 2:
                     
@@ -280,6 +278,6 @@ public class App {
                 default:
                     System.out.println("Opção inválida. Tente novamente.");
         }
-    } */
+    }
 }
 
