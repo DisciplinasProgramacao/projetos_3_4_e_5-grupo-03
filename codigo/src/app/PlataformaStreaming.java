@@ -5,6 +5,7 @@ import app.midias.Filme;
 import app.midias.Midia;
 import app.midias.Serie;
 import app.midias.Trailer;
+import app.exceptions.ClienteAvaliaException;
 import app.exceptions.ClienteException;
 import java.io.File;
 import java.io.IOException;
@@ -182,6 +183,24 @@ public class PlataformaStreaming {
             this.clienteAtual.retirarDaLista(midia);
         }
     }
+
+
+    public void registrarAudiencia(String nomeMidia) {
+        Midia midia = filtrarPorNome(nomeMidia);
+
+        if (midia != null) {
+            this.clienteAtual.registrarAudiencia(midia);
+        }
+    }
+
+    public void avaliarMidia(String nomeMidia, double nota) throws InvalidParameterException, ClienteAvaliaException {
+        Midia midia = filtrarPorNome(nomeMidia);
+
+        if (midia != null) {
+            this.clienteAtual.avaliarMidia(nota, midia);
+        }
+    }
+
 
     /**
      * Filtra as mídias da plataforma pela quantidade de episódios.

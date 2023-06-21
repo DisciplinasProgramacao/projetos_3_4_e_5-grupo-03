@@ -4,6 +4,7 @@ import app.midias.Filme;
 import app.midias.Serie;
 import app.midias.Trailer;
 import app.utils.Relatorio;
+import app.exceptions.ClienteAvaliaException;
 import app.exceptions.ClienteException;
 import java.io.IOException;
 import java.security.InvalidParameterException;
@@ -13,7 +14,7 @@ import java.util.Scanner;
 
 public class App {
     
-    public static void main(String[] args) throws IOException, ClienteException, InvalidParameterException {
+    public static void main(String[] args) throws IOException, ClienteException, InvalidParameterException, ClienteAvaliaException {
 
         PlataformaStreaming plataforma = new PlataformaStreaming("teste"); 
         Scanner scanner = new Scanner(System.in);
@@ -231,7 +232,7 @@ public class App {
         }
     }
 
-    private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) {
+    private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) throws InvalidParameterException, ClienteAvaliaException {
         System.out.println("Menu:");
         System.out.println("1. Assistir mídia");
         System.out.println("2. Avaliar mídia");
@@ -244,14 +245,22 @@ public class App {
 
         System.out.print("Escolha uma opção: ");
 
+        String nomeMidia;
         int opcao = scanner.nextInt();
         scanner.nextLine(); 
 
         switch (opcao) {
                 case 1:
+                    System.out.println("Digite o nome da Midia: ");
+                    nomeMidia = scanner.nextLine();
+                    plataforma.registrarAudiencia(nomeMidia);
                     break;
                 case 2:
-                    
+                    System.out.println("Digite o nome da Midia: ");
+                    nomeMidia = scanner.nextLine();
+                    System.out.println("Digite a nota: ");
+                    Double nota = scanner.nextDouble();
+                    plataforma.avaliarMidia(nomeMidia, nota);
                     break;
                 case 3:
                     String genero = scanner.nextLine();
@@ -271,14 +280,14 @@ public class App {
                     break;
 
                 case 7:
-                    System.out.println("Digite o nome da Midia");
-                    String midia = scanner.nextLine();
-                    plataforma.adicionarMidiaLista(midia);
+                    System.out.println("Digite o nome da Midia: ");
+                    nomeMidia = scanner.nextLine();
+                    plataforma.adicionarMidiaLista(nomeMidia);
                     break;
                 case 8:
-                    System.out.println("Digite o nome da Midia");
-                    String midiaRemover = scanner.nextLine();
-                    plataforma.removerMidiaLista(midiaRemover);
+                    System.out.println("Digite o nome da Midia: ");
+                    nomeMidia = scanner.nextLine();
+                    plataforma.removerMidiaLista(nomeMidia);
                     break;
                 case 0:
                     System.out.println("Saindo...");
