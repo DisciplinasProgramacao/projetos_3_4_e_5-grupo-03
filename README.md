@@ -46,3 +46,9 @@ Implementar trailers de filmes e séries no catálogo da plataforma. Trailers po
 
 Completar o app
 
+Review 20/06
+- Revisar a exibição de informações nos relatórios
+- Fazer a parte do cliente funcionar no menu
+- Cadastrar midias com generos para exibir o relatório
+- Checar os reverse do relatório de mais vistos
+- Plataforma + app: verificar quando o cliente vira especialista, comentar só se for especialista

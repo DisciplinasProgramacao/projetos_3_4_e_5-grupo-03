@@ -23,7 +23,7 @@ public class App {
             System.out.println("1. Adicionar cliente");
             System.out.println("2. Adicionar mídia");
             System.out.println("3. Relatórios");
-            System.out.println("4. Funções do cliente");
+            /* System.out.println("4. Funções do cliente"); */
             System.out.println("5. Salvar");
             System.out.println("0. Sair");
 
