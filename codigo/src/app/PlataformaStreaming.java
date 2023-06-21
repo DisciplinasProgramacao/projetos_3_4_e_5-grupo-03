@@ -149,6 +149,41 @@ public class PlataformaStreaming {
 
 
     /**
+     * Filtra as mídias da plataforma por idioma.
+     *
+     * @param idioma Idioma a ser usado como filtro.
+     * @return Uma lista imutável de mídias que correspondem ao idioma informado. Se o idioma for nulo ou vazio, retorna uma lista vazia.
+     */
+    public Midia filtrarPorNome(String nome) {
+        String nomeLowerCase = nome.toLowerCase(); // Converter o nome para minúsculas
+        if (nome != null || !nome.isEmpty()) {
+            return this.midias.values().stream()
+                .filter(m -> m.getNome() != null && m.getNome().equalsIgnoreCase(nomeLowerCase))
+                .findFirst()
+                .orElseThrow(null);
+        }
+        return null;
+    }
+
+
+    public void adicionarMidiaLista(String nomeMidia) {
+        Midia midia = filtrarPorNome(nomeMidia);
+
+        if (midia != null) {
+            this.clienteAtual.adicionarNaLista(midia);
+        }
+    }
+
+
+    public void removerMidiaLista(String nomeMidia) {
+        Midia midia = filtrarPorNome(nomeMidia);
+
+        if (midia != null) {
+            this.clienteAtual.retirarDaLista(midia);
+        }
+    }
+
+    /**
      * Filtra as mídias da plataforma pela quantidade de episódios.
      *
      * @param quantEpisodios Quantidade de episódios a ser usada como filtro.

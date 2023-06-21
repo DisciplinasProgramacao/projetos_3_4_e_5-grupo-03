@@ -64,7 +64,11 @@ public class Cliente {
     @param midia A série a ser removida da lista.
     */
     public void retirarDaLista(Midia midia) {
-        this.listaParaVer.remove(midia);
+        if(listaParaVer.contains(midia)) {
+            this.listaParaVer.remove(midia);
+        } else {
+            System.out.println("Midia não encontrada!");
+        }
     }
 
     /**

@@ -249,7 +249,6 @@ public class App {
 
         switch (opcao) {
                 case 1:
-                    System.out.println("Case 1 Funcionando");
                     break;
                 case 2:
                     
@@ -271,6 +270,16 @@ public class App {
                     
                     break;
 
+                case 7:
+                    System.out.println("Digite o nome da Midia");
+                    String midia = scanner.nextLine();
+                    plataforma.adicionarMidiaLista(midia);
+                    break;
+                case 8:
+                    System.out.println("Digite o nome da Midia");
+                    String midiaRemover = scanner.nextLine();
+                    plataforma.removerMidiaLista(midiaRemover);
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     scanner.close();
