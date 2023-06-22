@@ -218,9 +218,9 @@ public class App {
         System.out.println("2. Qual cliente tem mais avaliações, e quantas avaliações");
         System.out.println("3. Qual a porcentagem dos clientes com pelo menos 15 avaliações");
         System.out.println("4. Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente");
-        System.out.println("5. Qual a mídia mais assistida pelos clientes");
-        System.out.println("6. Qual são as 10 mídias com mais avaliações por genero (Avaliações > 100)");
-        System.out.println("7. Qual são as 10 mídias com mais visualizações por genero");
+        System.out.println("5. Quais são as 10 mídias mais assistida pelos clientes");
+        System.out.println("6. Quais são as 10 mídias com mais avaliações por genero (Avaliações > 100)");
+        System.out.println("7. Quais são as 10 mídias com mais visualizações por genero");
 
         System.out.print("Digite a opção: ");
         int opcao = scanner.nextInt();

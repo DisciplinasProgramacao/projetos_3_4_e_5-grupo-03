@@ -60,8 +60,12 @@ public class Relatorio {
                 .limit(10)
                 .collect(Collectors.toList());
 
-        System.out.println("Lista de mais avaliados");
-        for (Midia obj : lista) this.printMidiaAvaliacoes(obj);
+        if(lista.size() > 0) {
+            System.out.println("Lista de mais avaliados");
+            for (Midia obj : lista) this.printMidiaAvaliacoes(obj);
+        } else {
+            System.out.println("Não possui nenhuma mídia com pelo menos 100 avaliações!");
+        }
     }
 
     /**
