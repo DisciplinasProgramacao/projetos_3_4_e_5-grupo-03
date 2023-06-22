@@ -66,6 +66,14 @@ public class App {
         }
     }
 
+    /**
+     * Método para adicionar um novo cliente à plataforma.
+     *
+     * @param plataforma A plataforma de streaming
+     * @param scanner    O objeto scanner para entrada do usuário
+     * @throws ClienteException se ocorrer um erro relacionado a clientes
+     */
+
     private static void cadastrarCliente(PlataformaStreaming plataforma, Scanner scanner) throws ClienteException {
         System.out.println("Digite o nome completo do cliente:");
         String nomeCompleto = scanner.nextLine();
@@ -80,6 +88,14 @@ public class App {
         plataforma.adicionarCliente(cliente);
         System.out.println("app.app.clientes.Cliente adicionado com sucesso!");
     }
+
+    /**
+     * Método para adicionar uma nova mídia à plataforma.
+     *
+     * @param plataforma A plataforma de streaming
+     * @param scanner    O objeto scanner para entrada do usuário
+     * @throws IOException se ocorrer um erro de E/S
+     */
 
     private static void cadastrarMidia(PlataformaStreaming plataforma, Scanner scanner) throws InvalidParameterException {
 
@@ -188,6 +204,14 @@ public class App {
         }
     }
 
+    /**
+     * Método para exibir e salvar os relatórios disponíveis.
+     *
+     * @param plataforma A plataforma de streaming
+     * @param scanner    O objeto scanner para entrada do usuário
+     * @throws IOException se ocorrer um erro de E/S
+     */
+
     private static void puxarRelatorio(PlataformaStreaming plataforma, Scanner scanner) {
         System.out.println("Escolha o relatório:");
         System.out.println("1. Qual cliente assistiu mais mídias, e quantas mídias");
@@ -232,6 +256,15 @@ public class App {
         }
     }
 
+     /**
+     * Método para exibir o menu do cliente.
+     *
+     * @param plataforma A plataforma de streaming
+     * @param scanner    O objeto scanner para entrada do usuário
+     * @throws ClienteException      se ocorrer um erro relacionado a clientes
+     * @throws ClienteAvaliaException se ocorrer um erro relacionado a avaliações de clientes
+     */
+    
     private static void menuCliente(PlataformaStreaming plataforma, Scanner scanner) throws InvalidParameterException, ClienteAvaliaException {
         System.out.println("Menu:");
         System.out.println("1. Assistir mídia");

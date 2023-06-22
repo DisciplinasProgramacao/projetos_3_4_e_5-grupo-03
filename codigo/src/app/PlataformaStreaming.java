@@ -6,6 +6,7 @@ import app.midias.Midia;
 import app.midias.Serie;
 import app.midias.Trailer;
 import app.exceptions.ClienteException;
+import app.exceptions.ClienteAvaliaException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -170,7 +171,40 @@ public class PlataformaStreaming {
         return null;
     }
 
+    /**
+    * Registra a audiência de uma mídia pelo cliente atual.
+    * 
+    * @param nomeMidia O nome da mídia a ter a audiência registrada.
+    */
+    public void registrarAudiencia(String nomeMidia) {
+        Midia midia = filtrarPorNome(nomeMidia);
 
+        if (midia != null) {
+            this.clienteAtual.registrarAudiencia(midia);
+        }
+    }
+
+    /**
+    * Avalia uma mídia pelo cliente atual.
+    * 
+    * @param nomeMidia O nome da mídia a ser avaliada.
+    * @param nota A nota atribuída à mídia.
+    * @throws InvalidParameterException se a nota estiver fora do intervalo válido.
+    * @throws ClienteAvaliaException se ocorrer um erro ao avaliar a mídia.
+    */
+    public void avaliarMidia(String nomeMidia, double nota) throws InvalidParameterException, ClienteAvaliaException {
+        Midia midia = filtrarPorNome(nomeMidia);
+
+        if (midia != null) {
+            this.clienteAtual.avaliarMidia(nota, midia);
+        }
+    }
+
+    /**
+     * Adiciona uma mídia à lista de reprodução do cliente atual.
+     * 
+     * @param nomeMidia O nome da mídia a ser adicionada.
+     */
     public void adicionarMidiaLista(String nomeMidia) {
         Midia midia = filtrarPorNome(nomeMidia);
 
@@ -179,7 +213,11 @@ public class PlataformaStreaming {
         }
     }
 
-
+    /**
+    * Remove uma mídia da lista de reprodução do cliente atual.
+    * 
+    * @param nomeMidia O nome da mídia a ser removida.
+    */
     public void removerMidiaLista(String nomeMidia) {
         Midia midia = filtrarPorNome(nomeMidia);
 
