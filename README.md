@@ -29,26 +29,25 @@ Gerar javadoc ✔
 
 ## Novos Requisitos:
 
-Gêneros restritos (Daniel) ✔ (Perguntar ao Caram se temos que fornecer um método para cadastrar junto das midias a categiria)
-Mídias de lançamento e restrição de visualização (Caio)
-Avanço do app e relatórios iniciados (Augusto)
-Existem mídias restritas marcadas como “lançamento”. Somente os clientes profissionais podem fazer operações com estas mídias (Vitor) 
-Qual cliente assistiu mais mídias, e quantas mídias (Daniel)
-Qual cliente tem mais avaliações, e quantas avaliações (Caio)
-Qual a porcentagem dos clientes com pelo menos 15 avaliações (Augusto)
-Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente; (Vitor)
-Quais são as 10 mídias com mais visualizações, em ordem decrescente (Daniel, Caio, Augusto, Vitor)
-Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero (Daniel, Caio, Augusto, Vitor)
+Gêneros restritos (Daniel) ✔ 
+Mídias de lançamento e restrição de visualização 
+Avanço do app e relatórios iniciados ✔
+Qual cliente assistiu mais mídias, e quantas mídias ✔
+Qual cliente tem mais avaliações, e quantas avaliações ✔ 
+Qual a porcentagem dos clientes com pelo menos 15 avaliações ✔ 
+Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente; ✔
+Quais são as 10 mídias com mais visualizações, em ordem decrescente ✔ 
+Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero ✔
+Testar cliente comentarista/especialista (Se o cliente especialista consegue comentar, se um normal não consegue comentar e se conseguimos transformar um cliente em especialista e comentarista) ✔
 
-Testar cliente comentarista/especialista (Se o cliente especialista consegue comentar, se um normal não consegue comentar e se conseguimos transformar um cliente em especialista e comentarista)
+Implementar trailers de filmes e séries no catálogo da plataforma. Trailers podem ser visualizados e buscados pelos espectadores, porém não precisam computar audiência e tampouco podem ser colocados em listas para assistir futuramente ou serem avaliados. ✔
 
-Implementar trailers de filmes e séries no catálogo da plataforma. Trailers podem ser visualizados e buscados pelos espectadores, porém não precisam computar audiência e tampouco podem ser colocados em listas para assistir futuramente ou serem avaliados.
+Completar o app ✔
 
-Completar o app
+## Review 20/06:
 
-Review 20/06
-- Revisar a exibição de informações nos relatórios
-- Fazer a parte do cliente funcionar no menu
-- Cadastrar midias com generos para exibir o relatório
-- Checar os reverse do relatório de mais vistos
-- Plataforma + app: verificar quando o cliente vira especialista, comentar só se for especialista
+- Revisar a exibição de informações nos relatórios ✔
+- Fazer a parte do cliente funcionar no menu ✔
+- Cadastrar midias com generos para exibir o relatório 
+- Checar os reverse do relatório de mais vistos ✔
+- Plataforma + app: verificar quando o cliente vira especialista, comentar só se for especialista ✔

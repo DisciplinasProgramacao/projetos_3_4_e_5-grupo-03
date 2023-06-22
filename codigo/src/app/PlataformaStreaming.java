@@ -428,4 +428,8 @@ public class PlataformaStreaming {
             }
         });
     }
+
+    public Cliente getClienteAtual() {
+        return clienteAtual;
+    }
 }

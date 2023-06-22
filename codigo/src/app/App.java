@@ -1,6 +1,7 @@
 package app;
 import app.clientes.Cliente;
 import app.midias.Filme;
+import app.midias.Midia;
 import app.midias.Serie;
 import app.midias.Trailer;
 import app.utils.Relatorio;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -309,7 +311,11 @@ public class App {
                     plataforma.filtrarPorQtdEpisodios(qtdEpisodios);
                     break;
                 case 6:
-                    plataforma.mostrarMidiasCliente(Cliente);
+                    List<Midia> lista = plataforma.mostrarMidiasCliente(plataforma.getClienteAtual());
+                    for (Midia midia : lista) {
+                        System.out.println(midia.getNome());
+                    }
+                    break;
                 case 7:
                     System.out.println("Digite o nome da Midia: ");
                     nomeMidia = scanner.nextLine();
