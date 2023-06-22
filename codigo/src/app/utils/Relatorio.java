@@ -94,13 +94,19 @@ public class Relatorio {
 
         System.out.println("Lista de mais avaliados por genero: ");
 
-        for (Map.Entry<String, List<Midia>> entry : lista.entrySet()) {
-            String chave = entry.getKey();
-            List<Midia> listaInterna = entry.getValue();
-            System.out.println("Chave: " + chave);
+        if(lista.size() > 0) {
+            for (Map.Entry<String, List<Midia>> entry : lista.entrySet()) {
+                String chave = entry.getKey();
+                List<Midia> listaInterna = entry.getValue();
+                System.out.println("Chave: " + chave);
 
-            for (Midia midia : listaInterna) this.printMidiaAvaliacoes(midia);
+                for (Midia midia : listaInterna) this.printMidiaAvaliacoes(midia);
+            }
+        } else {
+            System.out.println("Não possui nenhuma mídia com pelo menos 100 avaliações!");
         }
+
+
     }
 
     /**
