@@ -227,6 +227,16 @@ public class PlataformaStreaming {
     }
 
     /**
+     * Retorna a lista de todas as mídias que o cliente logado já visualizou.
+     *
+     * @return A lista de mídias visualizadas pelo cliente.
+     */
+    
+    public List<Midia> mostrarMidiasCliente(Cliente cliente) {
+        return cliente.getListaJaVistas();
+    }
+
+    /**
      * Filtra as mídias da plataforma pela quantidade de episódios.
      *
      * @param quantEpisodios Quantidade de episódios a ser usada como filtro.

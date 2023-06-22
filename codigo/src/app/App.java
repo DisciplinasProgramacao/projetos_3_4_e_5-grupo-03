@@ -218,7 +218,7 @@ public class App {
         System.out.println("2. Qual cliente tem mais avaliações, e quantas avaliações");
         System.out.println("3. Qual a porcentagem dos clientes com pelo menos 15 avaliações");
         System.out.println("4. Quais são as 10 mídias de melhor avaliação, com pelo menos 100 avaliações, em ordem decrescente");
-        System.out.println("5. Quais são as 10 mídias mais assistida pelos clientes");
+        System.out.println("5. Qual a mídia mais assistida pelos clientes");
         System.out.println("6. Quais são as 10 mídias com mais avaliações por genero (Avaliações > 100)");
         System.out.println("7. Quais são as 10 mídias com mais visualizações por genero");
 
@@ -272,7 +272,7 @@ public class App {
         System.out.println("3. Filtrar mídias do genero escolhido");
         System.out.println("4. Filtrar midias do idioma escolhido");
         System.out.println("5. Filtrar series por quantidade de episodios");
-        System.out.println("6. Lista de todas as mídias");
+        System.out.println("6. Lista de todas as mídias assistidas");
         System.out.println("7. Adicionar na lista de assistir mais tarde");
         System.out.println("8. Retirar da lista de assistir mais tarde");
 
@@ -309,9 +309,7 @@ public class App {
                     plataforma.filtrarPorQtdEpisodios(qtdEpisodios);
                     break;
                 case 6:
-                    
-                    break;
-
+                    plataforma.mostrarMidiasCliente(Cliente);
                 case 7:
                     System.out.println("Digite o nome da Midia: ");
                     nomeMidia = scanner.nextLine();
