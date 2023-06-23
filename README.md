@@ -2,6 +2,46 @@
 # Nome do projeto
 Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
 
+## Nota base: 11
+
+### App 4/6 (5 pontos) = 3,3
+	Protótipo de sistema 4 ✔✔  (uma operacao de cada vez?)
+	Robustez do protótipo 2 ❌
+	
+### Requisitos principais 10,5/21 + 5,5/6 (10 pontos) = 5,9
+	Implementação das classes Cliente, Serie, Midia, Filme e PlataformaStreaming 2 ✔✔
+	Carga de dados 2 ✔ (sem achar genero, sem busca por nome)
+	Cadastro e salvamento 2  ✔ (não salva)
+	Audiência da mídia 1  ✔
+	Implementação do sistema de avaliação de mídias: uma mídia tem sua avaliação média; 2 ✔✔
+	Um cliente não pode avaliar a mesma mídia duas vezes; 1 ❌ (avaliando sem ver)
+	Clientes podem ser especialistas, e estes últimos podem adicionar comentários à avaliação; 3 ✔✔ (sem chamada)
+	Verificação de especialistas 2  ✔ (sem chamada)
+	Os gêneros de mídias devem ser limitados à esta lista 1 ➗ (construtor sem genero)
+	Algumas mídias serão marcadas como “Lançamento”. 1 ❌
+	Estas mídias só poderão ser assistidas por clientes “profissionais” 2 ❌
+	Clientes Profissionais também podem escrever comentários para as mídias assistidas. 2 ❌
+	
+	Relatórios 5,5/6 
+	
+		Qual cliente assistiu mais mídias, e quantas mídias; ✔
+		Qual cliente tem mais avaliações, e quantas avaliações; ✔ 
+		Qual a porcentagem dos clientes com pelo menos 15 avaliações; ✔
+		Quais são as 10 mídias com a melhor média de avaliações, vistas pelo menos 100 vezes, decrescente; ✔
+		Quais são as 10 mídias com mais visualizações, em ordem decrescente; ✔
+		Estes mesmos dois últimos relatórios, porém com as mídias separadas por gênero. ❌
+	
+### Documentação 6,3/7 (2 pontos) = 1,8
+	Documentação de código 3 ✔✔➗
+	Diagrama atualizado    2 ✔➗➗ (espec de cliente)
+	Backlog 			   2 ✔✔
+	
+### SOLID - Descontos: 
+	
+### Apresentação - Peso ou desconto
+
+
+
 ## Alunos integrantes da equipe
 * Vitor Lany Freitas Ferreira
 * Augusto Baldiotti Mendonça Alvares
